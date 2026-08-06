@@ -55,11 +55,30 @@ Professional tools for Logistics, Transport and Business Operations.
 
 <div class="card">
 
-<h2>Calculator Tools</h2>
+<h2>TEU Calculator</h2>
 
 <p>
-TEU Calculator, CBM Calculator, Container Planning and other operational tools will be available here.
+Calculate container capacity in TEU (Twenty-foot Equivalent Unit).
 </p>
+
+
+<label>20ft Containers</label>
+
+<input type="number" id="twenty" placeholder="Number of 20ft containers">
+
+
+<label>40ft Containers</label>
+
+<input type="number" id="forty" placeholder="Number of 40ft containers">
+
+
+<button onclick="calculateTEU()">
+Calculate TEU
+</button>
+
+
+<p id="teuResult"></p>
+
 
 </div>
 
