@@ -1,4 +1,3 @@
-alert("OpsToolkit JS imefanya kazi");
 console.log("OpsToolkit JavaScript loaded");
 
 
