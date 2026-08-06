@@ -58,18 +58,32 @@ Professional tools for Logistics, Transport and Business Operations.
 <h2>TEU Calculator</h2>
 
 <p>
-Calculate container capacity in TEU (Twenty-foot Equivalent Unit).
+Calculate container capacity using TEU measurement.
 </p>
 
 
-<label>20ft Containers</label>
+<label>
+20ft Containers
+</label>
 
-<input type="number" id="twenty" placeholder="Number of 20ft containers">
+<br>
+
+<input type="number" id="twenty" placeholder="Enter 20ft quantity">
 
 
-<label>40ft Containers</label>
+<br><br>
 
-<input type="number" id="forty" placeholder="Number of 40ft containers">
+
+<label>
+40ft Containers
+</label>
+
+<br>
+
+<input type="number" id="forty" placeholder="Enter 40ft quantity">
+
+
+<br><br>
 
 
 <button onclick="calculateTEU()">
@@ -77,10 +91,11 @@ Calculate TEU
 </button>
 
 
-<p id="teuResult"></p>
+<h3 id="teuResult"></h3>
 
 
 </div>
+
 
 
 </main>
