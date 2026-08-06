@@ -1,14 +1,11 @@
 console.log("OpsToolkit JavaScript loaded");
 
 
-function calculateTEU() {
+function calculateTEU(){
 
-    let twenty = document.getElementById("twenty").value;
-    let forty = document.getElementById("forty").value;
+    let twenty = Number(document.getElementById("twenty").value);
 
-
-    twenty = Number(twenty);
-    forty = Number(forty);
+    let forty = Number(document.getElementById("forty").value);
 
 
     let total = (twenty * 1) + (forty * 2);
@@ -18,19 +15,22 @@ function calculateTEU() {
     "Total TEU: " + total;
 
 }
+
+
+
 function calculateCBM(){
 
-let length = Number(document.getElementById("length").value);
+    let length = Number(document.getElementById("length").value);
 
-let width = Number(document.getElementById("width").value);
+    let width = Number(document.getElementById("width").value);
 
-let height = Number(document.getElementById("height").value);
-
-
-let cbm = length * width * height;
+    let height = Number(document.getElementById("height").value);
 
 
-document.getElementById("cbmResult").innerHTML =
-"Total CBM: " + cbm.toFixed(2) + " m³";
+    let cbm = length * width * height;
+
+
+    document.getElementById("cbmResult").innerHTML =
+    "Total CBM: " + cbm.toFixed(2) + " m³";
 
 }
