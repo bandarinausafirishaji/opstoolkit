@@ -1,17 +1,20 @@
-console.log("OpsToolkit is running successfully");
+console.log("OpsToolkit JavaScript loaded");
 
 
-function calculateTEU(){
+function calculateTEU() {
 
-let twenty = Number(document.getElementById("twenty").value);
-
-let forty = Number(document.getElementById("forty").value);
-
-
-let totalTEU = (twenty * 1) + (forty * 2);
+    let twenty = document.getElementById("twenty").value;
+    let forty = document.getElementById("forty").value;
 
 
-document.getElementById("teuResult").innerHTML =
-"Total TEU: " + totalTEU;
+    twenty = Number(twenty);
+    forty = Number(forty);
+
+
+    let total = (twenty * 1) + (forty * 2);
+
+
+    document.getElementById("teuResult").innerHTML =
+    "Total TEU: " + total;
 
 }
