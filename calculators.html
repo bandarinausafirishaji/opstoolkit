@@ -26,12 +26,6 @@
 
 <li><a href="calculators.html">Calculators</a></li>
 
-<li><a href="guides.html">Guides</a></li>
-
-<li><a href="resources.html">Resources</a></li>
-
-<li><a href="about.html">About</a></li>
-
 </ul>
 
 </nav>
@@ -43,7 +37,7 @@
 <h1>Operations Calculators</h1>
 
 <p>
-Professional tools for Logistics, Transport and Business Operations.
+Professional tools for Logistics and Operations.
 </p>
 
 </header>
@@ -57,33 +51,13 @@ Professional tools for Logistics, Transport and Business Operations.
 
 <h2>TEU Calculator</h2>
 
-<p>
-Calculate container capacity using TEU measurement.
-</p>
+<p>Calculate container capacity.</p>
 
 
-<label>
-20ft Containers
-</label>
-
-<br>
-
-<input type="number" id="twenty" placeholder="Enter 20ft quantity">
+<input type="number" id="twenty" placeholder="20ft Containers">
 
 
-<br><br>
-
-
-<label>
-40ft Containers
-</label>
-
-<br>
-
-<input type="number" id="forty" placeholder="Enter 40ft quantity">
-
-
-<br><br>
+<input type="number" id="forty" placeholder="40ft Containers">
 
 
 <button onclick="calculateTEU()">
@@ -95,50 +69,25 @@ Calculate TEU
 
 
 </div>
-  
+
+
+
+
+
 <div class="card">
 
 <h2>CBM Calculator</h2>
 
-<p>
-Calculate cargo volume in Cubic Meter (m³).
-</p>
+<p>Calculate cargo volume.</p>
 
 
-<label>
-Length (meters)
-</label>
-
-<br>
-
-<input type="number" id="length" placeholder="Enter length">
+<input type="number" id="length" placeholder="Length (m)">
 
 
-<br><br>
+<input type="number" id="width" placeholder="Width (m)">
 
 
-<label>
-Width (meters)
-</label>
-
-<br>
-
-<input type="number" id="width" placeholder="Enter width">
-
-
-<br><br>
-
-
-<label>
-Height (meters)
-</label>
-
-<br>
-
-<input type="number" id="height" placeholder="Enter height">
-
-
-<br><br>
+<input type="number" id="height" placeholder="Height (m)">
 
 
 <button onclick="calculateCBM()">
@@ -150,6 +99,7 @@ Calculate CBM
 
 
 </div>
+
 
 
 </main>
@@ -166,22 +116,7 @@ Calculate CBM
 
 
 
-<script>
-
-function calculateTEU(){
-
-let twenty = Number(document.getElementById("twenty").value);
-
-let forty = Number(document.getElementById("forty").value);
-
-let total = (twenty * 1) + (forty * 2);
-
-document.getElementById("teuResult").innerHTML =
-"Total TEU: " + total;
-
-}
-
-</script>
+<script src="script.js"></script>
 
 
 </body>
