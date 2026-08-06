@@ -1,3 +1,4 @@
+alert("Test ya OpsToolkit");
 console.log("OpsToolkit loaded");
 
 
