@@ -7,9 +7,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description" content="OpsToolkit logistics calculators including TEU, CBM, container recommendation and unit conversion tools.">
+<meta name="description" content="OpsToolkit logistics calculators including TEU, CBM, container planning and logistics unit conversions.">
 
-<meta name="keywords" content="TEU calculator, CBM calculator, container calculator, logistics tools">
+<meta name="keywords" content="TEU calculator, CBM calculator, logistics converter, container calculator">
 
 <title>OpsToolkit | Logistics Calculators</title>
 
@@ -58,7 +58,7 @@ Logistics Calculators
 
 
 <p>
-Practical digital tools for container, cargo and operational calculations.
+Professional digital tools for container, cargo and operations calculations.
 </p>
 
 
@@ -78,22 +78,16 @@ Practical digital tools for container, cargo and operational calculations.
 
 <h2>TEU Calculator</h2>
 
-<p>
-Calculate container capacity based on 20ft and 40ft containers.
-</p>
+<p>Calculate container capacity in TEU.</p>
 
 
 <input type="number" id="twenty" placeholder="20ft Containers">
 
-
 <br><br>
-
 
 <input type="number" id="forty" placeholder="40ft Containers">
 
-
 <br><br>
-
 
 <button onclick="calculateTEU()" class="button">
 Calculate TEU
@@ -115,28 +109,20 @@ Calculate TEU
 
 <h2>CBM Calculator</h2>
 
-<p>
-Calculate cargo volume in cubic meters.
-</p>
+<p>Calculate cargo volume in cubic meters.</p>
 
 
 <input type="number" id="length" placeholder="Length (m)">
 
-
 <br><br>
-
 
 <input type="number" id="width" placeholder="Width (m)">
 
-
 <br><br>
-
 
 <input type="number" id="height" placeholder="Height (m)">
 
-
 <br><br>
-
 
 <button onclick="calculateCBM()" class="button">
 Calculate CBM
@@ -158,16 +144,12 @@ Calculate CBM
 
 <h2>Container Size Recommendation</h2>
 
-<p>
-Find suitable container based on cargo volume.
-</p>
+<p>Find suitable container based on cargo volume.</p>
 
 
 <input type="number" id="cargoCBM" placeholder="Cargo CBM">
 
-
 <br><br>
-
 
 <button onclick="checkContainer()" class="button">
 Check Container
@@ -187,30 +169,51 @@ Check Container
 
 <div class="card">
 
-<h2>Unit Converter</h2>
+<h2>Logistics Unit Converter</h2>
+
 
 <p>
-Convert common logistics measurements.
+Convert common logistics measurement units.
 </p>
 
 
-<input type="number" id="unitValue" placeholder="Enter value">
+<input type="number" id="unitValue" placeholder="Enter Value">
 
 
 <br><br>
 
 
+
+<h3>Weight Conversion</h3>
+
+
 <button onclick="kgToTon()" class="button">
-KG → Ton
+KG → Tons
 </button>
 
 
 <button onclick="tonToKg()" class="button">
-Ton → KG
+Tons → KG
 </button>
 
 
+<button onclick="kgToLb()" class="button">
+KG → LB
+</button>
+
+
+<button onclick="lbToKg()" class="button">
+LB → KG
+</button>
+
+
+
+
 <br><br>
+
+
+
+<h3>Length Conversion</h3>
 
 
 <button onclick="meterToCm()" class="button">
@@ -223,10 +226,23 @@ CM → Meter
 </button>
 
 
+<button onclick="meterToFeet()" class="button">
+Meter → Feet
+</button>
+
+
+<button onclick="feetToMeter()" class="button">
+Feet → Meter
+</button>
+
+
+
 <h3 id="unitResult"></h3>
 
 
 </div>
+
+
 
 
 
@@ -239,19 +255,23 @@ CM → Meter
 
 
 
+
 <footer>
 
 <p>
 OpsToolkit
 </p>
 
+
 <p>
 Digital Operations Tools for Logistics, Transport and Business Efficiency.
 </p>
 
+
 <p>
 Developed by ASA Digital Solutions & Operations
 </p>
+
 
 <p>
 © 2026 OpsToolkit. All rights reserved.
@@ -259,6 +279,7 @@ Developed by ASA Digital Solutions & Operations
 
 
 </footer>
+
 
 
 
