@@ -4,10 +4,12 @@
 
 
 body {
+
     margin: 0;
     font-family: Arial, sans-serif;
     background: #f4f6f8;
     color: #333;
+
 }
 
 
@@ -19,7 +21,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 8%;
+    padding: 18px 8%;
 
 }
 
@@ -27,7 +29,7 @@ body {
 
 .logo {
 
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
 
 }
@@ -38,7 +40,7 @@ body {
 
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 25px;
     margin: 0;
     padding: 0;
 
@@ -50,15 +52,15 @@ body {
 
     color: white;
     text-decoration: none;
+    font-weight: bold;
 
 }
 
 
 
-
 .hero {
 
-    background: #0B3A6E;
+    background: linear-gradient(135deg,#0B3A6E,#155da8);
     color: white;
     text-align: center;
     padding: 70px 20px;
@@ -69,8 +71,8 @@ body {
 
 .hero h1 {
 
-    font-size: 45px;
-    margin-bottom: 10px;
+    font-size: 42px;
+    margin-bottom: 15px;
 
 }
 
@@ -79,25 +81,8 @@ body {
 .hero p {
 
     font-size: 18px;
-    max-width: 700px;
-    margin: auto;
 
 }
-
-
-
-.button {
-
-    display: inline-block;
-    margin-top: 25px;
-    background: #F28C28;
-    color: white;
-    padding: 12px 25px;
-    border-radius: 5px;
-    text-decoration: none;
-
-}
-
 
 
 
@@ -106,20 +91,19 @@ body {
     width: 90%;
     max-width: 1000px;
     margin: auto;
-    padding: 30px 0;
+    padding: 35px 0;
 
 }
-
 
 
 
 .card {
 
     background: white;
-    padding: 25px;
-    margin: 20px 0;
-    border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    padding: 30px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
 
 }
 
@@ -133,12 +117,60 @@ body {
 
 
 
+input {
+
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+
+}
+
+
+
+.button {
+
+    display: inline-block;
+    background: #F28C28;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+
+}
+
+
+
+.button:hover {
+
+    opacity: 0.85;
+
+}
+
+
+
+h3 {
+
+    background: #eef4fa;
+    padding: 15px;
+    border-left: 5px solid #F28C28;
+    border-radius: 5px;
+
+}
+
+
+
 footer {
 
     background: #0B3A6E;
-    color: white;
-    text-align: center;
-    padding: 20px;
+    color:white;
+    text-align:center;
+    padding:20px;
 
 }
 
@@ -157,15 +189,15 @@ footer {
 .navbar ul {
 
     flex-direction: column;
-    text-align: center;
-    margin-top: 15px;
+    text-align:center;
+    margin-top:15px;
 
 }
 
 
 .hero h1 {
 
-    font-size: 32px;
+    font-size:32px;
 
 }
 
