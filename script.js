@@ -16,7 +16,6 @@ function calculateTEU(){
 
 
 
-
 function calculateCBM(){
 
     let length = Number(document.getElementById("length").value);
@@ -37,7 +36,6 @@ function calculateCBM(){
 
 
 
-
 function checkContainer(){
 
     let cbm = Number(document.getElementById("cargoCBM").value);
@@ -48,19 +46,19 @@ function checkContainer(){
 
     if(cbm <= 33){
 
-        result = "Recommended: 20ft General Purpose Container (Approx. 33 m³)";
+        result = "Recommended: 20ft General Purpose Container";
 
     }
 
     else if(cbm <= 67){
 
-        result = "Recommended: 40ft General Purpose Container (Approx. 67 m³)";
+        result = "Recommended: 40ft General Purpose Container";
 
     }
 
     else if(cbm <= 76){
 
-        result = "Recommended: 40ft High Cube Container (Approx. 76 m³)";
+        result = "Recommended: 40ft High Cube Container";
 
     }
 
@@ -72,5 +70,66 @@ function checkContainer(){
 
 
     document.getElementById("containerResult").innerHTML = result;
+
+}
+
+
+
+
+
+function kgToTon(){
+
+    let value = Number(document.getElementById("unitValue").value);
+
+    let result = value / 1000;
+
+
+    document.getElementById("unitResult").innerHTML =
+    value + " KG = " + result.toFixed(3) + " Ton";
+
+}
+
+
+
+
+function tonToKg(){
+
+    let value = Number(document.getElementById("unitValue").value);
+
+    let result = value * 1000;
+
+
+    document.getElementById("unitResult").innerHTML =
+    value + " Ton = " + result + " KG";
+
+}
+
+
+
+
+function meterToCm(){
+
+    let value = Number(document.getElementById("unitValue").value);
+
+    let result = value * 100;
+
+
+    document.getElementById("unitResult").innerHTML =
+    value + " Meter = " + result + " CM";
+
+}
+
+
+
+
+function cmToMeter(){
+
+    let value = Number(document.getElementById("unitValue").value);
+
+    let result = value / 100;
+
+
+    document.getElementById("unitResult").innerHTML =
+    value + " CM = " + result.toFixed(2) + " Meter";
 
 }
