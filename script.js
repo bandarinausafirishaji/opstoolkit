@@ -1,7 +1,3 @@
-alert("Test ya OpsToolkit");
-console.log("OpsToolkit loaded");
-
-
 function calculateTEU(){
 
     let twenty = Number(document.getElementById("twenty").value);
@@ -29,10 +25,10 @@ function calculateCBM(){
     let height = Number(document.getElementById("height").value);
 
 
-    let totalCBM = length * width * height;
+    let cbm = length * width * height;
 
 
     document.getElementById("cbmResult").innerHTML =
-    "Total CBM: " + totalCBM.toFixed(2) + " m³";
+    "Total CBM: " + cbm.toFixed(2) + " m³";
 
 }
