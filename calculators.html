@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sw">
 
 <head>
 
@@ -18,7 +18,10 @@
 
 <nav class="navbar">
 
-<h2>OpsToolkit</h2>
+<div class="logo">
+OpsToolkit
+</div>
+
 
 <ul>
 
@@ -28,29 +31,39 @@
 
 </ul>
 
+
 </nav>
 
 
 
-<header>
 
-<h1>Operations Calculators</h1>
+<header class="hero">
+
+<h1>
+Operations Calculators
+</h1>
+
 
 <p>
-Professional tools for Logistics, Transport and Operations.
+Simple digital tools for logistics and business operations.
 </p>
 
 </header>
 
 
 
-<main class="container">
+
+<section class="container">
 
 
 
 <div class="card">
 
-<h2>TEU Calculator</h2>
+
+<h2>
+TEU Calculator
+</h2>
+
 
 <p>
 Calculate container capacity.
@@ -69,7 +82,7 @@ Calculate container capacity.
 <br><br>
 
 
-<button onclick="calculateTEU()">
+<button onclick="calculateTEU()" class="button">
 Calculate TEU
 </button>
 
@@ -83,13 +96,19 @@ Calculate TEU
 
 
 
+
 <div class="card">
 
-<h2>CBM Calculator</h2>
+
+<h2>
+CBM Calculator
+</h2>
+
 
 <p>
 Calculate cargo volume in cubic meters.
 </p>
+
 
 
 <input type="number" id="length" placeholder="Length (m)">
@@ -110,9 +129,10 @@ Calculate cargo volume in cubic meters.
 <br><br>
 
 
-<button onclick="calculateCBM()">
+<button onclick="calculateCBM()" class="button">
 Calculate CBM
 </button>
+
 
 
 <h3 id="cbmResult"></h3>
@@ -123,14 +143,15 @@ Calculate CBM
 
 
 
-</main>
+</section>
+
 
 
 
 <footer>
 
 <p>
-© OpsToolkit | ASA Digital Solutions & Operations
+© 2026 OpsToolkit | Digital Operations Solutions
 </p>
 
 </footer>
