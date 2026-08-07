@@ -31,7 +31,6 @@ OpsToolkit
 
 </ul>
 
-
 </nav>
 
 
@@ -43,9 +42,8 @@ OpsToolkit
 Operations Calculators
 </h1>
 
-
 <p>
-Simple digital tools for logistics and business operations.
+Digital tools for Logistics, Transport and Operations.
 </p>
 
 </header>
@@ -59,11 +57,7 @@ Simple digital tools for logistics and business operations.
 
 <div class="card">
 
-
-<h2>
-TEU Calculator
-</h2>
-
+<h2>TEU Calculator</h2>
 
 <p>
 Calculate container capacity.
@@ -72,15 +66,11 @@ Calculate container capacity.
 
 <input type="number" id="twenty" placeholder="20ft Containers">
 
-
 <br><br>
-
 
 <input type="number" id="forty" placeholder="40ft Containers">
 
-
 <br><br>
-
 
 <button onclick="calculateTEU()" class="button">
 Calculate TEU
@@ -99,46 +89,66 @@ Calculate TEU
 
 <div class="card">
 
-
-<h2>
-CBM Calculator
-</h2>
-
+<h2>CBM Calculator</h2>
 
 <p>
-Calculate cargo volume in cubic meters.
+Calculate cargo volume.
 </p>
-
 
 
 <input type="number" id="length" placeholder="Length (m)">
 
-
 <br><br>
-
 
 <input type="number" id="width" placeholder="Width (m)">
 
-
 <br><br>
-
 
 <input type="number" id="height" placeholder="Height (m)">
 
-
 <br><br>
-
 
 <button onclick="calculateCBM()" class="button">
 Calculate CBM
 </button>
 
 
-
 <h3 id="cbmResult"></h3>
 
 
 </div>
+
+
+
+
+
+
+
+<div class="card">
+
+<h2>Container Size Recommendation</h2>
+
+<p>
+Enter cargo volume to get a suitable container suggestion.
+</p>
+
+
+<input type="number" id="cargoCBM" placeholder="Cargo CBM (m³)">
+
+
+<br><br>
+
+
+<button onclick="checkContainer()" class="button">
+Check Container
+</button>
+
+
+<h3 id="containerResult"></h3>
+
+
+</div>
+
 
 
 
@@ -155,6 +165,7 @@ Calculate CBM
 </p>
 
 </footer>
+
 
 
 
