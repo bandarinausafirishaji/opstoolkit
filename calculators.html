@@ -42,9 +42,7 @@ OpsToolkit
 
 </ul>
 
-
 </nav>
-
 
 
 
@@ -56,14 +54,11 @@ OpsToolkit
 Logistics Calculators
 </h1>
 
-
 <p>
-Professional digital tools for container, cargo and operations calculations.
+Professional tools for container, cargo and operational calculations.
 </p>
 
-
 </header>
-
 
 
 
@@ -80,7 +75,6 @@ Professional digital tools for container, cargo and operations calculations.
 
 <p>Calculate container capacity in TEU.</p>
 
-
 <input type="number" id="twenty" placeholder="20ft Containers">
 
 <br><br>
@@ -93,9 +87,7 @@ Professional digital tools for container, cargo and operations calculations.
 Calculate TEU
 </button>
 
-
 <h3 id="teuResult"></h3>
-
 
 </div>
 
@@ -122,6 +114,7 @@ Calculate TEU
 
 <input type="number" id="height" placeholder="Height (m)">
 
+
 <br><br>
 
 <button onclick="calculateCBM()" class="button">
@@ -130,7 +123,6 @@ Calculate CBM
 
 
 <h3 id="cbmResult"></h3>
-
 
 </div>
 
@@ -142,14 +134,15 @@ Calculate CBM
 
 <div class="card">
 
-<h2>Container Size Recommendation</h2>
+<h2>Container Recommendation</h2>
 
-<p>Find suitable container based on cargo volume.</p>
+<p>Recommend container size based on cargo volume.</p>
 
 
 <input type="number" id="cargoCBM" placeholder="Cargo CBM">
 
 <br><br>
+
 
 <button onclick="checkContainer()" class="button">
 Check Container
@@ -169,6 +162,7 @@ Check Container
 
 <div class="card">
 
+
 <h2>Logistics Unit Converter</h2>
 
 
@@ -177,10 +171,8 @@ Convert common logistics measurement units.
 </p>
 
 
+
 <input type="number" id="unitValue" placeholder="Enter Value">
-
-
-<br><br>
 
 
 
@@ -209,7 +201,6 @@ LB → KG
 
 
 
-<br><br>
 
 
 
@@ -237,7 +228,26 @@ Feet → Meter
 
 
 
+
+
+
+
+<h3>Volume Conversion</h3>
+
+
+<button onclick="cbmToCubicFeet()" class="button">
+CBM → Cubic Feet
+</button>
+
+
+<button onclick="cubicFeetToCBM()" class="button">
+Cubic Feet → CBM
+</button>
+
+
+
 <h3 id="unitResult"></h3>
+
 
 
 </div>
@@ -257,6 +267,7 @@ Feet → Meter
 
 
 <footer>
+
 
 <p>
 OpsToolkit
@@ -279,7 +290,6 @@ Developed by ASA Digital Solutions & Operations
 
 
 </footer>
-
 
 
 
