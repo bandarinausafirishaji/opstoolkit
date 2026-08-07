@@ -79,7 +79,6 @@ Calculate TEU
 
 <h3 id="teuResult"></h3>
 
-
 </div>
 
 
@@ -129,15 +128,13 @@ Calculate CBM
 <h2>Container Size Recommendation</h2>
 
 <p>
-Enter cargo volume to get a suitable container suggestion.
+Enter cargo volume to get container suggestion.
 </p>
 
 
 <input type="number" id="cargoCBM" placeholder="Cargo CBM (m³)">
 
-
 <br><br>
-
 
 <button onclick="checkContainer()" class="button">
 Check Container
@@ -145,6 +142,56 @@ Check Container
 
 
 <h3 id="containerResult"></h3>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+<h2>Unit Converter</h2>
+
+<p>
+Convert common logistics units.
+</p>
+
+
+<input type="number" id="unitValue" placeholder="Enter value">
+
+
+<br><br>
+
+
+<button onclick="kgToTon()" class="button">
+KG → Ton
+</button>
+
+
+<button onclick="tonToKg()" class="button">
+Ton → KG
+</button>
+
+
+<br><br>
+
+
+<button onclick="meterToCm()" class="button">
+Meter → CM
+</button>
+
+
+<button onclick="cmToMeter()" class="button">
+CM → Meter
+</button>
+
+
+
+<h3 id="unitResult"></h3>
 
 
 </div>
