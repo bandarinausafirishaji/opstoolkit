@@ -198,3 +198,32 @@ document.getElementById("unitResult").innerHTML =
 feet + " Feet = " + meter.toFixed(2) + " Meter";
 
 }
+// Volume Conversion (CBM and Cubic Feet)
+
+function cbmToCubicFeet() {
+
+let cbm = Number(document.getElementById("unitValue").value) || 0;
+
+let cubicFeet = cbm * 35.3147;
+
+
+document.getElementById("unitResult").innerHTML =
+cbm + " CBM = " + cubicFeet.toFixed(2) + " Cubic Feet";
+
+}
+
+
+
+
+
+function cubicFeetToCBM() {
+
+let cubicFeet = Number(document.getElementById("unitValue").value) || 0;
+
+let cbm = cubicFeet / 35.3147;
+
+
+document.getElementById("unitResult").innerHTML =
+cubicFeet + " Cubic Feet = " + cbm.toFixed(3) + " CBM";
+
+}
