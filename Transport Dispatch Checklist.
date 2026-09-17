@@ -1,0 +1,683 @@
+
+<!DOCTYPE html>
+<html lang="sw">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="Transport Dispatch Checklist for logistics and transport operations.">
+
+<title>Transport Dispatch Checklist | OpsToolkit</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.form-section {
+    max-width: 950px;
+    margin: 30px auto;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+input,
+select,
+textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.checklist {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.checklist th,
+.checklist td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.checklist th {
+    background: #f2f4f7;
+}
+
+.actions {
+    margin-top: 25px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 700px) {
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+        grid-column: auto;
+    }
+
+}
+
+@media print {
+
+    .navbar,
+    .hero,
+    .actions,
+    footer {
+        display: none;
+    }
+
+    body {
+        background: white;
+    }
+
+    .card {
+        box-shadow: none;
+        border: none;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<nav class="navbar">
+
+<div class="logo">
+OpsToolkit
+</div>
+
+<ul>
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="calculators.html">Calculators</a></li>
+
+<li><a href="resources.html">Resources</a></li>
+
+<li><a href="guides.html">Guides</a></li>
+
+<li><a href="about.html">About</a></li>
+
+</ul>
+
+</nav>
+
+
+<header class="hero">
+
+<h1>Transport Dispatch Checklist</h1>
+
+<p>
+Practical checklist for verifying truck, driver, cargo and documents before dispatch.
+</p>
+
+</header>
+
+
+<section class="container form-section">
+
+
+<!-- DISPATCH INFORMATION -->
+
+<div class="card">
+
+<h2>Dispatch Information</h2>
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>Dispatch Date</label>
+
+<input type="date">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Dispatch Time</label>
+
+<input type="time">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Truck Registration Number</label>
+
+<input type="text" placeholder="e.g. T 123 ABC">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Trailer Registration Number</label>
+
+<input type="text" placeholder="Enter trailer registration">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Driver Name</label>
+
+<input type="text" placeholder="Enter driver name">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Driver License / Authorization</label>
+
+<input type="text" placeholder="Enter license or authorization details">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Route / Destination</label>
+
+<input type="text" placeholder="Enter route and destination">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Customer / Company</label>
+
+<input type="text" placeholder="Enter customer or company">
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- CARGO INFORMATION -->
+
+<div class="card">
+
+<h2>Cargo / Container Information</h2>
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>Cargo / Container Number</label>
+
+<input type="text" placeholder="Enter cargo or container number">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Cargo Type</label>
+
+<input type="text" placeholder="Enter cargo type">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Quantity</label>
+
+<input type="text" placeholder="Enter quantity">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Weight / Load Details</label>
+
+<input type="text" placeholder="Enter weight or load details">
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- DISPATCH CHECKLIST -->
+
+<div class="card">
+
+<h2>Pre-Dispatch Checklist</h2>
+
+<table class="checklist">
+
+<thead>
+
+<tr>
+
+<th>Inspection Item</th>
+
+<th>Status</th>
+
+<th>Remarks</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+
+<tr>
+
+<td>Truck Condition</td>
+
+<td>
+
+<select>
+
+<option>OK</option>
+
+<option>Not OK</option>
+
+<option>Requires Attention</option>
+
+</select>
+
+</td>
+
+<td>
+
+<input type="text" placeholder="Remarks">
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Trailer Condition</td>
+
+<td>
+
+<select>
+
+<option>OK</option>
+
+<option>Not OK</option>
+
+<option>Requires Attention</option>
+
+</select>
+
+</td>
+
+<td>
+
+<input type="text" placeholder="Remarks">
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Tyres & Wheels</td>
+
+<td>
+
+<select>
+
+<option>OK</option>
+
+<option>Not OK</option>
+
+<option>Requires Attention</option>
+
+</select>
+
+</td>
+
+<td>
+
+<input type="text" placeholder="Remarks">
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Lights & Indicators</td>
+
+<td>
+
+<select>
+
+<option>OK</option>
+
+<option>Not OK</option>
+
+<option>Requires Attention</option>
+
+</select>
+
+</td>
+
+<td>
+
+<input type="text" placeholder="Remarks">
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Braking System</td>
+
+<td>
+
+<select>
+
+<option>OK</option>
+
+<option>Not OK</option>
+
+<option>Requires Attention</option>
+
+</select>
+
+</td>
+
+<td>
+
+<input type="text" placeholder="Remarks">
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Safety Equipment</td>
+
+<td>
+
+<select>
+
+<option>Available</option>
+
+<option>Missing</option>
+
+<option>Requires Attention</option>
+
+</select>
+
+</td>
+
+<td>
+
+<input type="text" placeholder="Remarks">
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Required Transport Documents</td>
+
+<td>
+
+<select>
+
+<option>Available</option>
+
+<option>Missing</option>
+
+<option>Requires Attention</option>
+
+</select>
+
+</td>
+
+<td>
+
+<input type="text" placeholder="Remarks">
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Cargo / Container Securing</td>
+
+<td>
+
+<select>
+
+<option>Secure</option>
+
+<option>Not Secure</option>
+
+<option>Requires Attention</option>
+
+</select>
+
+</td>
+
+<td>
+
+<input type="text" placeholder="Remarks">
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Route / Destination Confirmed</td>
+
+<td>
+
+<select>
+
+<option>Confirmed</option>
+
+<option>Not Confirmed</option>
+
+</select>
+
+</td>
+
+<td>
+
+<input type="text" placeholder="Remarks">
+
+</td>
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<!-- FINAL DISPATCH CONFIRMATION -->
+
+<div class="card">
+
+<h2>Final Dispatch Confirmation</h2>
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>Dispatcher Name</label>
+
+<input type="text" placeholder="Enter dispatcher name">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Dispatch Status</label>
+
+<select>
+
+<option value="">Select</option>
+
+<option>Approved for Dispatch</option>
+
+<option>Not Approved</option>
+
+<option>Pending</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Dispatcher Signature</label>
+
+<input type="text" placeholder="Signature">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Driver Signature</label>
+
+<input type="text" placeholder="Signature">
+
+</div>
+
+
+<div class="form-group full">
+
+<label>Additional Remarks</label>
+
+<textarea placeholder="Enter additional dispatch information or observations"></textarea>
+
+</div>
+
+
+</div>
+
+
+<div class="actions">
+
+<button type="button" class="button" onclick="window.print()">
+Print / Save as PDF
+</button>
+
+
+<a href="templates.html" class="button">
+Back to Templates
+</a>
+
+</div>
+
+</div>
+
+
+</section>
+
+
+<footer>
+
+<p>OpsToolkit</p>
+
+<p>
+Digital Operations Tools for Logistics, Transport and Business Efficiency.
+</p>
+
+<p>
+Developed by ASA Digital Solutions &amp; Operations
+</p>
+
+<p>
+© 2026 OpsToolkit. All rights reserved.
+</p>
+
+<p>
+© 2026 OpsToolkit. All rights reserved.
+</p>
+
+</footer>
+
+
+</body>
+
+</html>
+```
