@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="sw">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="Container Damage Report for logistics and container operations.">
+
+<title>OpsToolkit | Container Damage Report</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.form-section {
+margin-bottom: 30px;
+}
+
+.form-section h2 {
+margin-bottom: 15px;
+}
+
+.form-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+gap: 15px;
+}
+
+.form-group {
+display: flex;
+flex-direction: column;
+}
+
+.form-group label {
+font-weight: bold;
+margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 5px;
+font-size: 14px;
+}
+
+.form-group textarea {
+min-height: 100px;
+resize: vertical;
+}
+
+.damage-table {
+width: 100%;
+border-collapse: collapse;
+margin-top: 15px;
+}
+
+.damage-table th,
+.damage-table td {
+border: 1px solid #ccc;
+padding: 10px;
+text-align: left;
+vertical-align: top;
+}
+
+.damage-table th {
+font-weight: bold;
+}
+
+.damage-table select,
+.damage-table input {
+width: 100%;
+padding: 8px;
+box-sizing: border-box;
+}
+
+.actions {
+margin-top: 25px;
+display: flex;
+gap: 10px;
+flex-wrap: wrap;
+}
+
+@media print {
+
+.navbar,
+.hero,
+.actions,
+footer {
+display: none !important;
+}
+
+body {
+background: white;
+}
+
+.container {
+width: 100%;
+margin: 0;
+padding: 0;
+}
+
+.card {
+box-shadow: none;
+border: none;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo">
+OpsToolkit
+</div>
+
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="calculators.html">Calculators</a></li>
+<li><a href="resources.html">Resources</a></li>
+<li><a href="guides.html">Guides</a></li>
+<li><a href="about.html">About</a></li>
+</ul>
+
+</nav>
+
+
+<header class="hero">
+
+<h1>Container Damage Report</h1>
+
+<p>
+Professional report for recording container damage and condition findings.
+</p>
+
+</header>
+
+
+<section class="container">
+
+<div class="card">
+
+
+<div class="form-section">
+
+<h2>Container Information</h2>
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>Container Number</label>
+<input type="text" placeholder="e.g. ABCU1234567">
+</div>
+
+<div class="form-group">
+<label>Inspection Date</label>
+<input type="date">
+</div>
+
+<div class="form-group">
+<label>Inspection Location</label>
+<input type="text">
+</div>
+
+<div class="form-group">
+<label>Container Size / Type</label>
+
+<select>
+
+<option value="">Select</option>
+<option>20ft Dry Van</option>
+<option>40ft Dry Van</option>
+<option>40ft High Cube</option>
+<option>20ft Open Top</option>
+<option>40ft Open Top</option>
+<option>20ft Flat Rack</option>
+<option>40ft Flat Rack</option>
+<option>20ft Reefer</option>
+<option>40ft Reefer</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Overall Condition</label>
+
+<select>
+
+<option value="">Select</option>
+<option>Good</option>
+<option>Fair</option>
+<option>Damaged</option>
+<option>Severely Damaged</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="form-section">
+
+<h2>Damage Assessment</h2>
+
+<table class="damage-table">
+
+<thead>
+
+<tr>
+
+<th>No.</th>
+
+<th>Damage Location</th>
+
+<th>Damage Type</th>
+
+<th>Severity</th>
+
+<th>Description / Remarks</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+
+<tr>
+
+<td>1</td>
+
+<td>
+
+<select>
+
+<option value="">Select</option>
+<option>Front / End Wall</option>
+<option>Rear / Doors</option>
+<option>Left Side Wall</option>
+<option>Right Side Wall</option>
+<option>Roof</option>
+<option>Floor</option>
+<option>Corner Post</option>
+<option>Understructure</option>
+<option>Other</option>
+
+</select>
+
+</td>
+
+<td>
+
+<select>
+
+<option value="">Select</option>
+<option>Dent</option>
+<option>Hole</option>
+<option>Crack</option>
+<option>Corrosion</option>
+<option>Broken Component</option>
+<option>Deformation</option>
+<option>Other</option>
+
+</select>
+
+</td>
+
+<td>
+
+<select>
+
+<option value="">Select</option>
+<option>Minor</option>
+<option>Moderate</option>
+<option>Major</option>
+<option>Critical</option>
+
+</select>
+
+</td>
+
+<td>
+
+<input type="text">
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>2</td>
+
+<td>
+
+<select>
+
+<option value="">Select</option>
+<option>Front / End Wall</option>
+<option>Rear / Doors</option>
+<option>Left Side Wall</option>
+<option>Right Side Wall</option>
+<option>Roof</option>
+<option>Floor</option>
+<option>Corner Post</option>
+<option>Understructure</option>
+<option>Other</option>
+
+</select>
+
+</td>
+
+<td>
+
+<select>
+
+<option value="">Select</option>
+<option>Dent</option>
+<option>Hole</option>
+<option>Crack</option>
+<option>Corrosion</option>
+<option>Broken Component</option>
+<option>Deformation</option>
+<option>Other</option>
+
+</select>
+
+</td>
+
+<td>
+
+<select>
+
+<option value="">Select</option>
+<option>Minor</option>
+<option>Moderate</option>
+<option>Major</option>
+<option>Critical</option>
+
+</select>
+
+</td>
+
+<td>
+
+<input type="text">
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>3</td>
+
+<td>
+
+<select>
+
+<option value="">Select</option>
+<option>Front / End Wall</option>
+<option>Rear / Doors</option>
+<option>Left Side Wall</option>
+<option>Right Side Wall</option>
+<option>Roof</option>
+<option>Floor</option>
+<option>Corner Post</option>
+<option>Understructure</option>
+<option>Other</option>
+
+</select>
+
+</td>
+
+<td>
+
+<select>
+
+<option value="">Select</option>
+<option>Dent</option>
+<option>Hole</option>
+<option>Crack</option>
+<option>Corrosion</option>
+<option>Broken Component</option>
+<option>Deformation</option>
+<option>Other</option>
+
+</select>
+
+</td>
+
+<td>
+
+<select>
+
+<option value="">Select</option>
+<option>Minor</option>
+<option>Moderate</option>
+<option>Major</option>
+<option>Critical</option>
+
+</select>
+
+</td>
+
+<td>
+
+<input type="text">
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<div class="form-section">
+
+<h2>General Findings</h2>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Cleanliness</label>
+
+<select>
+
+<option value="">Select</option>
+<option>Clean</option>
+<option>Needs Cleaning</option>
+<option>Contaminated</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Doors & Locking Mechanism</label>
+
+<select>
+
+<option value="">Select</option>
+<option>Good</option>
+<option>Needs Repair</option>
+<option>Damaged</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>CSC Plate / Identification</label>
+
+<select>
+
+<option value="">Select</option>
+<option>Present & Legible</option>
+<option>Present but Damaged</option>
+<option>Missing</option>
+
+</select>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="form-group">
+
+<label>General Description / Findings</label>
+
+<textarea></textarea>
+
+</div>
+
+</div>
+
+
+<div class="form-section">
+
+<h2>Action Taken</h2>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Action</label>
+
+<select>
+
+<option value="">Select</option>
+<option>No Action Required</option>
+<option>Repair Required</option>
+<option>Cleaning Required</option>
+<option>Quarantine / Hold</option>
+<option>Further Inspection Required</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Reported To</label>
+
+<input type="text">
+
+</div>
+
+</div>
+
+<br>
+
+<div class="form-group">
+
+<label>Action Details</label>
+
+<textarea></textarea>
+
+</div>
+
+</div>
+
+
+<div class="form-section">
+
+<h2>Inspection Confirmation</h2>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Inspector Name</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Inspector Signature</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Supervisor / Responsible Person</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Supervisor Signature</label>
+
+<input type="text">
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button onclick="window.print()" class="button">
+Print / Save as PDF
+</button>
+
+<a href="templates.html" class="button">
+Back to Templates
+</a>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<footer>
+
+<p>OpsToolkit</p>
+
+<p>
+Digital Operations Tools for Logistics, Transport and Business Efficiency.
+</p>
+
+<p>
+Developed by ASA Digital Solutions & Operations
+</p>
+
+<p>
+© 2026 OpsToolkit. All rights reserved.
+</p>
+
+</footer>
+
+</body>
+
+</html>
