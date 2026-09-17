@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="sw">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="Gate-In and Gate-Out Container Inspection Form for logistics, transport and depot operations.">
+
+<meta name="keywords" content="Gate In, Gate Out, Container Inspection, Container Yard, Depot Operations">
+
+<title>OpsToolkit | Gate-In / Gate-Out Container Form</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.form-section {
+margin-bottom: 30px;
+}
+
+.form-section h2 {
+margin-bottom: 15px;
+}
+
+.form-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+gap: 15px;
+}
+
+.form-group {
+display: flex;
+flex-direction: column;
+}
+
+.form-group label {
+font-weight: bold;
+margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 5px;
+font-size: 14px;
+}
+
+.form-group textarea {
+min-height: 100px;
+resize: vertical;
+}
+
+.inspection-table {
+width: 100%;
+border-collapse: collapse;
+margin-top: 15px;
+}
+
+.inspection-table th,
+.inspection-table td {
+border: 1px solid #ccc;
+padding: 10px;
+text-align: left;
+vertical-align: top;
+}
+
+.inspection-table th {
+font-weight: bold;
+}
+
+.inspection-table select,
+.inspection-table input {
+width: 100%;
+padding: 8px;
+box-sizing: border-box;
+}
+
+.actions {
+margin-top: 25px;
+display: flex;
+gap: 10px;
+flex-wrap: wrap;
+}
+
+@media print {
+
+.navbar,
+.hero,
+.actions,
+footer {
+display: none !important;
+}
+
+body {
+background: white;
+}
+
+.container {
+width: 100%;
+margin: 0;
+padding: 0;
+}
+
+.card {
+box-shadow: none;
+border: none;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo">
+OpsToolkit
+</div>
+
+<ul>
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="calculators.html">Calculators</a></li>
+
+<li><a href="resources.html">Resources</a></li>
+
+<li><a href="guides.html">Guides</a></li>
+
+<li><a href="about.html">About</a></li>
+
+</ul>
+
+</nav>
+
+
+<header class="hero">
+
+<h1>Gate-In / Gate-Out Container Form</h1>
+
+<p>
+Container movement and condition inspection at yard or depot.
+</p>
+
+</header>
+
+
+<section class="container">
+
+<div class="card">
+
+
+<div class="form-section">
+
+<h2>Movement Information</h2>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Transaction Type</label>
+
+<select>
+
+<option value="">Select</option>
+<option>Gate-In</option>
+<option>Gate-Out</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Date</label>
+
+<input type="date">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Time</label>
+
+<input type="time">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Container Number</label>
+
+<input type="text" placeholder="e.g. ABCU1234567">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Container Size / Type</label>
+
+<select>
+
+<option value="">Select</option>
+<option>20ft Dry Van</option>
+<option>40ft Dry Van</option>
+<option>40ft High Cube</option>
+<option>20ft Open Top</option>
+<option>40ft Open Top</option>
+<option>20ft Flat Rack</option>
+<option>40ft Flat Rack</option>
+<option>20ft Reefer</option>
+<option>40ft Reefer</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Seal Number</label>
+
+<input type="text">
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="form-section">
+
+<h2>Truck & Driver Information</h2>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Truck Registration</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Trailer Registration</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Driver Name</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Driver ID / License No.</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Transport Company</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Yard / Depot</label>
+
+<input type="text">
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="form-section">
+
+<h2>Container Condition Inspection</h2>
+
+<table class="inspection-table">
+
+<thead>
+
+<tr>
+
+<th>No.</th>
+
+<th>Inspection Point</th>
+
+<th>Condition</th>
+
+<th>Remarks</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+
+<tr>
+
+<td>1</td>
+
+<td>Front / End Wall</td>
+
+<td>
+
+<select>
+
+<option value="">Select</option>
+<option>Good</option>
+<option>Minor Damage</option>
+<option>Major Damage</option>
+
+</select>
+
+</td>
+
+<td><input type="text"></td>
+
+</tr>
+
+
+<tr>
+
+<td>2</td>
+
+<td>Rear / Doors</td>
+
+<td>
+
+<select>
+
+<option value="">Select</option>
+<option>Good</option>
+<option>Minor Damage</option>
+<option>Major Damage</option>
+
+</select>
+
+</td>
+
+<td><input type="text"></td>
+
+</tr>
+
+
+<tr>
+
+<td>3</td>
+
+<td>Left Side Wall</td>
+
+<td>
+
+<select>
+
+<option value="">Select</option>
+<option>Good</option>
+<option>Minor Damage</option>
+<option>Major Damage</option>
+
+</select>
+
+</td>
+
+<td><input type="text"></td>
+
+</tr>
+
+
+<tr>
+
+<td>4</td>
+
+<td>Right Side Wall</td>
+
+<td>
+
+<select>
+
+<option value="">Select</option>
+<option>Good</option>
+<option>Minor Damage</option>
+<option>Major Damage</option>
+
+</select>
+
+</td>
+
+<td><input type="text"></td>
+
+</tr>
+
+
+<tr>
+
+<td>5</td>
+
+<td>Roof</td>
+
+<td>
+
+<select>
+
+<option value="">Select</option>
+<option>Good</option>
+<option>Minor Damage</option>
+<option>Major Damage</option>
+
+</select>
+
+</td>
+
+<td><input type="text"></td>
+
+</tr>
+
+
+<tr>
+
+<td>6</td>
+
+<td>Floor</td>
+
+<td>
+
+<select>
+
+<option value="">Select</option>
+<option>Good</option>
+<option>Minor Damage</option>
+<option>Major Damage</option>
+
+</select>
+
+</td>
+
+<td><input type="text"></td>
+
+</tr>
+
+
+<tr>
+
+<td>7</td>
+
+<td>Corner Posts & Fittings</td>
+
+<td>
+
+<select>
+
+<option value="">Select</option>
+<option>Good</option>
+<option>Minor Damage</option>
+<option>Major Damage</option>
+
+</select>
+
+</td>
+
+<td><input type="text"></td>
+
+</tr>
+
+
+<tr>
+
+<td>8</td>
+
+<td>CSC Plate / Identification</td>
+
+<td>
+
+<select>
+
+<option value="">Select</option>
+<option>Present & Legible</option>
+<option>Damaged</option>
+<option>Missing</option>
+
+</select>
+
+</td>
+
+<td><input type="text"></td>
+
+</tr>
+
+
+<tr>
+
+<td>9</td>
+
+<td>Cleanliness</td>
+
+<td>
+
+<select>
+
+<option value="">Select</option>
+<option>Clean</option>
+<option>Needs Cleaning</option>
+<option>Contaminated</option>
+
+</select>
+
+</td>
+
+<td><input type="text"></td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<div class="form-section">
+
+<h2>Seal & Security Check</h2>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Seal Condition</label>
+
+<select>
+
+<option value="">Select</option>
+<option>Intact</option>
+<option>Damaged</option>
+<option>Broken</option>
+<option>Missing</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Seal Number Verified</label>
+
+<select>
+
+<option value="">Select</option>
+<option>Yes</option>
+<option>No</option>
+<option>Not Applicable</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Door Locking Mechanism</label>
+
+<select>
+
+<option value="">Select</option>
+<option>Good</option>
+<option>Needs Attention</option>
+<option>Damaged</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="form-section">
+
+<h2>Overall Assessment</h2>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Overall Container Condition</label>
+
+<select>
+
+<option value="">Select</option>
+<option>Good</option>
+<option>Fair</option>
+<option>Damaged</option>
+<option>Severely Damaged</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Movement Status</label>
+
+<select>
+
+<option value="">Select</option>
+<option>Accepted</option>
+<option>Accepted with Remarks</option>
+<option>Hold / Further Inspection</option>
+<option>Rejected</option>
+
+</select>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="form-group">
+
+<label>General Remarks / Observations</label>
+
+<textarea></textarea>
+
+</div>
+
+</div>
+
+
+<div class="form-section">
+
+<h2>Confirmation</h2>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Yard / Depot Staff Name</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Driver Name</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Staff Signature</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Driver Signature</label>
+
+<input type="text">
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button onclick="window.print()" class="button">
+Print / Save as PDF
+</button>
+
+<a href="templates.html" class="button">
+Back to Templates
+</a>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<footer>
+
+<p>OpsToolkit</p>
+
+<p>
+Digital Operations Tools for Logistics, Transport and Business Efficiency.
+</p>
+
+<p>
+Developed by ASA Digital Solutions & Operations
+</p>
+
+<p>
+© 2026 OpsToolkit. All rights reserved.
+</p>
+
+</footer>
+
+</body>
+
+</html>
