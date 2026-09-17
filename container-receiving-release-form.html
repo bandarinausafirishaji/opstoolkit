@@ -6,97 +6,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description" content="Container Receiving and Release Form for depot, yard and transport operations.">
+<meta name="description" content="Professional logistics and operations templates for container, transport, warehouse and cargo operations.">
 
-<title>Container Receiving & Release Form | OpsToolkit</title>
+<meta name="keywords" content="container inspection checklist, container receiving form, container release form, logistics templates, transport templates, operations templates">
+
+<title>OpsToolkit | Operations Templates</title>
 
 <link rel="stylesheet" href="style.css">
-
-<style>
-
-.form-section {
-    max-width: 950px;
-    margin: 30px auto;
-}
-
-.form-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group.full {
-    grid-column: 1 / -1;
-}
-
-label {
-    font-weight: bold;
-    margin-bottom: 6px;
-}
-
-input,
-select,
-textarea {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 15px;
-}
-
-textarea {
-    min-height: 100px;
-}
-
-.section-title {
-    margin-bottom: 20px;
-}
-
-.actions {
-    margin-top: 25px;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-@media (max-width: 700px) {
-
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .form-group.full {
-        grid-column: auto;
-    }
-
-}
-
-@media print {
-
-    .navbar,
-    .hero,
-    .actions,
-    footer {
-        display: none;
-    }
-
-    body {
-        background: white;
-    }
-
-    .card {
-        box-shadow: none;
-        border: none;
-    }
-
-}
-
-</style>
-
 </head>
 
 <body>
@@ -108,13 +24,11 @@ OpsToolkit
 </div>
 
 <ul>
-
 <li><a href="index.html">Home</a></li>
 <li><a href="calculators.html">Calculators</a></li>
 <li><a href="resources.html">Resources</a></li>
 <li><a href="guides.html">Guides</a></li>
 <li><a href="about.html">About</a></li>
-
 </ul>
 
 </nav>
@@ -122,269 +36,110 @@ OpsToolkit
 
 <header class="hero">
 
-<h1>
-Container Receiving & Release Form
-</h1>
+<h1>Operations Templates</h1>
 
 <p>
-Practical form for container receiving, release and yard operations.
+Practical templates for logistics, transport, container and warehouse operations.
 </p>
 
 </header>
 
 
-<section class="container form-section">
+<section class="container">
 
 
-<!-- Transaction Information -->
-
-<div class="card">
-
-<h2 class="section-title">
-Transaction Information
-</h2>
-
-<div class="form-grid">
-
-<div class="form-group">
-
-<label>Transaction Type</label>
-
-<select>
-
-<option value="">Select</option>
-<option>Container Receiving</option>
-<option>Container Release</option>
-
-</select>
-
-</div>
-
-
-<div class="form-group">
-
-<label>Transaction Date</label>
-
-<input type="date">
-
-</div>
-
-
-<div class="form-group">
-
-<label>Container Number</label>
-
-<input type="text" placeholder="e.g. ABCD1234567">
-
-</div>
-
-
-<div class="form-group">
-
-<label>Size / Type</label>
-
-<select>
-
-<option value="">Select</option>
-<option>20ft Dry Van</option>
-<option>40ft Dry Van</option>
-<option>40ft High Cube</option>
-<option>20ft Open Top</option>
-<option>40ft Open Top</option>
-<option>20ft Flat Rack</option>
-<option>40ft Flat Rack</option>
-<option>20ft Reefer</option>
-<option>40ft Reefer</option>
-
-</select>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- Yard & Transport Information -->
+<!-- CONTAINER INSPECTION CHECKLIST -->
 
 <div class="card">
 
-<h2 class="section-title">
-Yard & Transport Information
-</h2>
-
-<div class="form-grid">
-
-<div class="form-group">
-
-<label>Yard / Depot Location</label>
-
-<input type="text" placeholder="Enter yard or depot">
-
-</div>
-
-
-<div class="form-group">
-
-<label>Truck Registration Number</label>
-
-<input type="text" placeholder="e.g. T 123 ABC">
-
-</div>
-
-
-<div class="form-group">
-
-<label>Driver Name</label>
-
-<input type="text" placeholder="Enter driver name">
-
-</div>
-
-
-<div class="form-group">
-
-<label>Customer / Company</label>
-
-<input type="text" placeholder="Enter customer or company">
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- Container Condition -->
-
-<div class="card">
-
-<h2 class="section-title">
-Container Condition
-</h2>
-
-<div class="form-grid">
-
-<div class="form-group">
-
-<label>Overall Condition</label>
-
-<select>
-
-<option value="">Select</option>
-<option>Good</option>
-<option>Minor Damage</option>
-<option>Major Damage</option>
-<option>Requires Repair</option>
-
-</select>
-
-</div>
-
-
-<div class="form-group">
-
-<label>Cleanliness</label>
-
-<select>
-
-<option value="">Select</option>
-<option>Clean</option>
-<option>Requires Cleaning</option>
-<option>Dirty</option>
-
-</select>
-
-</div>
-
-
-<div class="form-group full">
-
-<label>Damage / Condition Remarks</label>
-
-<textarea placeholder="Enter damage details, defects or other observations"></textarea>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- Confirmation -->
-
-<div class="card">
-
-<h2 class="section-title">
-Receiving / Release Confirmation
-</h2>
-
-<div class="form-grid">
-
-<div class="form-group">
-
-<label>Received / Released By</label>
-
-<input type="text" placeholder="Enter staff name">
-
-</div>
-
-
-<div class="form-group">
-
-<label>Driver Confirmation</label>
-
-<select>
-
-<option value="">Select</option>
-<option>Confirmed</option>
-<option>Not Confirmed</option>
-
-</select>
-
-</div>
-
-
-<div class="form-group">
-
-<label>Staff Signature</label>
-
-<input type="text" placeholder="Signature">
-
-</div>
-
-
-<div class="form-group">
-
-<label>Driver Signature</label>
-
-<input type="text" placeholder="Signature">
-
-</div>
-
-
-<div class="form-group full">
-
-<label>Additional Remarks</label>
-
-<textarea placeholder="Enter any additional information"></textarea>
-
-</div>
-
-</div>
-
-
-<div class="actions">
-
-<button type="button" class="button" onclick="window.print()">
-Print / Save as PDF
-</button>
-
-<a href="templates.html" class="button">
-Back to Templates
+<h2>Container Inspection Checklist</h2>
+
+<p>
+A practical checklist for recording the condition and key inspection points of an empty shipping container before receiving, releasing or transferring it.
+</p>
+
+<ul>
+<li>Container Number</li>
+<li>ISO Size / Type</li>
+<li>External Condition</li>
+<li>Doors and Locking Mechanism</li>
+<li>Floor Condition</li>
+<li>Roof Condition</li>
+<li>Side Walls and End Wall</li>
+<li>CSC Plate / Identification</li>
+<li>Cleanliness</li>
+<li>Damage Remarks</li>
+<li>Inspection Date</li>
+<li>Inspector Name and Signature</li>
+</ul>
+
+<a href="container-inspection-checklist.html" class="button">
+View Template
 </a>
 
 </div>
+
+
+<!-- CONTAINER RECEIVING & RELEASE FORM -->
+
+<div class="card">
+
+<h2>Container Receiving &amp; Release Form</h2>
+
+<p>
+A practical operational form for recording the receipt, condition and release of shipping containers during depot, yard and transport operations.
+</p>
+
+<ul>
+<li>Container Number</li>
+<li>Size / Type</li>
+<li>Receiving or Release Date</li>
+<li>Yard / Depot Location</li>
+<li>Truck Registration Number</li>
+<li>Driver Name</li>
+<li>Customer / Company</li>
+<li>Container Condition</li>
+<li>Damage Remarks</li>
+<li>Received / Released By</li>
+<li>Driver Confirmation</li>
+<li>Signature</li>
+</ul>
+
+<a href="container-receiving-release-form.html" class="button">
+View Template
+</a>
+
+</div>
+
+
+<!-- TRANSPORT DISPATCH CHECKLIST -->
+
+<div class="card">
+
+<h2>Transport Dispatch Checklist</h2>
+
+<p>
+A practical checklist for verifying key requirements before dispatching a truck for logistics and transport operations.
+</p>
+
+<ul>
+<li>Truck Registration Number</li>
+<li>Driver Name</li>
+<li>Driver License / Authorization</li>
+<li>Vehicle Condition</li>
+<li>Trailer Condition</li>
+<li>Cargo / Container Details</li>
+<li>Route / Destination</li>
+<li>Required Documents</li>
+<li>Safety Equipment</li>
+<li>Dispatch Time</li>
+<li>Dispatcher Name</li>
+<li>Remarks</li>
+</ul>
+
+<a href="#" class="button">
+Coming Soon
+</a>
 
 </div>
 
@@ -394,16 +149,14 @@ Back to Templates
 
 <footer>
 
-<p>
-OpsToolkit
-</p>
+<p>OpsToolkit</p>
 
 <p>
 Digital Operations Tools for Logistics, Transport and Business Efficiency.
 </p>
 
 <p>
-Developed by ASA Digital Solutions & Operations
+Developed by ASA Digital Solutions &amp; Operations
 </p>
 
 <p>
@@ -414,6 +167,5 @@ Developed by ASA Digital Solutions & Operations
 
 
 </body>
-
 </html>
 ```
