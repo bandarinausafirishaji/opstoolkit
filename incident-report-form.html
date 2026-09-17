@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="sw">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="OpsToolkit Incident Report Form for logistics, transport, warehouse and container operations.">
+
+<meta name="keywords" content="Incident Report Form, Logistics Incident, Transport Incident, Warehouse Incident, Operations Report">
+
+<title>OpsToolkit | Incident Report Form</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.form-section {
+margin-bottom: 25px;
+}
+
+.form-section h2 {
+margin-bottom: 15px;
+}
+
+.form-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 15px;
+}
+
+.form-group {
+display: flex;
+flex-direction: column;
+}
+
+.form-group label {
+font-weight: bold;
+margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 5px;
+font-size: 14px;
+}
+
+.form-group textarea {
+min-height: 100px;
+resize: vertical;
+}
+
+.full-width {
+grid-column: 1 / -1;
+}
+
+.table-container {
+overflow-x: auto;
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+margin-top: 10px;
+}
+
+table th,
+table td {
+border: 1px solid #ccc;
+padding: 8px;
+text-align: left;
+font-size: 14px;
+}
+
+table th {
+font-weight: bold;
+}
+
+table input,
+table select {
+width: 100%;
+padding: 7px;
+border: 1px solid #ccc;
+box-sizing: border-box;
+}
+
+.actions {
+margin-top: 25px;
+display: flex;
+gap: 10px;
+flex-wrap: wrap;
+}
+
+@media print {
+
+.navbar,
+.hero,
+.actions,
+footer {
+display: none !important;
+}
+
+.container {
+width: 100%;
+margin: 0;
+padding: 0;
+}
+
+.card {
+box-shadow: none;
+border: none;
+}
+
+body {
+background: white;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<nav class="navbar">
+
+<div class="logo">
+OpsToolkit
+</div>
+
+<ul>
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="calculators.html">Calculators</a></li>
+
+<li><a href="resources.html">Resources</a></li>
+
+<li><a href="guides.html">Guides</a></li>
+
+<li><a href="about.html">About</a></li>
+
+</ul>
+
+</nav>
+
+
+<header class="hero">
+
+<h1>Incident Report Form</h1>
+
+<p>
+Professional form for recording and investigating operational incidents.
+</p>
+
+</header>
+
+
+<section class="container">
+
+<div class="card">
+
+
+<div class="form-section">
+
+<h2>1. Incident Information</h2>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Incident Date</label>
+
+<input type="date">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Incident Time</label>
+
+<input type="time">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Incident Reference No.</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Incident Location</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Incident Type</label>
+
+<select>
+
+<option value="">Select incident type</option>
+
+<option>Container Incident</option>
+
+<option>Transport Incident</option>
+
+<option>Warehouse Incident</option>
+
+<option>Cargo Damage</option>
+
+<option>Equipment Damage</option>
+
+<option>Operational Delay</option>
+
+<option>Safety Incident</option>
+
+<option>Other</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Incident Severity</label>
+
+<select>
+
+<option value="">Select severity</option>
+
+<option>Minor</option>
+
+<option>Moderate</option>
+
+<option>Major</option>
+
+<option>Critical</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="form-section">
+
+<h2>2. People / Equipment Involved</h2>
+
+<div class="table-container">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Name / Equipment</th>
+
+<th>Role / Equipment Type</th>
+
+<th>ID / Registration / Serial No.</th>
+
+<th>Company / Department</th>
+
+<th>Remarks</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td><input type="text"></td>
+
+<td><input type="text"></td>
+
+<td><input type="text"></td>
+
+<td><input type="text"></td>
+
+<td><input type="text"></td>
+
+</tr>
+
+
+<tr>
+
+<td><input type="text"></td>
+
+<td><input type="text"></td>
+
+<td><input type="text"></td>
+
+<td><input type="text"></td>
+
+<td><input type="text"></td>
+
+</tr>
+
+
+<tr>
+
+<td><input type="text"></td>
+
+<td><input type="text"></td>
+
+<td><input type="text"></td>
+
+<td><input type="text"></td>
+
+<td><input type="text"></td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<div class="form-section">
+
+<h2>3. Incident Description</h2>
+
+<div class="form-grid">
+
+<div class="form-group full-width">
+
+<label>What Happened?</label>
+
+<textarea></textarea>
+
+</div>
+
+
+<div class="form-group full-width">
+
+<label>Immediate Cause / Observed Cause</label>
+
+<textarea></textarea>
+
+</div>
+
+
+<div class="form-group full-width">
+
+<label>Other Relevant Information</label>
+
+<textarea></textarea>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="form-section">
+
+<h2>4. Damage / Impact Assessment</h2>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Property / Equipment Damage</label>
+
+<select>
+
+<option value="">Select</option>
+
+<option>None</option>
+
+<option>Minor</option>
+
+<option>Moderate</option>
+
+<option>Major</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Cargo Damage</label>
+
+<select>
+
+<option value="">Select</option>
+
+<option>None</option>
+
+<option>Yes</option>
+
+<option>Under Assessment</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Operational Delay</label>
+
+<select>
+
+<option value="">Select</option>
+
+<option>None</option>
+
+<option>Yes</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Estimated Loss / Cost</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group full-width">
+
+<label>Damage / Impact Details</label>
+
+<textarea></textarea>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="form-section">
+
+<h2>5. Immediate Action Taken</h2>
+
+<div class="form-grid">
+
+<div class="form-group full-width">
+
+<label>Action Taken Immediately After the Incident</label>
+
+<textarea></textarea>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Reported To</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Report Date / Time</label>
+
+<input type="datetime-local">
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="form-section">
+
+<h2>6. Witness Information</h2>
+
+<div class="table-container">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Witness Name</th>
+
+<th>Position / Role</th>
+
+<th>Company / Department</th>
+
+<th>Contact</th>
+
+<th>Remarks</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td><input type="text"></td>
+
+<td><input type="text"></td>
+
+<td><input type="text"></td>
+
+<td><input type="text"></td>
+
+<td><input type="text"></td>
+
+</tr>
+
+
+<tr>
+
+<td><input type="text"></td>
+
+<td><input type="text"></td>
+
+<td><input type="text"></td>
+
+<td><input type="text"></td>
+
+<td><input type="text"></td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<div class="form-section">
+
+<h2>7. Corrective / Preventive Action</h2>
+
+<div class="form-grid">
+
+<div class="form-group full-width">
+
+<label>Corrective Action Required</label>
+
+<textarea></textarea>
+
+</div>
+
+
+<div class="form-group full-width">
+
+<label>Preventive Action / Recommendation</label>
+
+<textarea></textarea>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Responsible Person</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Target Completion Date</label>
+
+<input type="date">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Action Status</label>
+
+<select>
+
+<option value="">Select status</option>
+
+<option>Open</option>
+
+<option>In Progress</option>
+
+<option>Completed</option>
+
+<option>Closed</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="form-section">
+
+<h2>8. Review & Confirmation</h2>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Reported By</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Supervisor / Manager</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Report Status</label>
+
+<select>
+
+<option value="">Select status</option>
+
+<option>Draft</option>
+
+<option>Under Review</option>
+
+<option>Reviewed</option>
+
+<option>Closed</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Reporter Signature</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Supervisor / Manager Signature</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group full-width">
+
+<label>Final Remarks</label>
+
+<textarea></textarea>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button onclick="window.print()" class="button">
+Print / Save as PDF
+</button>
+
+<a href="templates.html" class="button">
+Back to Templates
+</a>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<footer>
+
+<p>OpsToolkit</p>
+
+<p>
+Digital Operations Tools for Logistics, Transport and Business Efficiency.
+</p>
+
+<p>
+Developed by ASA Digital Solutions & Operations
+</p>
+
+<p>
+© 2026 OpsToolkit. All rights reserved.
+</p>
+
+</footer>
+
+
+</body>
+
+</html>
