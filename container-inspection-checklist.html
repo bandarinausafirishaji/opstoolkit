@@ -1,0 +1,554 @@
+```html
+<!DOCTYPE html>
+<html lang="sw">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="Container Inspection Checklist for empty container inspection and operational condition assessment.">
+
+<title>Container Inspection Checklist | OpsToolkit</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.form-section {
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+.form-section h2 {
+    margin-bottom: 20px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+input,
+select,
+textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+textarea {
+    min-height: 90px;
+}
+
+.checklist {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.checklist th,
+.checklist td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.checklist th {
+    background: #f2f4f7;
+}
+
+.actions {
+    margin-top: 25px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 700px) {
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+        grid-column: auto;
+    }
+
+}
+
+@media print {
+
+    .navbar,
+    .hero,
+    .actions,
+    footer {
+        display: none;
+    }
+
+    body {
+        background: white;
+    }
+
+    .card {
+        box-shadow: none;
+        border: none;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<nav class="navbar">
+
+<div class="logo">
+OpsToolkit
+</div>
+
+
+<ul>
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="calculators.html">Calculators</a></li>
+
+<li><a href="resources.html">Resources</a></li>
+
+<li><a href="guides.html">Guides</a></li>
+
+<li><a href="about.html">About</a></li>
+
+</ul>
+
+</nav>
+
+
+<header class="hero">
+
+<h1>
+Container Inspection Checklist
+</h1>
+
+<p>
+Practical checklist for empty shipping container inspection.
+</p>
+
+</header>
+
+
+<section class="container form-section">
+
+
+<div class="card">
+
+<h2>
+Container Information
+</h2>
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>Container Number</label>
+
+<input type="text" placeholder="e.g. ABCD1234567">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Size / Type</label>
+
+<select>
+
+<option value="">Select</option>
+
+<option>20ft Dry Van</option>
+
+<option>40ft Dry Van</option>
+
+<option>40ft High Cube</option>
+
+<option>20ft Open Top</option>
+
+<option>40ft Open Top</option>
+
+<option>20ft Flat Rack</option>
+
+<option>40ft Flat Rack</option>
+
+<option>20ft Reefer</option>
+
+<option>40ft Reefer</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Inspection Date</label>
+
+<input type="date">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Inspection Location</label>
+
+<input type="text" placeholder="Enter location">
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+Inspection Checklist
+</h2>
+
+
+<table class="checklist">
+
+<thead>
+
+<tr>
+
+<th>Inspection Point</th>
+
+<th>Condition</th>
+
+<th>Remarks</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+
+<tr>
+
+<td>External Condition</td>
+
+<td>
+
+<select>
+
+<option>Good</option>
+
+<option>Minor Damage</option>
+
+<option>Major Damage</option>
+
+</select>
+
+</td>
+
+<td>
+<input type="text" placeholder="Remarks">
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Doors & Locking Mechanism</td>
+
+<td>
+
+<select>
+
+<option>Good</option>
+
+<option>Minor Damage</option>
+
+<option>Major Damage</option>
+
+</select>
+
+</td>
+
+<td>
+<input type="text" placeholder="Remarks">
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Floor Condition</td>
+
+<td>
+
+<select>
+
+<option>Good</option>
+
+<option>Minor Damage</option>
+
+<option>Major Damage</option>
+
+</select>
+
+</td>
+
+<td>
+<input type="text" placeholder="Remarks">
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Roof Condition</td>
+
+<td>
+
+<select>
+
+<option>Good</option>
+
+<option>Minor Damage</option>
+
+<option>Major Damage</option>
+
+</select>
+
+</td>
+
+<td>
+<input type="text" placeholder="Remarks">
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Side Walls</td>
+
+<td>
+
+<select>
+
+<option>Good</option>
+
+<option>Minor Damage</option>
+
+<option>Major Damage</option>
+
+</select>
+
+</td>
+
+<td>
+<input type="text" placeholder="Remarks">
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>End Wall</td>
+
+<td>
+
+<select>
+
+<option>Good</option>
+
+<option>Minor Damage</option>
+
+<option>Major Damage</option>
+
+</select>
+
+</td>
+
+<td>
+<input type="text" placeholder="Remarks">
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>CSC Plate / Identification</td>
+
+<td>
+
+<select>
+
+<option>Present</option>
+
+<option>Missing</option>
+
+<option>Not Legible</option>
+
+</select>
+
+</td>
+
+<td>
+<input type="text" placeholder="Remarks">
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Cleanliness</td>
+
+<td>
+
+<select>
+
+<option>Clean</option>
+
+<option>Requires Cleaning</option>
+
+<option>Dirty</option>
+
+</select>
+
+</td>
+
+<td>
+<input type="text" placeholder="Remarks">
+</td>
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+
+</div>
+
+
+<div class="card">
+
+<h2>
+General Remarks
+</h2>
+
+
+<textarea placeholder="Enter additional inspection findings, damage details or other observations."></textarea>
+
+
+<div class="form-grid" style="margin-top:20px;">
+
+
+<div class="form-group">
+
+<label>Inspector Name</label>
+
+<input type="text" placeholder="Enter inspector name">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Signature</label>
+
+<input type="text" placeholder="Inspector signature">
+
+</div>
+
+
+</div>
+
+
+<div class="actions">
+
+<button type="button" class="button" onclick="window.print()">
+Print / Save as PDF
+</button>
+
+
+<a href="resources.html" class="button">
+Back to Resources
+</a>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<footer>
+
+<p>
+OpsToolkit
+</p>
+
+
+<p>
+Digital Operations Tools for Logistics, Transport and Business Efficiency.
+</p>
+
+
+<p>
+Developed by ASA Digital Solutions & Operations
+</p>
+
+
+<p>
+© 2026 OpsToolkit. All rights reserved.
+</p>
+
+</footer>
+
+
+</body>
+
+</html>
+```
