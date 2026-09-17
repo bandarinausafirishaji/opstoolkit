@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="sw">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="Warehouse Receiving Form for recording incoming cargo, quantity, condition and receiving verification.">
+
+<meta name="keywords" content="Warehouse Receiving Form, Cargo Receiving, Warehouse Operations, Logistics, Inventory">
+
+<title>OpsToolkit | Warehouse Receiving Form</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.form-section {
+margin-bottom: 30px;
+}
+
+.form-section h2 {
+margin-bottom: 15px;
+}
+
+.form-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+gap: 15px;
+}
+
+.form-group {
+display: flex;
+flex-direction: column;
+}
+
+.form-group label {
+font-weight: bold;
+margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 5px;
+font-size: 14px;
+}
+
+.form-group textarea {
+min-height: 100px;
+resize: vertical;
+}
+
+.receiving-table {
+width: 100%;
+border-collapse: collapse;
+margin-top: 15px;
+}
+
+.receiving-table th,
+.receiving-table td {
+border: 1px solid #ccc;
+padding: 10px;
+text-align: left;
+vertical-align: top;
+}
+
+.receiving-table th {
+font-weight: bold;
+}
+
+.receiving-table input,
+.receiving-table select {
+width: 100%;
+padding: 8px;
+box-sizing: border-box;
+}
+
+.actions {
+margin-top: 25px;
+display: flex;
+gap: 10px;
+flex-wrap: wrap;
+}
+
+@media print {
+
+.navbar,
+.hero,
+.actions,
+footer {
+display: none !important;
+}
+
+body {
+background: white;
+}
+
+.container {
+width: 100%;
+margin: 0;
+padding: 0;
+}
+
+.card {
+box-shadow: none;
+border: none;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo">
+OpsToolkit
+</div>
+
+<ul>
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="calculators.html">Calculators</a></li>
+
+<li><a href="resources.html">Resources</a></li>
+
+<li><a href="guides.html">Guides</a></li>
+
+<li><a href="about.html">About</a></li>
+
+</ul>
+
+</nav>
+
+
+<header class="hero">
+
+<h1>Warehouse Receiving Form</h1>
+
+<p>
+Professional form for recording incoming cargo and warehouse receiving activities.
+</p>
+
+</header>
+
+
+<section class="container">
+
+<div class="card">
+
+
+<div class="form-section">
+
+<h2>Receiving Information</h2>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Receiving Date</label>
+
+<input type="date">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Receiving Time</label>
+
+<input type="time">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Receiving Reference No.</label>
+
+<input type="text" placeholder="e.g. WR-0001">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Warehouse / Location</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Supplier / Customer</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Purchase Order / Reference No.</label>
+
+<input type="text">
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="form-section">
+
+<h2>Transport Information</h2>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Truck Registration</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Trailer Registration</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Driver Name</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Transport Company</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Delivery Note No.</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Waybill / Consignment No.</label>
+
+<input type="text">
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="form-section">
+
+<h2>Cargo Details</h2>
+
+<table class="receiving-table">
+
+<thead>
+
+<tr>
+
+<th>No.</th>
+
+<th>Item / Cargo Description</th>
+
+<th>Package Type</th>
+
+<th>Expected Qty</th>
+
+<th>Received Qty</th>
+
+<th>Condition</th>
+
+<th>Remarks</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+
+<tr>
+
+<td>1</td>
+
+<td>
+<input type="text">
+</td>
+
+<td>
+
+<select>
+
+<option value="">Select</option>
+<option>Box</option>
+<option>Bag</option>
+<option>Pallet</option>
+<option>Drum</option>
+<option>Crate</option>
+<option>Piece</option>
+<option>Other</option>
+
+</select>
+
+</td>
+
+<td>
+<input type="text">
+</td>
+
+<td>
+<input type="text">
+</td>
+
+<td>
+
+<select>
+
+<option value="">Select</option>
+<option>Good</option>
+<option>Damaged</option>
+<option>Wet</option>
+<option>Shortage</option>
+<option>Excess</option>
+
+</select>
+
+</td>
+
+<td>
+<input type="text">
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>2</td>
+
+<td>
+<input type="text">
+</td>
+
+<td>
+
+<select>
+
+<option value="">Select</option>
+<option>Box</option>
+<option>Bag</option>
+<option>Pallet</option>
+<option>Drum</option>
+<option>Crate</option>
+<option>Piece</option>
+<option>Other</option>
+
+</select>
+
+</td>
+
+<td>
+<input type="text">
+</td>
+
+<td>
+<input type="text">
+</td>
+
+<td>
+
+<select>
+
+<option value="">Select</option>
+<option>Good</option>
+<option>Damaged</option>
+<option>Wet</option>
+<option>Shortage</option>
+<option>Excess</option>
+
+</select>
+
+</td>
+
+<td>
+<input type="text">
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>3</td>
+
+<td>
+<input type="text">
+</td>
+
+<td>
+
+<select>
+
+<option value="">Select</option>
+<option>Box</option>
+<option>Bag</option>
+<option>Pallet</option>
+<option>Drum</option>
+<option>Crate</option>
+<option>Piece</option>
+<option>Other</option>
+
+</select>
+
+</td>
+
+<td>
+<input type="text">
+</td>
+
+<td>
+<input type="text">
+</td>
+
+<td>
+
+<select>
+
+<option value="">Select</option>
+<option>Good</option>
+<option>Damaged</option>
+<option>Wet</option>
+<option>Shortage</option>
+<option>Excess</option>
+
+</select>
+
+</td>
+
+<td>
+<input type="text">
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>4</td>
+
+<td>
+<input type="text">
+</td>
+
+<td>
+
+<select>
+
+<option value="">Select</option>
+<option>Box</option>
+<option>Bag</option>
+<option>Pallet</option>
+<option>Drum</option>
+<option>Crate</option>
+<option>Piece</option>
+<option>Other</option>
+
+</select>
+
+</td>
+
+<td>
+<input type="text">
+</td>
+
+<td>
+<input type="text">
+</td>
+
+<td>
+
+<select>
+
+<option value="">Select</option>
+<option>Good</option>
+<option>Damaged</option>
+<option>Wet</option>
+<option>Shortage</option>
+<option>Excess</option>
+
+</select>
+
+</td>
+
+<td>
+<input type="text">
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<div class="form-section">
+
+<h2>Receiving Inspection</h2>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Packaging Condition</label>
+
+<select>
+
+<option value="">Select</option>
+<option>Good</option>
+<option>Minor Damage</option>
+<option>Major Damage</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Quantity Verified</label>
+
+<select>
+
+<option value="">Select</option>
+<option>Yes</option>
+<option>No</option>
+<option>Partially</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Documents Verified</label>
+
+<select>
+
+<option value="">Select</option>
+<option>Yes</option>
+<option>No</option>
+<option>Partially</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Receiving Status</label>
+
+<select>
+
+<option value="">Select</option>
+<option>Accepted</option>
+<option>Accepted with Remarks</option>
+<option>Partially Accepted</option>
+<option>Rejected</option>
+<option>On Hold</option>
+
+</select>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="form-group">
+
+<label>Inspection Remarks</label>
+
+<textarea></textarea>
+
+</div>
+
+</div>
+
+
+<div class="form-section">
+
+<h2>Storage Information</h2>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Storage Area / Location</label>
+
+<input type="text" placeholder="e.g. Zone A / Rack 05">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Bin / Rack No.</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Handling Requirement</label>
+
+<select>
+
+<option value="">Select</option>
+<option>Standard Handling</option>
+<option>Fragile</option>
+<option>Heavy Cargo</option>
+<option>Hazardous</option>
+<option>Temperature Controlled</option>
+<option>Special Handling</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="form-section">
+
+<h2>Receiving Confirmation</h2>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Received By</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Storekeeper / Warehouse Officer</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Receiver Signature</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Driver Signature</label>
+
+<input type="text">
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="form-section">
+
+<h2>Final Remarks</h2>
+
+<div class="form-group">
+
+<label>Additional Remarks</label>
+
+<textarea></textarea>
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button onclick="window.print()" class="button">
+Print / Save as PDF
+</button>
+
+<a href="templates.html" class="button">
+Back to Templates
+</a>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<footer>
+
+<p>OpsToolkit</p>
+
+<p>
+Digital Operations Tools for Logistics, Transport and Business Efficiency.
+</p>
+
+<p>
+Developed by ASA Digital Solutions & Operations
+</p>
+
+<p>
+© 2026 OpsToolkit. All rights reserved.
+</p>
+
+</footer>
+
+
+</body>
+
+</html>
