@@ -1,179 +1,248 @@
 <!DOCTYPE html>
-<html lang="sw">
+<html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <meta
 name="description"
-content="OpsToolkit Container Tracking tool for checking container shipment information."
+content="OpsToolkit Container & B/L Tracking Tool for logistics, shipping and transport operations."
 >
 
-<meta
-name="keywords"
-content="container tracking, shipment tracking, logistics tracking, container number tracking, OpsToolkit"
->
-
-<title>OpsToolkit | Container Tracking</title>
+<title>OpsToolkit | Container & B/L Tracking</title>
 
 <link rel="stylesheet" href="style.css">
 
 <style>
 
 .tracking-box {
-    max-width: 900px;
-    margin: 0 auto;
+max-width: 1100px;
+margin: 40px auto;
+padding: 25px;
+}
+
+.tracking-form {
+display: flex;
+gap: 12px;
+margin-bottom: 25px;
 }
 
 .tracking-input {
-    width: 100%;
-    padding: 14px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-sizing: border-box;
-    margin-bottom: 15px;
-    text-transform: uppercase;
+flex: 1;
+padding: 14px;
+border: 1px solid #ccc;
+border-radius: 6px;
+font-size: 16px;
 }
 
 .tracking-button {
-    width: 100%;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
+padding: 14px 24px;
+border: none;
+border-radius: 6px;
+background: #0b3d62;
+color: white;
+font-size: 16px;
+cursor: pointer;
+}
+
+.tracking-button:hover {
+background: #082f4c;
 }
 
 .tracking-result {
-    margin-top: 25px;
-    display: none;
+margin-top: 25px;
 }
 
 .tracking-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-top: 15px;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+gap: 15px;
+margin-bottom: 25px;
 }
 
 .tracking-item {
-    background: #f7f7f7;
-    padding: 14px;
-    border-radius: 6px;
+border: 1px solid #ddd;
+border-radius: 8px;
+padding: 15px;
+background: #fff;
 }
 
 .tracking-label {
-    display: block;
-    font-size: 13px;
-    color: #666;
-    margin-bottom: 5px;
+font-size: 12px;
+font-weight: bold;
+color: #666;
+margin-bottom: 7px;
+text-transform: uppercase;
 }
 
 .tracking-value {
-    font-weight: 600;
-    color: #222;
-    word-break: break-word;
+font-size: 16px;
+font-weight: 600;
+color: #17202a;
+word-break: break-word;
 }
 
 .status-box {
-    margin-top: 18px;
-    padding: 15px;
-    border-radius: 6px;
-    background: #eef5ff;
-    font-weight: 600;
+padding: 16px;
+border-radius: 8px;
+background: #eaf4ff;
+border-left: 5px solid #0b3d62;
+margin-bottom: 20px;
 }
 
 .eta-box {
-    margin-top: 12px;
-    padding: 15px;
-    border-radius: 6px;
-    background: #f4f8f4;
-    font-weight: 600;
+padding: 20px;
+border-radius: 8px;
+background: #f4f8fb;
+border-left: 5px solid #16803c;
+margin-bottom: 25px;
 }
 
-.error-box {
-    margin-top: 20px;
-    padding: 15px;
-    border-radius: 6px;
-    background: #fff1f1;
-    color: #a00000;
-    display: none;
+.eta-title {
+font-size: 13px;
+font-weight: bold;
+color: #666;
+text-transform: uppercase;
+margin-bottom: 6px;
 }
 
-.loading-box {
-    margin-top: 20px;
-    padding: 15px;
-    text-align: center;
-    display: none;
+.eta-value {
+font-size: 22px;
+font-weight: bold;
+color: #0b3d62;
 }
 
 .section-title {
-    margin-top: 30px;
-    margin-bottom: 12px;
+margin-top: 35px;
+margin-bottom: 15px;
+color: #0b3d62;
+border-bottom: 2px solid #ddd;
+padding-bottom: 8px;
 }
 
-.events {
-    margin-top: 25px;
+.error-box {
+padding: 15px;
+border-radius: 8px;
+background: #fff0f0;
+border-left: 5px solid #c62828;
+color: #8b0000;
+margin-top: 20px;
+}
+
+.loading-box {
+padding: 15px;
+border-radius: 8px;
+background: #f5f5f5;
+margin-top: 20px;
 }
 
 .event {
-    border-left: 3px solid #1f4e79;
-    padding: 12px 15px;
-    margin-bottom: 12px;
-    background: #f7f7f7;
+border-left: 4px solid #0b3d62;
+padding: 15px;
+margin-bottom: 12px;
+background: #fafafa;
+border-radius: 0 8px 8px 0;
 }
 
 .event-title {
-    font-weight: 600;
-    margin-bottom: 5px;
+font-weight: bold;
+color: #17202a;
+margin-bottom: 5px;
 }
 
 .event-location {
-    font-size: 14px;
-    color: #555;
+font-weight: 600;
+margin-bottom: 5px;
 }
 
 .event-date {
-    font-size: 13px;
-    color: #777;
-    margin-top: 5px;
+font-size: 13px;
+color: #555;
 }
 
 .event-type {
-    font-size: 12px;
-    margin-top: 5px;
+display: inline-block;
+margin-top: 8px;
+padding: 4px 8px;
+background: #e9eef3;
+border-radius: 4px;
+font-size: 12px;
 }
 
 .event-code {
-    font-size: 12px;
-    color: #666;
-    margin-top: 5px;
+display: inline-block;
+margin-top: 8px;
+margin-left: 5px;
+padding: 4px 8px;
+background: #eef5ff;
+border-radius: 4px;
+font-size: 12px;
+}
+
+.table-wrap {
+overflow-x: auto;
+margin-bottom: 25px;
+}
+
+.tracking-table {
+width: 100%;
+border-collapse: collapse;
+background: white;
+}
+
+.tracking-table th,
+.tracking-table td {
+padding: 12px;
+border: 1px solid #ddd;
+text-align: left;
+vertical-align: top;
+}
+
+.tracking-table th {
+background: #0b3d62;
+color: white;
+font-size: 13px;
+}
+
+.tracking-table td {
+font-size: 14px;
+}
+
+.info-note {
+padding: 12px 15px;
+background: #f5f7f9;
+border-left: 4px solid #7b8794;
+margin-bottom: 20px;
+font-size: 14px;
+color: #555;
 }
 
 .disclaimer {
-    margin-top: 25px;
-    font-size: 13px;
-    color: #666;
-    line-height: 1.6;
+margin-top: 30px;
+padding: 15px;
+background: #f8f8f8;
+border-radius: 8px;
+font-size: 13px;
+color: #666;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 700px) {
 
-    .tracking-grid {
-        grid-template-columns: 1fr;
-    }
+.tracking-form {
+flex-direction: column;
+}
+
+.tracking-button {
+width: 100%;
+}
 
 }
 
 </style>
-
 </head>
 
-
 <body>
-
 
 <nav class="navbar">
 
@@ -181,39 +250,12 @@ content="container tracking, shipment tracking, logistics tracking, container nu
 OpsToolkit
 </div>
 
-
 <ul>
-
-<li>
-<a href="index.html">
-Home
-</a>
-</li>
-
-<li>
-<a href="calculators.html">
-Calculators
-</a>
-</li>
-
-<li>
-<a href="resources.html">
-Resources
-</a>
-</li>
-
-<li>
-<a href="guides.html">
-Guides
-</a>
-</li>
-
-<li>
-<a href="about.html">
-About
-</a>
-</li>
-
+<li><a href="index.html">Home</a></li>
+<li><a href="calculators.html">Calculators</a></li>
+<li><a href="resources.html">Resources</a></li>
+<li><a href="guides.html">Guides</a></li>
+<li><a href="about.html">About</a></li>
 </ul>
 
 </nav>
@@ -221,434 +263,304 @@ About
 
 <header class="hero">
 
-<h1>
-Container Tracking
-</h1>
+<h1>Container &amp; B/L Tracking</h1>
 
 <p>
-Track container shipment information using a Container Number.
+Track container shipment information, vessel movements, ETA and logistics events.
 </p>
 
 </header>
 
 
-<section class="container">
+<section class="tracking-box">
 
-
-<div class="card tracking-box">
-
-<h2>
-Shipment Tracking
-</h2>
-
-<p>
-Enter a valid Container Number to check available shipment information.
-</p>
-
+<div class="tracking-form">
 
 <input
 type="text"
-id="trackingReference"
+id="referenceInput"
 class="tracking-input"
-placeholder="e.g. MRSU6859427"
+placeholder="Enter Container Number e.g. MRSU6859427"
 autocomplete="off"
-maxlength="11"
 >
-
 
 <button
-id="trackButton"
-class="button tracking-button"
+class="tracking-button"
 onclick="trackShipment()"
 >
-
-Track Container
-
+Track Shipment
 </button>
 
-
-<div
-id="loadingBox"
-class="loading-box"
->
-
-Checking shipment information...
-
 </div>
 
 
-<div
-id="errorBox"
-class="error-box"
-></div>
+<div id="loading" class="loading-box" style="display:none;">
+Tracking shipment information...
+</div>
 
 
-<div
-id="trackingResult"
-class="tracking-result"
->
+<div id="error" class="error-box" style="display:none;"></div>
 
-<h2>
-Shipment Information
+
+<div id="trackingResult" class="tracking-result" style="display:none;">
+
+<div id="statusBox" class="status-box"></div>
+
+
+<h2 class="section-title">
+Shipment Overview
 </h2>
-
-
-<div
-id="statusBox"
-class="status-box"
->
-</div>
-
-
-<div
-id="etaBox"
-class="eta-box"
->
-</div>
-
 
 <div class="tracking-grid">
 
+<div class="tracking-item">
+<div class="tracking-label">Reference Number</div>
+<div class="tracking-value" id="referenceNumber">-</div>
+</div>
 
 <div class="tracking-item">
-
-<span class="tracking-label">
-Reference Number
-</span>
-
-<span
-id="identifier"
-class="tracking-value"
->
--
-</span>
-
+<div class="tracking-label">Shipment Type</div>
+<div class="tracking-value" id="shipmentType">-</div>
 </div>
-
 
 <div class="tracking-item">
-
-<span class="tracking-label">
-Shipment Type
-</span>
-
-<span
-id="shipmentType"
-class="tracking-value"
->
--
-</span>
-
+<div class="tracking-label">Container Number</div>
+<div class="tracking-value" id="containerNumber">-</div>
 </div>
-
 
 <div class="tracking-item">
-
-<span class="tracking-label">
-Container Number
-</span>
-
-<span
-id="containerNumber"
-class="tracking-value"
->
--
-</span>
-
+<div class="tracking-label">Container Count</div>
+<div class="tracking-value" id="containerCount">-</div>
 </div>
-
 
 <div class="tracking-item">
-
-<span class="tracking-label">
-Container Type
-</span>
-
-<span
-id="equipment"
-class="tracking-value"
->
--
-</span>
-
+<div class="tracking-label">Shipping Line</div>
+<div class="tracking-value" id="shippingLine">-</div>
 </div>
-
 
 <div class="tracking-item">
-
-<span class="tracking-label">
-Container Description
-</span>
-
-<span
-id="containerDescription"
-class="tracking-value"
->
--
-</span>
-
+<div class="tracking-label">Carrier Code</div>
+<div class="tracking-value" id="carrierCode">-</div>
 </div>
-
 
 <div class="tracking-item">
-
-<span class="tracking-label">
-ISO Code
-</span>
-
-<span
-id="isoCode"
-class="tracking-value"
->
--
-</span>
-
+<div class="tracking-label">Origin</div>
+<div class="tracking-value" id="origin">-</div>
 </div>
-
 
 <div class="tracking-item">
-
-<span class="tracking-label">
-Shipping Line
-</span>
-
-<span
-id="carrier"
-class="tracking-value"
->
--
-</span>
-
+<div class="tracking-label">Destination</div>
+<div class="tracking-value" id="destination">-</div>
 </div>
-
 
 <div class="tracking-item">
-
-<span class="tracking-label">
-Carrier Code
-</span>
-
-<span
-id="carrierCode"
-class="tracking-value"
->
--
-</span>
-
+<div class="tracking-label">Current Vessel</div>
+<div class="tracking-value" id="vessel">-</div>
 </div>
-
 
 <div class="tracking-item">
-
-<span class="tracking-label">
-Origin
-</span>
-
-<span
-id="origin"
-class="tracking-value"
->
--
-</span>
-
+<div class="tracking-label">Vessel IMO</div>
+<div class="tracking-value" id="vesselIMO">-</div>
 </div>
-
 
 <div class="tracking-item">
-
-<span class="tracking-label">
-Destination
-</span>
-
-<span
-id="destination"
-class="tracking-value"
->
--
-</span>
-
+<div class="tracking-label">Total Transit Days</div>
+<div class="tracking-value" id="totalDays">-</div>
 </div>
-
 
 <div class="tracking-item">
+<div class="tracking-label">Remaining Days</div>
+<div class="tracking-value" id="remainingDays">-</div>
+</div>
 
-<span class="tracking-label">
-Vessel
-</span>
+</div>
 
-<span
-id="vessel"
-class="tracking-value"
->
+
+<div class="eta-box">
+
+<div class="eta-title">
+Estimated Time of Arrival (ETA)
+</div>
+
+<div class="eta-value" id="eta">
 -
-</span>
+</div>
 
 </div>
 
-
-<div class="tracking-item">
-
-<span class="tracking-label">
-Vessel IMO
-</span>
-
-<span
-id="imo"
-class="tracking-value"
->
--
-</span>
-
-</div>
-
-
-<div class="tracking-item">
-
-<span class="tracking-label">
-Container Count
-</span>
-
-<span
-id="containerCount"
-class="tracking-value"
->
--
-</span>
-
-</div>
-
-
-<div class="tracking-item">
-
-<span class="tracking-label">
-Container Summary
-</span>
-
-<span
-id="containerSummary"
-class="tracking-value"
->
--
-</span>
-
-</div>
-
-
-<div class="tracking-item">
-
-<span class="tracking-label">
-Total Transit Days
-</span>
-
-<span
-id="totalDays"
-class="tracking-value"
->
--
-</span>
-
-</div>
-
-
-<div class="tracking-item">
-
-<span class="tracking-label">
-Remaining Days
-</span>
-
-<span
-id="remainingDays"
-class="tracking-value"
->
--
-</span>
-
-</div>
-
-
-<div class="tracking-item">
-
-<span class="tracking-label">
-Last Updated
-</span>
-
-<span
-id="lastUpdated"
-class="tracking-value"
->
--
-</span>
-
-</div>
-
-
-<div class="tracking-item">
-
-<span class="tracking-label">
-Journey Status
-</span>
-
-<span
-id="journeyStatus"
-class="tracking-value"
->
--
-</span>
-
-</div>
-
-
-</div>
-
-
-<div class="events">
 
 <h2 class="section-title">
 Container Details
 </h2>
 
-<div id="containersList">
+<div class="info-note">
+Some container equipment fields may not be provided by the shipping data source.
+</div>
+
+<div id="containerDetails"></div>
+
+
+<h2 class="section-title">
+Tracking &amp; Data Status
+</h2>
+
+<div class="tracking-grid">
+
+<div class="tracking-item">
+<div class="tracking-label">Journey Status</div>
+<div class="tracking-value" id="journeyStatus">-</div>
+</div>
+
+<div class="tracking-item">
+<div class="tracking-label">ETA Reliability</div>
+<div class="tracking-value" id="etaReliable">-</div>
+</div>
+
+<div class="tracking-item">
+<div class="tracking-label">Delayed</div>
+<div class="tracking-value" id="delayed">-</div>
+</div>
+
+<div class="tracking-item">
+<div class="tracking-label">Active Shipment</div>
+<div class="tracking-value" id="activeShipment">-</div>
+</div>
+
+<div class="tracking-item">
+<div class="tracking-label">Last Updated</div>
+<div class="tracking-value" id="lastUpdated">-</div>
+</div>
+
+<div class="tracking-item">
+<div class="tracking-label">Last Synced</div>
+<div class="tracking-value" id="lastSynced">-</div>
+</div>
+
+<div class="tracking-item">
+<div class="tracking-label">Data Created</div>
+<div class="tracking-value" id="createdAt">-</div>
+</div>
+
+<div class="tracking-item">
+<div class="tracking-label">Next Refresh</div>
+<div class="tracking-value" id="nextRefresh">-</div>
+</div>
+
+<div class="tracking-item">
+<div class="tracking-label">Refresh Eligible</div>
+<div class="tracking-value" id="refreshEligible">-</div>
+</div>
+
+<div class="tracking-item">
+<div class="tracking-label">Cached Data</div>
+<div class="tracking-value" id="cachedData">-</div>
+</div>
+
+<div class="tracking-item">
+<div class="tracking-label">Journey Stale</div>
+<div class="tracking-value" id="journeyStale">-</div>
 </div>
 
 </div>
 
 
-<div class="events">
+<h2 class="section-title">
+Predictive ETA
+</h2>
+
+<div class="tracking-grid">
+
+<div class="tracking-item">
+<div class="tracking-label">Predictive ETA P50</div>
+<div class="tracking-value" id="predictiveP50">-</div>
+</div>
+
+<div class="tracking-item">
+<div class="tracking-label">Predictive ETA P80</div>
+<div class="tracking-value" id="predictiveP80">-</div>
+</div>
+
+<div class="tracking-item">
+<div class="tracking-label">Confidence</div>
+<div class="tracking-value" id="predictiveConfidence">-</div>
+</div>
+
+<div class="tracking-item">
+<div class="tracking-label">Prediction Source</div>
+<div class="tracking-value" id="predictiveSource">-</div>
+</div>
+
+<div class="tracking-item">
+<div class="tracking-label">Computed At</div>
+<div class="tracking-value" id="predictiveComputedAt">-</div>
+</div>
+
+</div>
+
+
+<h2 class="section-title">
+Current Position
+</h2>
+
+<div class="tracking-grid">
+
+<div class="tracking-item">
+<div class="tracking-label">Latitude</div>
+<div class="tracking-value" id="latitude">-</div>
+</div>
+
+<div class="tracking-item">
+<div class="tracking-label">Longitude</div>
+<div class="tracking-value" id="longitude">-</div>
+</div>
+
+</div>
+
 
 <h2 class="section-title">
 Movement History
 </h2>
 
-<div id="eventsList">
-</div>
-
-</div>
+<div id="movementHistory"></div>
 
 
-<div class="events">
+<h2 class="section-title">
+ETA History
+</h2>
+
+<div id="etaHistory"></div>
+
+
+<h2 class="section-title">
+Voyage Plan
+</h2>
+
+<div id="voyagePlan"></div>
+
+
+<h2 class="section-title">
+Route &amp; Locations
+</h2>
+
+<div id="routeLocations"></div>
+
 
 <h2 class="section-title">
 Vessel Information
 </h2>
 
-<div id="vesselList">
-</div>
+<div id="vesselInformation"></div>
+
+
+<div class="disclaimer">
+
+<strong>Tracking Information:</strong>
+
+Tracking information is provided through the connected shipment tracking
+data source. Availability, timing and accuracy may vary depending on
+carrier data and refresh intervals.
 
 </div>
-
-
-<p class="disclaimer">
-
-Tracking information is provided based on available carrier data.
-ETA values may be estimated and should not be treated as a guaranteed
-arrival time. Availability and accuracy depend on the shipping line
-and information published by the carrier.
-
-</p>
-
-
-</div>
-
 
 </div>
 
@@ -657,9 +569,7 @@ and information published by the carrier.
 
 <footer>
 
-<p>
-OpsToolkit
-</p>
+<p>OpsToolkit</p>
 
 <p>
 Digital Operations Tools for Logistics, Transport and Business Efficiency.
@@ -678,1066 +588,1219 @@ Developed by ASA Digital Solutions &amp; Operations
 
 <script>
 
-
 const WORKER_URL =
 "https://opstoolkit-tracking.abdallaallysaid.workers.dev";
 
 
 function formatStatus(status) {
 
-    if (!status) {
-        return "Status unavailable";
-    }
+if (!status) {
+return "Not provided";
+}
 
-    return String(status)
-        .replaceAll("_", " ")
-        .replace(/\b\w/g, function(letter) {
-            return letter.toUpperCase();
-        });
+return String(status)
+.replace(/_/g, " ")
+.replace(/\b\w/g, function(letter) {
+return letter.toUpperCase();
+});
 
 }
 
 
-function formatDate(dateString) {
+function formatDate(value) {
 
-    if (!dateString) {
-        return "-";
-    }
+if (!value) {
+return "Not provided";
+}
 
-    const date =
-        new Date(
-            String(dateString)
-                .replace(" ", "T")
-        );
+const date = new Date(value);
 
-    if (isNaN(date.getTime())) {
-        return dateString;
-    }
+if (isNaN(date.getTime())) {
+return value;
+}
 
-    return date.toLocaleString();
+return date.toLocaleString();
+
+}
+
+
+function displayValue(value) {
+
+if (
+value === null ||
+value === undefined ||
+value === ""
+) {
+return "Not provided";
+}
+
+return value;
 
 }
 
 
 function setValue(id, value) {
 
-    const element =
-        document.getElementById(id);
+const element =
+document.getElementById(id);
 
-    if (!element) {
-        return;
-    }
+if (element) {
+element.textContent =
+displayValue(value);
+}
 
-    if (
-        value === null ||
-        value === undefined ||
-        value === ""
-    ) {
+}
 
-        element.textContent = "-";
 
-    } else {
+function showError(message) {
 
-        element.textContent = value;
+const error =
+document.getElementById("error");
 
-    }
+error.textContent = message;
+
+error.style.display = "block";
+
+}
+
+
+function hideError() {
+
+document.getElementById("error")
+.style.display = "none";
+
+}
+
+
+function showLoading(show) {
+
+document.getElementById("loading")
+.style.display =
+show ? "block" : "none";
 
 }
 
 
 function clearResult() {
 
-    document.getElementById(
-        "trackingResult"
-    ).style.display = "none";
+document.getElementById("trackingResult")
+.style.display = "none";
 
-    document.getElementById(
-        "errorBox"
-    ).style.display = "none";
+document.getElementById("movementHistory")
+.innerHTML = "";
 
-    document.getElementById(
-        "loadingBox"
-    ).style.display = "none";
+document.getElementById("etaHistory")
+.innerHTML = "";
 
-    document.getElementById(
-        "eventsList"
-    ).innerHTML = "";
+document.getElementById("voyagePlan")
+.innerHTML = "";
 
-    document.getElementById(
-        "vesselList"
-    ).innerHTML = "";
+document.getElementById("routeLocations")
+.innerHTML = "";
 
-    document.getElementById(
-        "containersList"
-    ).innerHTML = "";
+document.getElementById("vesselInformation")
+.innerHTML = "";
+
+document.getElementById("containerDetails")
+.innerHTML = "";
+
+hideError();
+
+}
+
+
+function phaseName(phase) {
+
+const phases = {
+
+prepol: "Pre-POL",
+
+pol: "POL / Port of Loading",
+
+pod: "POD / Port of Discharge",
+
+postpod: "Post-POD"
+
+};
+
+return phases[phase] ||
+formatStatus(phase);
 
 }
 
 
 function trackShipment() {
 
+const input =
+document.getElementById("referenceInput");
 
-    const input =
-        document.getElementById(
-            "trackingReference"
-        );
+const reference =
+input.value
+.trim()
+.toUpperCase();
 
 
-    const button =
-        document.getElementById(
-            "trackButton"
-        );
+clearResult();
 
 
-    const loading =
-        document.getElementById(
-            "loadingBox"
-        );
+if (!reference) {
 
+showError(
+"Please enter a container number."
+);
 
-    const error =
-        document.getElementById(
-            "errorBox"
-        );
-
-
-    const result =
-        document.getElementById(
-            "trackingResult"
-        );
-
-
-    const reference =
-        input.value
-            .trim()
-            .toUpperCase();
-
-
-    clearResult();
-
-
-    if (!reference) {
-
-        error.textContent =
-            "Please enter a Container Number.";
-
-        error.style.display =
-            "block";
-
-        return;
-
-    }
-
-
-    if (
-        !/^[A-Z]{4}[0-9]{7}$/
-        .test(reference)
-    ) {
-
-        error.textContent =
-            "Please enter a valid Container Number, for example MRSU6859427.";
-
-        error.style.display =
-            "block";
-
-        return;
-
-    }
-
-
-    button.disabled =
-        true;
-
-
-    button.textContent =
-        "Checking...";
-
-
-    loading.style.display =
-        "block";
-
-
-    fetch(
-        WORKER_URL,
-        {
-
-            method: "POST",
-
-            headers: {
-                "Content-Type":
-                    "application/json"
-            },
-
-            body: JSON.stringify({
-                reference: reference
-            })
-
-        }
-    )
-
-
-    .then(function(response) {
-
-        return response
-            .json()
-            .then(function(data) {
-
-                return {
-                    status:
-                        response.status,
-                    data:
-                        data
-                };
-
-            });
-
-    })
-
-
-    .then(function(resultData) {
-
-
-        loading.style.display =
-            "none";
-
-
-        button.disabled =
-            false;
-
-
-        button.textContent =
-            "Track Container";
-
-
-        const responseData =
-            resultData.data;
-
-
-        if (
-            !resultData.status ||
-            resultData.status < 200 ||
-            resultData.status >= 300 ||
-            responseData.success === false
-        ) {
-
-            error.textContent =
-                responseData.error ||
-                "Shipment information could not be found.";
-
-            error.style.display =
-                "block";
-
-            return;
-
-        }
-
-
-        const data =
-            responseData.data || {};
-
-
-        const containers =
-            Array.isArray(
-                data.containers_table
-            )
-                ? data.containers_table
-                : [];
-
-
-        const vessels =
-            Array.isArray(
-                data.vessels_table
-            )
-                ? data.vessels_table
-                : [];
-
-
-        const events =
-            Array.isArray(
-                data.events_table
-            )
-                ? data.events_table
-                : [];
-
-
-        const firstContainer =
-            containers.length > 0
-                ? containers[0]
-                : {};
-
-
-        const firstVessel =
-            vessels.length > 0
-                ? vessels[0]
-                : {};
-
-
-        setValue(
-            "identifier",
-            data.reference_number ||
-            reference
-        );
-
-
-        setValue(
-            "shipmentType",
-            data.shipment_type
-        );
-
-
-        setValue(
-            "containerNumber",
-            firstContainer.container_number ||
-            data.reference_number ||
-            reference
-        );
-
-
-        setValue(
-            "equipment",
-            firstContainer.size_type
-        );
-
-
-        setValue(
-            "containerDescription",
-            firstContainer.container_description
-        );
-
-
-        setValue(
-            "isoCode",
-            firstContainer.iso_code
-        );
-
-
-        setValue(
-            "carrier",
-            data.sealine_name
-        );
-
-
-        setValue(
-            "carrierCode",
-            data.sealine
-        );
-
-
-        setValue(
-            "origin",
-            data.origin
-        );
-
-
-        setValue(
-            "destination",
-            data.destination
-        );
-
-
-        setValue(
-            "vessel",
-            firstVessel.vessel
-        );
-
-
-        setValue(
-            "imo",
-            firstVessel.imo
-        );
-
-
-        setValue(
-            "containerCount",
-            data.number_of_containers
-        );
-
-
-        setValue(
-            "containerSummary",
-            data.container_summary
-        );
-
-
-        setValue(
-            "totalDays",
-            data.total_days !== null &&
-            data.total_days !== undefined
-                ? data.total_days + " days"
-                : "-"
-        );
-
-
-        setValue(
-            "remainingDays",
-            data.remaining_days !== null &&
-            data.remaining_days !== undefined
-                ? data.remaining_days + " days"
-                : "-"
-        );
-
-
-        setValue(
-            "lastUpdated",
-            formatDate(
-                data.last_updated_at
-            )
-        );
-
-
-        let journeyStatus;
-
-
-        if (
-            data.is_active === true
-        ) {
-
-            journeyStatus =
-                "Active";
-
-        } else if (
-            data.journey_ended_at
-        ) {
-
-            journeyStatus =
-                "Completed";
-
-        } else if (
-            String(data.status || "")
-                .toUpperCase()
-                .includes("DELIVER")
-        ) {
-
-            journeyStatus =
-                "Completed";
-
-        } else {
-
-            journeyStatus =
-                "In Progress";
-
-        }
-
-
-        if (
-            data.is_delayed === true
-        ) {
-
-            journeyStatus +=
-                " — Delayed";
-
-        }
-
-
-        setValue(
-            "journeyStatus",
-            journeyStatus
-        );
-
-
-        document.getElementById(
-            "statusBox"
-        ).textContent =
-            "Current Status: " +
-            formatStatus(
-                data.status
-            );
-
-
-        let etaText =
-            "ETA: " +
-            (
-                data.eta
-                    ? formatDate(data.eta)
-                    : "-"
-            );
-
-
-        if (
-            data.is_delayed === true
-        ) {
-
-            etaText +=
-                " — Delayed";
-
-        }
-
-
-        document.getElementById(
-            "etaBox"
-        ).textContent =
-            etaText;
-
-
-        const containersList =
-            document.getElementById(
-                "containersList"
-            );
-
-
-        containersList.innerHTML =
-            "";
-
-
-        if (
-            containers.length > 0
-        ) {
-
-
-            containers.forEach(
-                function(container) {
-
-
-                    const box =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    box.className =
-                        "event";
-
-
-                    const title =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    title.className =
-                        "event-title";
-
-
-                    title.textContent =
-                        container.container_number ||
-                        "Container";
-
-
-                    const details =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    details.className =
-                        "event-location";
-
-
-                    const detailsParts =
-                        [];
-
-
-                    if (
-                        container.size_type
-                    ) {
-
-                        detailsParts.push(
-                            "Type: " +
-                            container.size_type
-                        );
-
-                    }
-
-
-                    if (
-                        container.container_description
-                    ) {
-
-                        detailsParts.push(
-                            container.container_description
-                        );
-
-                    }
-
-
-                    if (
-                        container.iso_code
-                    ) {
-
-                        detailsParts.push(
-                            "ISO: " +
-                            container.iso_code
-                        );
-
-                    }
-
-
-                    if (
-                        container.status
-                    ) {
-
-                        detailsParts.push(
-                            "Status: " +
-                            formatStatus(
-                                container.status
-                            )
-                        );
-
-                    }
-
-
-                    details.textContent =
-                        detailsParts.length > 0
-                            ? detailsParts.join(" | ")
-                            : "Container details not published";
-
-
-                    box.appendChild(
-                        title
-                    );
-
-
-                    box.appendChild(
-                        details
-                    );
-
-
-                    containersList.appendChild(
-                        box
-                    );
-
-
-                }
-            );
-
-
-        } else {
-
-
-            containersList.innerHTML =
-                "<p>No additional container details were published.</p>";
-
-        }
-
-
-        const eventsList =
-            document.getElementById(
-                "eventsList"
-            );
-
-
-        eventsList.innerHTML =
-            "";
-
-
-        if (
-            events.length > 0
-        ) {
-
-
-            events
-                .slice()
-                .reverse()
-                .forEach(
-                    function(event) {
-
-
-                        const eventBox =
-                            document.createElement(
-                                "div"
-                            );
-
-
-                        eventBox.className =
-                            "event";
-
-
-                        const title =
-                            document.createElement(
-                                "div"
-                            );
-
-
-                        title.className =
-                            "event-title";
-
-
-                        title.textContent =
-                            event.description ||
-                            event.status_description ||
-                            event.event_code ||
-                            "Shipment Event";
-
-
-                        const location =
-                            document.createElement(
-                                "div"
-                            );
-
-
-                        location.className =
-                            "event-location";
-
-
-                        location.textContent =
-                            event.location
-                                ? event.location +
-                                  (
-                                    event.country
-                                        ? ", " +
-                                          event.country
-                                        : ""
-                                  )
-                                : "Location not published";
-
-
-                        const date =
-                            document.createElement(
-                                "div"
-                            );
-
-
-                        date.className =
-                            "event-date";
-
-
-                        date.textContent =
-                            event.timestamp
-                                ? formatDate(
-                                    event.timestamp
-                                )
-                                : "Date not published";
-
-
-                        const type =
-                            document.createElement(
-                                "div"
-                            );
-
-
-                        type.className =
-                            "event-type";
-
-
-                        if (
-                            event.is_actual === 1
-                        ) {
-
-                            type.textContent =
-                                "Actual event";
-
-                        } else {
-
-                            type.textContent =
-                                "Planned / Estimated";
-
-                        }
-
-
-                        const code =
-                            document.createElement(
-                                "div"
-                            );
-
-
-                        code.className =
-                            "event-code";
-
-
-                        const codeParts =
-                            [];
-
-
-                        if (
-                            event.event_code
-                        ) {
-
-                            codeParts.push(
-                                "Event Code: " +
-                                event.event_code
-                            );
-
-                        }
-
-
-                        if (
-                            event.status
-                        ) {
-
-                            codeParts.push(
-                                "Status: " +
-                                event.status
-                            );
-
-                        }
-
-
-                        if (
-                            event.transport_type
-                        ) {
-
-                            codeParts.push(
-                                "Transport: " +
-                                event.transport_type
-                            );
-
-                        }
-
-
-                        if (
-                            codeParts.length > 0
-                        ) {
-
-                            code.textContent =
-                                codeParts.join(" | ");
-
-                        }
-
-
-                        eventBox.appendChild(
-                            title
-                        );
-
-
-                        eventBox.appendChild(
-                            location
-                        );
-
-
-                        eventBox.appendChild(
-                            date
-                        );
-
-
-                        eventBox.appendChild(
-                            type
-                        );
-
-
-                        if (
-                            codeParts.length > 0
-                        ) {
-
-                            eventBox.appendChild(
-                                code
-                            );
-
-                        }
-
-
-                        eventsList.appendChild(
-                            eventBox
-                        );
-
-
-                    }
-                );
-
-
-        } else {
-
-
-            eventsList.innerHTML =
-                "<p>No movement events were published for this container.</p>";
-
-        }
-
-
-        const vesselList =
-            document.getElementById(
-                "vesselList"
-            );
-
-
-        vesselList.innerHTML =
-            "";
-
-
-        if (
-            vessels.length > 0
-        ) {
-
-
-            vessels.forEach(
-                function(vessel) {
-
-
-                    const vesselBox =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    vesselBox.className =
-                        "event";
-
-
-                    const vesselName =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    vesselName.className =
-                        "event-title";
-
-
-                    vesselName.textContent =
-                        vessel.vessel ||
-                        "Vessel";
-
-
-                    const vesselDetails =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    vesselDetails.className =
-                        "event-location";
-
-
-                    const vesselParts =
-                        [];
-
-
-                    if (
-                        vessel.imo
-                    ) {
-
-                        vesselParts.push(
-                            "IMO: " +
-                            vessel.imo
-                        );
-
-                    }
-
-
-                    if (
-                        vessel.mmsi
-                    ) {
-
-                        vesselParts.push(
-                            "MMSI: " +
-                            vessel.mmsi
-                        );
-
-                    }
-
-
-                    if (
-                        vessel.vessel_id !==
-                        null &&
-                        vessel.vessel_id !==
-                        undefined
-                    ) {
-
-                        vesselParts.push(
-                            "Vessel ID: " +
-                            vessel.vessel_id
-                        );
-
-                    }
-
-
-                    if (
-                        vessel.is_current === 1
-                    ) {
-
-                        vesselParts.push(
-                            "Current Vessel"
-                        );
-
-                    }
-
-
-                    vesselDetails.textContent =
-                        vesselParts.length > 0
-                            ? vesselParts.join(" | ")
-                            : "Vessel details not published";
-
-
-                    vesselBox.appendChild(
-                        vesselName
-                    );
-
-
-                    vesselBox.appendChild(
-                        vesselDetails
-                    );
-
-
-                    vesselList.appendChild(
-                        vesselBox
-                    );
-
-
-                }
-            );
-
-
-        } else {
-
-
-            vesselList.innerHTML =
-                "<p>No vessel information was published.</p>";
-
-        }
-
-
-        result.style.display =
-            "block";
-
-
-    })
-
-
-    .catch(function(errorObject) {
-
-
-        loading.style.display =
-            "none";
-
-
-        button.disabled =
-            false;
-
-
-        button.textContent =
-            "Track Container";
-
-
-        error.textContent =
-            "Unable to connect to the tracking service. Please try again later.";
-
-
-        error.style.display =
-            "block";
-
-
-        console.error(
-            errorObject
-        );
-
-    });
+return;
 
 }
 
 
+showLoading(true);
+
+
+fetch(
+WORKER_URL,
+{
+method: "POST",
+
+headers: {
+"Content-Type": "application/json"
+},
+
+body: JSON.stringify({
+reference: reference
+})
+
+}
+)
+.then(function(response) {
+
+return response.text()
+.then(function(text) {
+
+let data;
+
+try {
+
+data = JSON.parse(text);
+
+} catch {
+
+throw new Error(
+"Invalid response from tracking server."
+);
+
+}
+
+if (!response.ok) {
+
+throw new Error(
+data.error ||
+"Tracking request failed."
+);
+
+}
+
+return data;
+
+});
+
+})
+.then(function(response) {
+
+showLoading(false);
+
+displayTrackingData(response);
+
+})
+.catch(function(error) {
+
+showLoading(false);
+
+showError(
+error.message ||
+"Unable to retrieve tracking information."
+);
+
+});
+
+}
+
+
+function displayTrackingData(response) {
+
+if (
+!response ||
+!response.success ||
+!response.data
+) {
+
+showError(
+response &&
+response.error
+?
+response.error
+:
+"No tracking data was returned."
+);
+
+return;
+
+}
+
+
+const data =
+response.data;
+
+
+const containers =
+Array.isArray(data.containers_table)
+?
+data.containers_table
+:
+[];
+
+
+const vessels =
+Array.isArray(data.vessels_table)
+?
+data.vessels_table
+:
+[];
+
+
+const events =
+Array.isArray(data.events_table)
+?
+data.events_table
+:
+[];
+
+
+const etaHistory =
+Array.isArray(data.eta_history_table)
+?
+data.eta_history_table
+:
+[];
+
+
+const voyagePlan =
+Array.isArray(data.voyage_plan_table)
+?
+data.voyage_plan_table
+:
+[];
+
+
+const locations =
+Array.isArray(data.locations_table)
+?
+data.locations_table
+:
+[];
+
+
+/*
+ * Find the current vessel.
+ * Traqo identifies it with is_current = 1.
+ */
+
+const firstVessel =
+vessels.length
+?
+vessels[0]
+:
+null;
+
+
+const currentVessel =
+vessels.find(function(vessel) {
+
+return vessel.is_current === 1;
+
+}) ||
+firstVessel;
+
+
+/*
+ * Shipment status
+ */
+
+const status =
+formatStatus(data.status);
+
+
+const statusBox =
+document.getElementById("statusBox");
+
+statusBox.innerHTML =
+"<strong>Current Shipment Status:</strong> "
++
+status;
+
+
+/*
+ * Main shipment information
+ */
+
+setValue(
+"referenceNumber",
+data.reference_number
+);
+
+setValue(
+"shipmentType",
+data.shipment_type
+);
+
+setValue(
+"containerNumber",
+containers.length
+?
+containers[0].container_number
+:
+data.reference_number
+);
+
+setValue(
+"containerCount",
+data.number_of_containers
+);
+
+setValue(
+"shippingLine",
+data.sealine_name
+);
+
+setValue(
+"carrierCode",
+data.sealine
+);
+
+setValue(
+"origin",
+data.origin
+);
+
+setValue(
+"destination",
+data.destination
+);
+
+setValue(
+"vessel",
+currentVessel
+?
+currentVessel.vessel
+:
+null
+);
+
+setValue(
+"vesselIMO",
+currentVessel
+?
+currentVessel.imo
+:
+null
+);
+
+setValue(
+"totalDays",
+data.total_days
+?
+data.total_days + " days"
+:
+null
+);
+
+setValue(
+"remainingDays",
+data.remaining_days !== null &&
+data.remaining_days !== undefined
+?
+data.remaining_days + " days"
+:
+null
+);
+
+
+/*
+ * ETA
+ */
+
+let etaText =
+formatDate(data.eta);
+
+if (data.is_delayed === true) {
+etaText += " — Delayed";
+}
+
+setValue(
+"eta",
+etaText
+);
+
+
+/*
+ * Tracking status
+ */
+
+setValue(
+"journeyStatus",
+formatStatus(data.status)
+);
+
+setValue(
+"etaReliable",
+data.eta_reliable === true
+?
+"Yes"
+:
+data.eta_reliable === false
+?
+"No"
+:
+null
+);
+
+setValue(
+"delayed",
+data.is_delayed === true
+?
+"Yes"
+:
+data.is_delayed === false
+?
+"No"
+:
+null
+);
+
+setValue(
+"activeShipment",
+data.is_active === true
+?
+"Yes"
+:
+data.is_active === false
+?
+"No"
+:
+null
+);
+
+setValue(
+"lastUpdated",
+formatDate(data.last_updated_at)
+);
+
+setValue(
+"lastSynced",
+formatDate(data.last_synced_at)
+);
+
+setValue(
+"createdAt",
+formatDate(data.created_at)
+);
+
+setValue(
+"nextRefresh",
+formatDate(data.next_refresh_eligible_at)
+);
+
+setValue(
+"refreshEligible",
+data.refresh_eligible_now === true
+?
+"Yes"
+:
+data.refresh_eligible_now === false
+?
+"No"
+:
+null
+);
+
+setValue(
+"cachedData",
+response.cached === true
+?
+"Yes"
+:
+"No"
+);
+
+setValue(
+"journeyStale",
+data.journey_stale === true
+?
+"Yes"
+:
+data.journey_stale === false
+?
+"No"
+:
+null
+);
+
+
+/*
+ * Predictive ETA
+ */
+
+const predictive =
+data.predictive_eta ||
+{};
+
+
+setValue(
+"predictiveP50",
+formatDate(predictive.p50)
+);
+
+setValue(
+"predictiveP80",
+formatDate(predictive.p80)
+);
+
+setValue(
+"predictiveConfidence",
+predictive.confidence
+);
+
+setValue(
+"predictiveSource",
+predictive.source
+);
+
+setValue(
+"predictiveComputedAt",
+formatDate(
+predictive.computed_at
+)
+);
+
+
+/*
+ * Current position
+ */
+
+setValue(
+"latitude",
+data.latitude
+);
+
+setValue(
+"longitude",
+data.longitude
+);
+
+
+/*
+ * Container details
+ */
+
+const containerDetails =
+document.getElementById(
+"containerDetails"
+);
+
+
+if (!containers.length) {
+
+containerDetails.innerHTML =
+"<div class='info-note'>No container detail records were returned.</div>";
+
+} else {
+
+let html =
+"<div class='table-wrap'>" +
+"<table class='tracking-table'>" +
+
+"<thead>" +
+"<tr>" +
+"<th>Container Number</th>" +
+"<th>Size / Type</th>" +
+"<th>ISO Code</th>" +
+"<th>Description</th>" +
+"<th>Equipment Source</th>" +
+"<th>Status</th>" +
+"</tr>" +
+"</thead>" +
+
+"<tbody>";
+
+
+containers.forEach(function(container) {
+
+html +=
+"<tr>" +
+
+"<td>" +
+displayValue(
+container.container_number
+) +
+"</td>" +
+
+"<td>" +
+displayValue(
+container.size_type
+) +
+"</td>" +
+
+"<td>" +
+displayValue(
+container.iso_code
+) +
+"</td>" +
+
+"<td>" +
+displayValue(
+container.container_description
+) +
+"</td>" +
+
+"<td>" +
+displayValue(
+container.equipment_source
+) +
+"</td>" +
+
+"<td>" +
+displayValue(
+formatStatus(container.status)
+) +
+"</td>" +
+
+"</tr>";
+
+});
+
+
+html +=
+"</tbody>" +
+"</table>" +
+"</div>";
+
+containerDetails.innerHTML =
+html;
+
+}
+
+
+/*
+ * Movement History
+ */
+
+const movementHistory =
+document.getElementById(
+"movementHistory"
+);
+
+
+if (!events.length) {
+
+movementHistory.innerHTML =
+"<div class='info-note'>No movement events were returned.</div>";
+
+} else {
+
+let html = "";
+
+
+events
+.slice()
+.reverse()
+.forEach(function(event) {
+
+const actual =
+event.is_actual === 1 ||
+event.is_actual === true;
+
+
+html +=
+"<div class='event'>" +
+
+"<div class='event-title'>" +
+displayValue(
+event.description ||
+event.status_description ||
+formatStatus(event.status)
+) +
+"</div>" +
+
+"<div class='event-location'>" +
+displayValue(
+event.location
+) +
+(
+event.country
+?
+", " + event.country
+:
+""
+) +
+"</div>" +
+
+"<div class='event-date'>" +
+formatDate(
+event.timestamp
+) +
+"</div>" +
+
+"<span class='event-type'>" +
+(
+actual
+?
+"Actual"
+:
+"Planned / Estimated"
+) +
+"</span>" +
+
+"<span class='event-code'>" +
+(
+event.event_code
+?
+"Event: " + event.event_code
+:
+""
+) +
+"</span>" +
+
+"<span class='event-code'>" +
+(
+event.transport_type
+?
+"Transport: " +
+event.transport_type
+:
+""
+) +
+"</span>" +
+
+"</div>";
+
+});
+
+
+movementHistory.innerHTML =
+html;
+
+}
+
+
+/*
+ * ETA History
+ */
+
+const etaHistoryContainer =
+document.getElementById(
+"etaHistory"
+);
+
+
+if (!etaHistory.length) {
+
+etaHistoryContainer.innerHTML =
+"<div class='info-note'>No ETA history was returned.</div>";
+
+} else {
+
+let html =
+"<div class='table-wrap'>" +
+
+"<table class='tracking-table'>" +
+
+"<thead>" +
+
+"<tr>" +
+
+"<th>ETA</th>" +
+"<th>ETD</th>" +
+"<th>Logged At</th>" +
+
+"</tr>" +
+
+"</thead>" +
+
+"<tbody>";
+
+
+etaHistory
+.slice()
+.reverse()
+.forEach(function(item) {
+
+html +=
+"<tr>" +
+
+"<td>" +
+formatDate(item.eta) +
+"</td>" +
+
+"<td>" +
+formatDate(item.etd) +
+"</td>" +
+
+"<td>" +
+formatDate(item.logged_at) +
+"</td>" +
+
+"</tr>";
+
+});
+
+
+html +=
+"</tbody>" +
+"</table>" +
+"</div>";
+
+etaHistoryContainer.innerHTML =
+html;
+
+}
+
+
+/*
+ * Voyage Plan
+ */
+
+const voyagePlanContainer =
+document.getElementById(
+"voyagePlan"
+);
+
+
+if (!voyagePlan.length) {
+
+voyagePlanContainer.innerHTML =
+"<div class='info-note'>No voyage plan information was returned.</div>";
+
+} else {
+
+let html =
+"<div class='table-wrap'>" +
+
+"<table class='tracking-table'>" +
+
+"<thead>" +
+
+"<tr>" +
+
+"<th>Phase</th>" +
+"<th>Date</th>" +
+"<th>Status</th>" +
+"<th>Location ID</th>" +
+
+"</tr>" +
+
+"</thead>" +
+
+"<tbody>";
+
+
+voyagePlan.forEach(function(item) {
+
+html +=
+"<tr>" +
+
+"<td>" +
+phaseName(item.phase) +
+"</td>" +
+
+"<td>" +
+formatDate(item.date) +
+"</td>" +
+
+"<td>" +
+(
+item.is_actual === 1
+?
+"Actual"
+:
+"Planned / Estimated"
+) +
+"</td>" +
+
+"<td>" +
+displayValue(item.location_id) +
+"</td>" +
+
+"</tr>";
+
+});
+
+
+html +=
+"</tbody>" +
+"</table>" +
+"</div>";
+
+voyagePlanContainer.innerHTML =
+html;
+
+}
+
+
+/*
+ * Route & Locations
+ */
+
+const routeContainer =
+document.getElementById(
+"routeLocations"
+);
+
+
+let routeHtml = "";
+
+
+/*
+ * Show locations returned by Traqo.
+ */
+
+if (locations.length) {
+
+routeHtml +=
+"<div class='table-wrap'>" +
+
+"<table class='tracking-table'>" +
+
+"<thead>" +
+
+"<tr>" +
+
+"<th>Location</th>" +
+"<th>State / Region</th>" +
+"<th>Country</th>" +
+"<th>Timezone</th>" +
+
+"</tr>" +
+
+"</thead>" +
+
+"<tbody>";
+
+
+locations.forEach(function(location) {
+
+routeHtml +=
+"<tr>" +
+
+"<td>" +
+displayValue(
+location.location
+) +
+"</td>" +
+
+"<td>" +
+displayValue(
+location.state
+) +
+"</td>" +
+
+"<td>" +
+displayValue(
+location.country
+) +
+"</td>" +
+
+"<td>" +
+displayValue(
+location.timezone
+) +
+"</td>" +
+
+"</tr>";
+
+});
+
+
+routeHtml +=
+"</tbody>" +
+"</table>" +
+"</div>";
+
+}
+
+
+/*
+ * Show readable route from events.
+ */
+
+const routePairs = [];
+
+events.forEach(function(event) {
+
+if (
+event.location &&
+!routePairs.includes(
+event.location
+)
+) {
+
+routePairs.push(
+event.location
+);
+
+}
+
+});
+
+
+if (routePairs.length) {
+
+routeHtml +=
+"<div class='info-note'>" +
+
+"<strong>Journey Locations:</strong> " +
+
+routePairs.join(" → ") +
+
+"</div>";
+
+}
+
+
+if (!routeHtml) {
+
+routeHtml =
+"<div class='info-note'>No route information was returned.</div>";
+
+}
+
+
+routeContainer.innerHTML =
+routeHtml;
+
+
+/*
+ * Vessel Information
+ */
+
+const vesselContainer =
+document.getElementById(
+"vesselInformation"
+);
+
+
+if (!vessels.length) {
+
+vesselContainer.innerHTML =
+"<div class='info-note'>No vessel information was returned.</div>";
+
+} else {
+
+let html =
+"<div class='table-wrap'>" +
+
+"<table class='tracking-table'>" +
+
+"<thead>" +
+
+"<tr>" +
+
+"<th>Vessel</th>" +
+"<th>IMO</th>" +
+"<th>MMSI</th>" +
+"<th>Current Vessel</th>" +
+
+"</tr>" +
+
+"</thead>" +
+
+"<tbody>";
+
+
+vessels.forEach(function(vessel) {
+
+const isCurrent =
+vessel.is_current === 1 ||
+vessel.is_current === true;
+
+
+html +=
+"<tr>" +
+
+"<td>" +
+displayValue(
+vessel.vessel
+) +
+"</td>" +
+
+"<td>" +
+displayValue(
+vessel.imo
+) +
+"</td>" +
+
+"<td>" +
+displayValue(
+vessel.mmsi
+) +
+"</td>" +
+
+"<td>" +
+(
+isCurrent
+?
+"Yes"
+:
+"No"
+) +
+"</td>" +
+
+"</tr>";
+
+});
+
+
+html +=
+"</tbody>" +
+"</table>" +
+"</div>";
+
+vesselContainer.innerHTML =
+html;
+
+}
+
+
+/*
+ * Show tracking result
+ */
+
+document.getElementById(
+"trackingResult"
+).style.display = "block";
+
+}
+
+
+/*
+ * Allow Enter key to start tracking.
+ */
+
 document
-    .getElementById(
-        "trackingReference"
-    )
-    .addEventListener(
-        "keydown",
-        function(event) {
+.getElementById("referenceInput")
+.addEventListener(
+"keydown",
+function(event) {
 
+if (event.key === "Enter") {
 
-            if (
-                event.key === "Enter"
-            ) {
+trackShipment();
 
-                trackShipment();
+}
 
-            }
-
-        }
-    );
-
+}
+);
 
 </script>
 
-
 </body>
-
 </html>
