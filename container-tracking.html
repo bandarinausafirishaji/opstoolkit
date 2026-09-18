@@ -35,6 +35,27 @@ content="OpsToolkit Container and B/L Tracking Tool for logistics, shipping and 
     color: #0b3d62;
 }
 
+.tracking-type-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.tracking-type {
+    flex: 1;
+    padding: 13px 14px;
+    border: 1px solid #ccd3da;
+    border-radius: 7px;
+    font-size: 15px;
+    background: #ffffff;
+    color: #17202a;
+    outline: none;
+}
+
+.tracking-type:focus {
+    border-color: #0b3d62;
+}
+
 .search-row {
     display: flex;
     gap: 12px;
@@ -333,6 +354,7 @@ content="OpsToolkit Container and B/L Tracking Tool for logistics, shipping and 
         padding: 0 12px 35px;
     }
 
+    .tracking-type-row,
     .search-row {
         flex-direction: column;
     }
@@ -405,7 +427,7 @@ OpsToolkit
 <h1>Container &amp; B/L Tracking</h1>
 
 <p>
-Track container shipment status, vessel movements, ETA and logistics events.
+Track container and Bill of Lading shipments, vessel movements, ETA and logistics events.
 </p>
 
 </header>
@@ -419,8 +441,30 @@ Track container shipment status, vessel movements, ETA and logistics events.
 <h2>Track Your Shipment</h2>
 
 <p>
-Enter a valid container number to retrieve available shipment information.
+Select a tracking reference and enter the number to retrieve available shipment information.
 </p>
+
+
+<div class="tracking-type-row">
+
+<select
+id="trackingType"
+class="tracking-type"
+onchange="updateTrackingInput()"
+>
+
+<option value="container">
+Container Number
+</option>
+
+<option value="bl">
+Bill of Lading (B/L)
+</option>
+
+</select>
+
+</div>
+
 
 <div class="search-row">
 
@@ -499,7 +543,10 @@ class="status-sub"
 
 <div class="summary-card">
 
-<div class="summary-label">
+<div
+id="summaryReferenceLabel"
+class="summary-label"
+>
 Container
 </div>
 
@@ -600,7 +647,7 @@ Shipment Information
 <div class="info-grid">
 
 <div class="info-card">
-<div class="info-label">Reference Number</div>
+<div id="referenceLabel" class="info-label">Reference Number</div>
 <div id="referenceNumber" class="info-value">-</div>
 </div>
 
@@ -669,6 +716,7 @@ Container Details
 
 <div class="info-note">
 Container equipment information is displayed only when supplied by the tracking data source.
+For B/L tracking, all containers associated with the shipment may be displayed.
 </div>
 
 <div id="containerDetails"></div>
@@ -1026,6 +1074,43 @@ show
 }
 
 
+/*
+Update placeholder depending on tracking type.
+*/
+
+function updateTrackingInput() {
+
+const type =
+document.getElementById(
+"trackingType"
+).value;
+
+const input =
+document.getElementById(
+"referenceInput"
+);
+
+if (type === "bl") {
+
+input.placeholder =
+"Example: 123456789";
+
+} else {
+
+input.placeholder =
+"Example: MRSU6859427";
+
+}
+
+input.value = "";
+
+}
+
+
+/*
+Clear previous results.
+*/
+
 function clearResult() {
 
 document.getElementById("trackingResult")
@@ -1075,12 +1160,21 @@ formatStatus(phase);
 }
 
 
+/*
+Track shipment.
+*/
+
 function trackShipment() {
 
 const input =
 document.getElementById(
 "referenceInput"
 );
+
+const type =
+document.getElementById(
+"trackingType"
+).value;
 
 const reference =
 input.value
@@ -1094,6 +1188,10 @@ clearResult();
 if (!reference) {
 
 showError(
+type === "bl"
+?
+"Please enter a Bill of Lading number."
+:
 "Please enter a container number."
 );
 
@@ -1123,7 +1221,10 @@ headers: {
 body: JSON.stringify({
 
 reference:
-reference
+reference,
+
+type:
+type
 
 })
 
@@ -1172,7 +1273,8 @@ return data;
 showLoading(false);
 
 displayTrackingData(
-response
+response,
+type
 );
 
 })
@@ -1192,7 +1294,14 @@ error.message ||
 }
 
 
-function displayTrackingData(response) {
+/*
+Display tracking data.
+*/
+
+function displayTrackingData(
+response,
+trackingType
+) {
 
 if (
 !response ||
@@ -1280,7 +1389,6 @@ data.locations_table
 
 /*
 Find current vessel.
-Traqo marks current vessel using is_current = 1.
 */
 
 const firstVessel =
@@ -1302,8 +1410,54 @@ firstVessel;
 
 
 /*
+Labels depending on tracking type.
+*/
+
+if (trackingType === "bl") {
+
+document.getElementById(
+"summaryReferenceLabel"
+).textContent =
+"Bill of Lading";
+
+document.getElementById(
+"referenceLabel"
+).textContent =
+"B/L Number";
+
+setValue(
+"summaryContainer",
+data.reference_number
+);
+
+} else {
+
+document.getElementById(
+"summaryReferenceLabel"
+).textContent =
+"Container";
+
+document.getElementById(
+"referenceLabel"
+).textContent =
+"Container Reference";
+
+setValue(
+"summaryContainer",
+containers.length
+?
+containers[0].container_number
+:
+data.reference_number
+);
+
+
+/*
 STATUS
 */
+
+}
+
 
 const formattedStatus =
 formatStatus(data.status);
@@ -1328,15 +1482,6 @@ data.is_delayed === true
 /*
 SUMMARY
 */
-
-setValue(
-"summaryContainer",
-containers.length
-?
-containers[0].container_number
-:
-data.reference_number
-);
 
 setValue(
 "summaryVessel",
@@ -2108,7 +2253,7 @@ routeHtml +=
 
 
 /*
-Create a readable journey route from events.
+Readable journey route from events.
 */
 
 const routePairs = [];
