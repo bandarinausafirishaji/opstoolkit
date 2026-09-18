@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="sw">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="CBM Calculator for cargo volume and logistics planning.">
+
+<meta name="keywords" content="CBM calculator, cargo volume calculator, logistics calculator, cubic meter calculator">
+
+<title>OpsToolkit | CBM Calculator</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.calculator-box {
+max-width: 700px;
+margin: 30px auto;
+}
+
+.input-group {
+margin-bottom: 20px;
+}
+
+.input-group label {
+display: block;
+font-weight: bold;
+margin-bottom: 8px;
+}
+
+.input-group input {
+width: 100%;
+padding: 12px;
+font-size: 16px;
+border: 1px solid #ccc;
+border-radius: 6px;
+box-sizing: border-box;
+}
+
+.calculator-actions {
+margin-top: 20px;
+}
+
+.result-box {
+margin-top: 30px;
+padding: 25px;
+background: #f5f7fa;
+border-radius: 8px;
+text-align: center;
+}
+
+.result-box h2 {
+margin-bottom: 10px;
+}
+
+#cbmResult {
+font-size: 30px;
+font-weight: bold;
+margin: 15px 0;
+}
+
+.info-text {
+font-size: 14px;
+color: #555;
+line-height: 1.6;
+}
+
+.error-message {
+display: none;
+margin-top: 15px;
+padding: 12px;
+background: #ffe9e9;
+color: #9b1c1c;
+border-radius: 6px;
+}
+
+@media (max-width: 600px) {
+
+.calculator-box {
+margin: 20px auto;
+}
+
+}
+
+@media print {
+
+.navbar,
+.hero,
+.calculator-actions,
+footer {
+display: none;
+}
+
+.result-box {
+border: 1px solid #ccc;
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<nav class="navbar">
+
+<div class="logo">
+OpsToolkit
+</div>
+
+
+<ul>
+
+<li>
+<a href="index.html">
+Home
+</a>
+</li>
+
+<li>
+<a href="calculators.html">
+Calculators
+</a>
+</li>
+
+<li>
+<a href="resources.html">
+Resources
+</a>
+</li>
+
+<li>
+<a href="guides.html">
+Guides
+</a>
+</li>
+
+<li>
+<a href="about.html">
+About
+</a>
+</li>
+
+</ul>
+
+</nav>
+
+
+<header class="hero">
+
+<h1>
+CBM Calculator
+</h1>
+
+<p>
+Calculate cargo volume in cubic meters (CBM).
+</p>
+
+</header>
+
+
+<section class="container">
+
+
+<div class="card calculator-box">
+
+<h2>
+Cargo Volume Calculation
+</h2>
+
+<p>
+Enter the cargo length, width and height in meters
+to calculate the total volume.
+</p>
+
+
+<div class="input-group">
+
+<label for="length">
+Length (m)
+</label>
+
+<input
+type="number"
+id="length"
+placeholder="Enter length"
+min="0"
+step="any"
+>
+
+</div>
+
+
+<div class="input-group">
+
+<label for="width">
+Width (m)
+</label>
+
+<input
+type="number"
+id="width"
+placeholder="Enter width"
+min="0"
+step="any"
+>
+
+</div>
+
+
+<div class="input-group">
+
+<label for="height">
+Height (m)
+</label>
+
+<input
+type="number"
+id="height"
+placeholder="Enter height"
+min="0"
+step="any"
+>
+
+</div>
+
+
+<div class="calculator-actions">
+
+<button
+onclick="calculateCBM()"
+class="button">
+
+Calculate CBM
+
+</button>
+
+</div>
+
+
+<div id="errorMessage" class="error-message">
+
+Please enter valid values for length, width and height.
+
+</div>
+
+
+<div class="result-box">
+
+<h2>
+Calculation Result
+</h2>
+
+<div id="cbmResult">
+—
+</div>
+
+<div class="info-text">
+
+Formula: Length × Width × Height
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="card">
+
+<h2>
+How It Works
+</h2>
+
+<p>
+CBM (Cubic Meter) is a standard measurement used
+to calculate the volume of cargo.
+</p>
+
+<p>
+The volume is calculated by multiplying the cargo
+length, width and height.
+</p>
+
+<p>
+<strong>Formula:</strong><br>
+
+CBM = Length × Width × Height
+
+</p>
+
+</div>
+
+
+</section>
+
+
+<footer>
+
+<p>
+OpsToolkit
+</p>
+
+<p>
+Digital Operations Tools for Logistics, Transport and Business Efficiency.
+</p>
+
+<p>
+Developed by ASA Digital Solutions &amp; Operations
+</p>
+
+<p>
+© 2026 OpsToolkit. All rights reserved.
+</p>
+
+</footer>
+
+
+<script>
+
+function calculateCBM() {
+
+const length =
+parseFloat(
+document.getElementById("length").value
+);
+
+const width =
+parseFloat(
+document.getElementById("width").value
+);
+
+const height =
+parseFloat(
+document.getElementById("height").value
+);
+
+const result =
+document.getElementById("cbmResult");
+
+const errorMessage =
+document.getElementById("errorMessage");
+
+
+if (
+isNaN(length) ||
+isNaN(width) ||
+isNaN(height) ||
+length <= 0 ||
+width <= 0 ||
+height <= 0
+) {
+
+result.textContent = "—";
+
+errorMessage.style.display = "block";
+
+return;
+
+}
+
+
+errorMessage.style.display = "none";
+
+
+const cbm =
+length * width * height;
+
+
+result.textContent =
+cbm.toLocaleString(
+"en-US",
+{
+maximumFractionDigits: 3
+}
+) + " CBM";
+
+}
+
+</script>
+
+
+</body>
+
+</html>
