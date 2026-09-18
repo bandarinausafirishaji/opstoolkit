@@ -9,15 +9,15 @@
 
 <meta
 name="description"
-content="OpsToolkit Container & B/L Tracking tool for checking container, Bill of Lading and booking shipment information."
+content="OpsToolkit Container Tracking tool for checking container shipment information."
 >
 
 <meta
 name="keywords"
-content="container tracking, B/L tracking, bill of lading tracking, shipment tracking, logistics tracking, OpsToolkit"
+content="container tracking, shipment tracking, logistics tracking, container number tracking, OpsToolkit"
 >
 
-<title>OpsToolkit | Container & B/L Tracking</title>
+<title>OpsToolkit | Container Tracking</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -36,6 +36,7 @@ content="container tracking, B/L tracking, bill of lading tracking, shipment tra
     border-radius: 6px;
     box-sizing: border-box;
     margin-bottom: 15px;
+    text-transform: uppercase;
 }
 
 .tracking-button {
@@ -202,11 +203,11 @@ About
 <header class="hero">
 
 <h1>
-Container &amp; B/L Tracking
+Container Tracking
 </h1>
 
 <p>
-Track a container, Bill of Lading or booking reference.
+Track container shipment information using a Container Number.
 </p>
 
 </header>
@@ -222,8 +223,7 @@ Shipment Tracking
 </h2>
 
 <p>
-Enter a Container Number, B/L Number or Booking Number.
-The system will try to identify the shipping line automatically.
+Enter a valid Container Number to check available shipment information.
 </p>
 
 
@@ -231,8 +231,9 @@ The system will try to identify the shipping line automatically.
 type="text"
 id="trackingReference"
 class="tracking-input"
-placeholder="e.g. MEDU1234562 or B/L Number"
+placeholder="e.g. MRSU6859427"
 autocomplete="off"
+maxlength="11"
 >
 
 
@@ -242,7 +243,7 @@ class="button tracking-button"
 onclick="trackShipment()"
 >
 
-Track Shipment
+Track Container
 
 </button>
 
@@ -286,7 +287,7 @@ class="status-box"
 <div class="tracking-item">
 
 <span class="tracking-label">
-Reference
+Container Number
 </span>
 
 <span
@@ -302,11 +303,11 @@ class="tracking-value"
 <div class="tracking-item">
 
 <span class="tracking-label">
-Reference Type
+Container Type
 </span>
 
 <span
-id="identifierType"
+id="equipment"
 class="tracking-value"
 >
 -
@@ -411,29 +412,7 @@ class="tracking-value"
 </div>
 
 
-<div
-class="tracking-item"
-id="equipmentBox"
->
-
-<span class="tracking-label">
-Container Type
-</span>
-
-<span
-id="equipment"
-class="tracking-value"
->
--
-</span>
-
-</div>
-
-
-<div
-class="tracking-item"
-id="isoBox"
->
+<div class="tracking-item">
 
 <span class="tracking-label">
 ISO Code
@@ -449,10 +428,7 @@ class="tracking-value"
 </div>
 
 
-<div
-class="tracking-item"
-id="weightBox"
->
+<div class="tracking-item">
 
 <span class="tracking-label">
 Gross Weight
@@ -468,17 +444,14 @@ class="tracking-value"
 </div>
 
 
-<div
-class="tracking-item"
-id="packagesBox"
->
+<div class="tracking-item">
 
 <span class="tracking-label">
-Packages
+Containers
 </span>
 
 <span
-id="packages"
+id="containerCount"
 class="tracking-value"
 >
 -
@@ -507,7 +480,7 @@ Movement History
 Tracking information is provided based on available carrier data.
 ETA values may be estimated and should not be treated as a guaranteed
 arrival time. Availability and accuracy depend on the shipping line
-and the information published by the carrier.
+and information published by the carrier.
 
 </p>
 
@@ -544,30 +517,8 @@ Developed by ASA Digital Solutions &amp; Operations
 <script>
 
 
-function formatReferenceType(type) {
-
-    if (!type) {
-        return "-";
-    }
-
-    if (type === "container_id") {
-        return "Container Number";
-    }
-
-    if (type === "bill_of_lading") {
-        return "Bill of Lading";
-    }
-
-    if (type === "booking_number") {
-        return "Booking Number";
-    }
-
-    if (type === "booking") {
-        return "Booking Number";
-    }
-
-    return type;
-}
+const WORKER_URL =
+"https://opstoolkit-tracking.abdallaallysaid.workers.dev";
 
 
 function formatStatus(status) {
@@ -576,7 +527,7 @@ function formatStatus(status) {
         return "Status unavailable";
     }
 
-    return status
+    return String(status)
         .replaceAll("_", " ")
         .replace(/\b\w/g, function(letter) {
             return letter.toUpperCase();
@@ -591,7 +542,9 @@ function formatDate(dateString) {
         return "-";
     }
 
-    const date = new Date(dateString);
+    const date = new Date(
+        String(dateString).replace(" ", "T")
+    );
 
     if (isNaN(date.getTime())) {
         return dateString;
@@ -604,50 +557,83 @@ function formatDate(dateString) {
 
 function clearResult() {
 
-    document.getElementById("trackingResult").style.display = "none";
+    document.getElementById(
+        "trackingResult"
+    ).style.display = "none";
 
-    document.getElementById("errorBox").style.display = "none";
+    document.getElementById(
+        "errorBox"
+    ).style.display = "none";
 
-    document.getElementById("loadingBox").style.display = "none";
+    document.getElementById(
+        "loadingBox"
+    ).style.display = "none";
 
-    document.getElementById("eventsList").innerHTML = "";
+    document.getElementById(
+        "eventsList"
+    ).innerHTML = "";
 
 }
 
 
 function setValue(id, value) {
 
-    const element = document.getElementById(id);
+    const element =
+        document.getElementById(id);
 
     if (!element) {
         return;
     }
 
-    element.textContent = value || "-";
+    if (
+        value === null ||
+        value === undefined ||
+        value === ""
+    ) {
+
+        element.textContent = "-";
+
+    } else {
+
+        element.textContent = value;
+
+    }
 
 }
 
 
-function trackShipment() {
+async function trackShipment() {
 
     const input =
-        document.getElementById("trackingReference");
+        document.getElementById(
+            "trackingReference"
+        );
 
     const button =
-        document.getElementById("trackButton");
+        document.getElementById(
+            "trackButton"
+        );
 
     const loading =
-        document.getElementById("loadingBox");
+        document.getElementById(
+            "loadingBox"
+        );
 
     const error =
-        document.getElementById("errorBox");
+        document.getElementById(
+            "errorBox"
+        );
 
     const result =
-        document.getElementById("trackingResult");
+        document.getElementById(
+            "trackingResult"
+        );
 
 
     const reference =
-        input.value.trim();
+        input.value
+            .trim()
+            .toUpperCase();
 
 
     clearResult();
@@ -656,9 +642,23 @@ function trackShipment() {
     if (!reference) {
 
         error.textContent =
-            "Please enter a Container Number, B/L Number or Booking Number.";
+            "Please enter a Container Number.";
 
-        error.style.display = "block";
+        error.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    if (!/^[A-Z]{4}[0-9]{7}$/.test(reference)) {
+
+        error.textContent =
+            "Please enter a valid Container Number, for example MRSU6859427.";
+
+        error.style.display =
+            "block";
 
         return;
 
@@ -667,90 +667,122 @@ function trackShipment() {
 
     button.disabled = true;
 
-    button.textContent = "Checking...";
+    button.textContent =
+        "Checking...";
 
-    loading.style.display = "block";
-
-
-    fetch(
-        "https://api.trackingmcp.com/v1/track/public",
-        {
-
-            method: "POST",
-
-            headers: {
-                "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify({
-                reference: reference
-            })
-
-        }
-    )
-
-    .then(function(response) {
-
-        return response.json();
-
-    })
-
-    .then(function(resultData) {
-
-        loading.style.display = "none";
-
-        button.disabled = false;
-
-        button.textContent = "Track Shipment";
+    loading.style.display =
+        "block";
 
 
-        if (!resultData.ok) {
+    try {
 
-            let message =
-                resultData.message ||
+
+        const response =
+            await fetch(
+                WORKER_URL,
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        reference: reference
+                    })
+
+                }
+            );
+
+
+        const resultData =
+            await response.json();
+
+
+        loading.style.display =
+            "none";
+
+
+        button.disabled =
+            false;
+
+        button.textContent =
+            "Track Container";
+
+
+        if (!response.ok ||
+            resultData.success === false) {
+
+            error.textContent =
+                resultData.error ||
                 "Shipment information could not be found.";
 
-            error.textContent = message;
-
-            error.style.display = "block";
+            error.style.display =
+                "block";
 
             return;
 
         }
 
 
-        const data = resultData.data || {};
+        const data =
+            resultData.data || {};
 
-        const equipment =
-            data.equipment || {};
 
-        const vessel =
-            data.vessel || {};
+        const containers =
+            Array.isArray(
+                data.containers_table
+            )
+                ? data.containers_table
+                : [];
+
+
+        const vessels =
+            Array.isArray(
+                data.vessels_table
+            )
+                ? data.vessels_table
+                : [];
+
+
+        const events =
+            Array.isArray(
+                data.events_table
+            )
+                ? data.events_table
+                : [];
 
 
         setValue(
             "identifier",
-            data.identifier
+            data.reference_number ||
+            reference
         );
 
 
         setValue(
-            "identifierType",
-            formatReferenceType(
-                data.identifier_type
-            )
+            "equipment",
+            containers.length > 0
+                ? (
+                    containers[0].size_type ||
+                    containers[0].container_description ||
+                    "-"
+                )
+                : "-"
         );
 
 
         setValue(
             "carrier",
-            data.carrier_name
+            data.sealine_name
         );
 
 
         setValue(
             "carrierCode",
-            data.carrier_code
+            data.sealine
         );
 
 
@@ -768,27 +800,20 @@ function trackShipment() {
 
         setValue(
             "vessel",
-            vessel.name
+            vessels.length > 0
+                ? vessels[0].vessel
+                : "-"
         );
 
 
-        let etaText = "-";
+        let etaText =
+            formatDate(data.eta);
 
 
-        if (data.eta) {
+        if (data.is_delayed === true) {
 
-            etaText =
-                formatDate(data.eta);
-
-            if (data.eta_is_estimated === true) {
-
-                etaText += " (Estimated)";
-
-            } else if (data.eta_is_estimated === false) {
-
-                etaText += " (Actual)";
-
-            }
+            etaText +=
+                " (Delayed)";
 
         }
 
@@ -800,207 +825,212 @@ function trackShipment() {
 
 
         setValue(
-            "equipment",
-            equipment.size_type
+            "isoCode",
+            containers.length > 0
+                ? containers[0].iso_code
+                : "-"
         );
 
 
         setValue(
-            "isoCode",
-            equipment.iso_code
+            "grossWeight",
+            data.gross_weight
+                ? Number(
+                    data.gross_weight
+                ).toLocaleString() + " kg"
+                : "-"
         );
 
 
-        if (equipment.gross_weight_kg !== null &&
-            equipment.gross_weight_kg !== undefined) {
-
-            setValue(
-                "grossWeight",
-                Number(
-                    equipment.gross_weight_kg
-                ).toLocaleString() + " kg"
-            );
-
-        } else {
-
-            setValue(
-                "grossWeight",
-                "-"
-            );
-
-        }
-
-
-        if (equipment.package_count !== null &&
-            equipment.package_count !== undefined) {
-
-            let packageText =
-                Number(
-                    equipment.package_count
-                ).toLocaleString();
-
-            if (equipment.package_unit) {
-
-                packageText +=
-                    " " +
-                    equipment.package_unit;
-
-            }
-
-            setValue(
-                "packages",
-                packageText
-            );
-
-        } else {
-
-            setValue(
-                "packages",
-                "-"
-            );
-
-        }
+        setValue(
+            "containerCount",
+            data.number_of_containers
+        );
 
 
         document.getElementById(
             "statusBox"
         ).textContent =
             "Current Status: " +
-            formatStatus(data.status);
+            formatStatus(
+                data.status
+            );
 
 
         const eventsList =
-            document.getElementById("eventsList");
+            document.getElementById(
+                "eventsList"
+            );
 
 
         eventsList.innerHTML = "";
 
 
-        if (
-            Array.isArray(data.events) &&
-            data.events.length > 0
-        ) {
+        if (events.length > 0) {
 
-            data.events
+
+            events
                 .slice()
                 .reverse()
-                .forEach(function(event) {
-
-                    const eventBox =
-                        document.createElement("div");
-
-                    eventBox.className =
-                        "event";
+                .forEach(
+                    function(event) {
 
 
-                    const title =
-                        document.createElement("div");
+                        const eventBox =
+                            document.createElement(
+                                "div"
+                            );
 
-                    title.className =
-                        "event-title";
-
-                    title.textContent =
-                        event.description ||
-                        event.event_code ||
-                        "Shipment Event";
+                        eventBox.className =
+                            "event";
 
 
-                    const location =
-                        document.createElement("div");
+                        const title =
+                            document.createElement(
+                                "div"
+                            );
 
-                    location.className =
-                        "event-location";
+                        title.className =
+                            "event-title";
 
-                    location.textContent =
-                        event.location ||
-                        event.unlocode ||
-                        "Location not published";
-
-
-                    const date =
-                        document.createElement("div");
-
-                    date.className =
-                        "event-date";
-
-                    date.textContent =
-                        event.datetime
-                            ? formatDate(event.datetime)
-                            : "Date not published";
+                        title.textContent =
+                            event.description ||
+                            event.event_code ||
+                            "Shipment Event";
 
 
-                    const type =
-                        document.createElement("div");
+                        const location =
+                            document.createElement(
+                                "div"
+                            );
 
-                    type.className =
-                        "event-type";
+                        location.className =
+                            "event-location";
 
-                    type.textContent =
-                        event.actual === true
-                            ? "Actual event"
-                            : event.actual === false
-                                ? "Planned / Estimated"
-                                : "";
+                        location.textContent =
+                            event.location ||
+                            "Location not published";
 
 
-                    eventBox.appendChild(title);
+                        const date =
+                            document.createElement(
+                                "div"
+                            );
 
-                    eventBox.appendChild(location);
+                        date.className =
+                            "event-date";
 
-                    eventBox.appendChild(date);
+                        date.textContent =
+                            event.timestamp
+                                ? formatDate(
+                                    event.timestamp
+                                )
+                                : "Date not published";
 
-                    if (type.textContent) {
 
-                        eventBox.appendChild(type);
+                        const type =
+                            document.createElement(
+                                "div"
+                            );
+
+                        type.className =
+                            "event-type";
+
+
+                        if (
+                            event.is_actual === 1
+                        ) {
+
+                            type.textContent =
+                                "Actual event";
+
+                        } else {
+
+                            type.textContent =
+                                "Planned / Estimated";
+
+                        }
+
+
+                        eventBox.appendChild(
+                            title
+                        );
+
+                        eventBox.appendChild(
+                            location
+                        );
+
+                        eventBox.appendChild(
+                            date
+                        );
+
+                        eventBox.appendChild(
+                            type
+                        );
+
+
+                        eventsList.appendChild(
+                            eventBox
+                        );
+
 
                     }
+                );
 
-
-                    eventsList.appendChild(eventBox);
-
-                });
 
         } else {
 
             eventsList.innerHTML =
-                "<p>No movement events were published for this reference.</p>";
+                "<p>No movement events were published for this container.</p>";
 
         }
 
 
-        result.style.display = "block";
+        result.style.display =
+            "block";
 
 
-    })
+    } catch (errorObject) {
 
-    .catch(function(errorObject) {
 
-        loading.style.display = "none";
+        loading.style.display =
+            "none";
 
-        button.disabled = false;
 
-        button.textContent = "Track Shipment";
+        button.disabled =
+            false;
+
+        button.textContent =
+            "Track Container";
 
 
         error.textContent =
             "Unable to connect to the tracking service. Please try again later.";
 
-        error.style.display = "block";
+        error.style.display =
+            "block";
 
-        console.error(errorObject);
 
-    });
+        console.error(
+            errorObject
+        );
+
+    }
 
 }
 
 
 document
-    .getElementById("trackingReference")
+    .getElementById(
+        "trackingReference"
+    )
     .addEventListener(
         "keydown",
         function(event) {
 
-            if (event.key === "Enter") {
+            if (
+                event.key === "Enter"
+            ) {
 
                 trackShipment();
 
