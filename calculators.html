@@ -7,9 +7,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description" content="OpsToolkit logistics calculators including TEU, CBM, container planning, unit conversions and currency cost conversion.">
+<meta name="description" content="OpsToolkit logistics calculators for container planning, cargo volume, unit conversion and business cost calculations.">
 
-<meta name="keywords" content="TEU calculator, CBM calculator, logistics converter, container calculator, currency converter, logistics cost converter">
+<meta name="keywords" content="TEU calculator, CBM calculator, container calculator, logistics calculator, unit converter, currency converter">
 
 <title>OpsToolkit | Logistics Calculators</title>
 
@@ -30,15 +30,35 @@ OpsToolkit
 
 <ul>
 
-<li><a href="index.html">Home</a></li>
+<li>
+<a href="index.html">
+Home
+</a>
+</li>
 
-<li><a href="calculators.html">Calculators</a></li>
+<li>
+<a href="calculators.html">
+Calculators
+</a>
+</li>
 
-<li><a href="resources.html">Resources</a></li>
+<li>
+<a href="resources.html">
+Resources
+</a>
+</li>
 
-<li><a href="guides.html">Guides</a></li>
+<li>
+<a href="guides.html">
+Guides
+</a>
+</li>
 
-<li><a href="about.html">About</a></li>
+<li>
+<a href="about.html">
+About
+</a>
+</li>
 
 </ul>
 
@@ -52,7 +72,7 @@ Logistics Calculators
 </h1>
 
 <p>
-Professional tools for container, cargo and operational calculations.
+Professional tools for container, cargo, transport and business cost calculations.
 </p>
 
 </header>
@@ -63,147 +83,104 @@ Professional tools for container, cargo and operational calculations.
 
 <div class="card">
 
-<h2>TEU Calculator</h2>
-
-<p>Calculate container capacity in TEU.</p>
-
-<input type="number" id="twenty" placeholder="20ft Containers">
-
-<br><br>
-
-<input type="number" id="forty" placeholder="40ft Containers">
-
-<br><br>
-
-<button onclick="calculateTEU()" class="button">
-Calculate TEU
-</button>
-
-<h3 id="teuResult"></h3>
-
-</div>
-
-
-<div class="card">
-
-<h2>CBM Calculator</h2>
-
-<p>Calculate cargo volume in cubic meters.</p>
-
-<input type="number" id="length" placeholder="Length (m)">
-
-<br><br>
-
-<input type="number" id="width" placeholder="Width (m)">
-
-<br><br>
-
-<input type="number" id="height" placeholder="Height (m)">
-
-<br><br>
-
-<button onclick="calculateCBM()" class="button">
-Calculate CBM
-</button>
-
-<h3 id="cbmResult"></h3>
-
-</div>
-
-
-<div class="card">
-
-<h2>Container Recommendation</h2>
-
-<p>Recommend container size based on cargo volume.</p>
-
-<input type="number" id="cargoCBM" placeholder="Cargo CBM">
-
-<br><br>
-
-<button onclick="checkContainer()" class="button">
-Check Container
-</button>
-
-<h3 id="containerResult"></h3>
-
-</div>
-
-
-<div class="card">
-
-<h2>Logistics Unit Converter</h2>
+<h2>
+TEU Calculator
+</h2>
 
 <p>
-Convert common logistics measurement units.
+Calculate container capacity in Twenty-foot Equivalent Units (TEU).
 </p>
 
-<input type="number" id="unitValue" placeholder="Enter Value">
+<a
+href="teu-calculator.html"
+class="button">
 
+Open Tool
 
-<h3>Weight Conversion</h3>
-
-<button onclick="kgToTon()" class="button">
-KG → Tons
-</button>
-
-<button onclick="tonToKg()" class="button">
-Tons → KG
-</button>
-
-<button onclick="kgToLb()" class="button">
-KG → LB
-</button>
-
-<button onclick="lbToKg()" class="button">
-LB → KG
-</button>
-
-
-<h3>Length Conversion</h3>
-
-<button onclick="meterToCm()" class="button">
-Meter → CM
-</button>
-
-<button onclick="cmToMeter()" class="button">
-CM → Meter
-</button>
-
-<button onclick="meterToFeet()" class="button">
-Meter → Feet
-</button>
-
-<button onclick="feetToMeter()" class="button">
-Feet → Meter
-</button>
-
-
-<h3>Volume Conversion</h3>
-
-<button onclick="cbmToCubicFeet()" class="button">
-CBM → Cubic Feet
-</button>
-
-<button onclick="cubicFeetToCBM()" class="button">
-Cubic Feet → CBM
-</button>
-
-<h3 id="unitResult"></h3>
+</a>
 
 </div>
 
 
 <div class="card">
 
-<h2>Currency &amp; Cost Converter</h2>
+<h2>
+CBM Calculator
+</h2>
+
+<p>
+Calculate cargo volume in cubic meters using length, width and height.
+</p>
+
+<a
+href="cbm-calculator.html"
+class="button">
+
+Open Tool
+
+</a>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+Container Recommendation
+</h2>
+
+<p>
+Recommend a suitable container size based on cargo volume.
+</p>
+
+<a
+href="container-recommendation.html"
+class="button">
+
+Open Tool
+
+</a>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+Logistics Unit Converter
+</h2>
+
+<p>
+Convert common logistics measurements including weight, length and volume.
+</p>
+
+<a
+href="unit-converter.html"
+class="button">
+
+Open Tool
+
+</a>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+Currency &amp; Cost Converter
+</h2>
 
 <p>
 Convert international currencies for logistics, transport and business cost calculations.
 </p>
 
-<a href="currency-converter.html" class="button">
-Open Currency Converter
+<a
+href="currency-converter.html"
+class="button">
+
+Open Tool
+
 </a>
 
 </div>
@@ -231,9 +208,6 @@ Developed by ASA Digital Solutions &amp; Operations
 </p>
 
 </footer>
-
-
-<script src="script.js"></script>
 
 
 </body>
