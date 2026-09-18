@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="sw">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="TEU Calculator for container capacity and logistics planning.">
+
+<title>OpsToolkit | TEU Calculator</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.calculator-box {
+max-width: 700px;
+margin: 30px auto;
+}
+
+.input-group {
+margin-bottom: 20px;
+}
+
+.input-group label {
+display: block;
+font-weight: bold;
+margin-bottom: 8px;
+}
+
+.input-group input {
+width: 100%;
+padding: 12px;
+font-size: 16px;
+border: 1px solid #ccc;
+border-radius: 6px;
+box-sizing: border-box;
+}
+
+.calculator-actions {
+margin-top: 20px;
+}
+
+.result-box {
+margin-top: 30px;
+padding: 25px;
+background: #f5f7fa;
+border-radius: 8px;
+text-align: center;
+}
+
+.result-box h2 {
+margin-bottom: 10px;
+}
+
+#teuResult {
+font-size: 30px;
+font-weight: bold;
+margin: 15px 0;
+}
+
+.info-text {
+font-size: 14px;
+color: #555;
+line-height: 1.6;
+}
+
+.error-message {
+display: none;
+margin-top: 15px;
+padding: 12px;
+background: #ffe9e9;
+color: #9b1c1c;
+border-radius: 6px;
+}
+
+@media (max-width: 600px) {
+
+.calculator-box {
+margin: 20px auto;
+}
+
+}
+
+@media print {
+
+.navbar,
+.hero,
+.calculator-actions,
+footer {
+display: none;
+}
+
+.result-box {
+border: 1px solid #ccc;
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<nav class="navbar">
+
+<div class="logo">
+OpsToolkit
+</div>
+
+<ul>
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="calculators.html">Calculators</a></li>
+
+<li><a href="resources.html">Resources</a></li>
+
+<li><a href="guides.html">Guides</a></li>
+
+<li><a href="about.html">About</a></li>
+
+</ul>
+
+</nav>
+
+
+<header class="hero">
+
+<h1>
+TEU Calculator
+</h1>
+
+<p>
+Calculate container capacity in Twenty-foot Equivalent Units (TEU).
+</p>
+
+</header>
+
+
+<section class="container">
+
+
+<div class="card calculator-box">
+
+<h2>Container Capacity Calculation</h2>
+
+<p>
+Enter the number of 20ft and 40ft containers to calculate
+the total TEU capacity.
+</p>
+
+
+<div class="input-group">
+
+<label for="twenty">
+20ft Containers
+</label>
+
+<input
+type="number"
+id="twenty"
+placeholder="Enter number of 20ft containers"
+min="0"
+step="1"
+>
+
+</div>
+
+
+<div class="input-group">
+
+<label for="forty">
+40ft Containers
+</label>
+
+<input
+type="number"
+id="forty"
+placeholder="Enter number of 40ft containers"
+min="0"
+step="1"
+>
+
+</div>
+
+
+<div class="calculator-actions">
+
+<button
+onclick="calculateTEU()"
+class="button">
+Calculate TEU
+</button>
+
+</div>
+
+
+<div id="errorMessage" class="error-message">
+Please enter at least one container quantity.
+</div>
+
+
+<div class="result-box">
+
+<h2>Calculation Result</h2>
+
+<div id="teuResult">
+—
+</div>
+
+<div class="info-text">
+
+20ft container = 1 TEU<br>
+
+40ft container = 2 TEU
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="card">
+
+<h2>How It Works</h2>
+
+<p>
+TEU (Twenty-foot Equivalent Unit) is a standard measurement
+used to express container capacity.
+</p>
+
+<p>
+One 20ft container equals 1 TEU, while one 40ft container
+equals 2 TEU.
+</p>
+
+<p>
+<strong>Formula:</strong><br>
+Total TEU = 20ft containers + (40ft containers × 2)
+</p>
+
+</div>
+
+
+</section>
+
+
+<footer>
+
+<p>
+OpsToolkit
+</p>
+
+<p>
+Digital Operations Tools for Logistics, Transport and Business Efficiency.
+</p>
+
+<p>
+Developed by ASA Digital Solutions &amp; Operations
+</p>
+
+<p>
+© 2026 OpsToolkit. All rights reserved.
+</p>
+
+</footer>
+
+
+<script>
+
+function calculateTEU() {
+
+const twenty =
+parseFloat(document.getElementById("twenty").value) || 0;
+
+const forty =
+parseFloat(document.getElementById("forty").value) || 0;
+
+const result =
+document.getElementById("teuResult");
+
+const errorMessage =
+document.getElementById("errorMessage");
+
+
+if (twenty === 0 && forty === 0) {
+
+result.textContent = "—";
+
+errorMessage.style.display = "block";
+
+return;
+
+}
+
+
+errorMessage.style.display = "none";
+
+
+const totalTEU =
+twenty + (forty * 2);
+
+
+result.textContent =
+totalTEU.toLocaleString("en-US") + " TEU";
+
+}
+
+</script>
+
+
+</body>
+
+</html>
