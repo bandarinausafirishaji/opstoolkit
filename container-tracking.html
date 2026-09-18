@@ -5,10 +5,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-name="description"
-content="OpsToolkit Container & B/L Tracking Tool for logistics, shipping and transport operations."
->
+<meta name="description"
+content="OpsToolkit Container and B/L Tracking Tool for logistics, shipping and transport operations.">
 
 <title>OpsToolkit | Container & B/L Tracking</title>
 
@@ -16,233 +14,358 @@ content="OpsToolkit Container & B/L Tracking Tool for logistics, shipping and tr
 
 <style>
 
-.tracking-box {
-max-width: 1100px;
-margin: 40px auto;
-padding: 25px;
+.tracking-page {
+    max-width: 1150px;
+    margin: 40px auto;
+    padding: 0 20px 50px;
 }
 
-.tracking-form {
-display: flex;
-gap: 12px;
-margin-bottom: 25px;
+/* SEARCH */
+
+.tracking-search {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    margin-bottom: 25px;
+}
+
+.tracking-search h2 {
+    margin-top: 0;
+    color: #0b3d62;
+}
+
+.search-row {
+    display: flex;
+    gap: 12px;
 }
 
 .tracking-input {
-flex: 1;
-padding: 14px;
-border: 1px solid #ccc;
-border-radius: 6px;
-font-size: 16px;
+    flex: 1;
+    padding: 14px 16px;
+    border: 1px solid #ccd3da;
+    border-radius: 7px;
+    font-size: 16px;
+    outline: none;
+}
+
+.tracking-input:focus {
+    border-color: #0b3d62;
 }
 
 .tracking-button {
-padding: 14px 24px;
-border: none;
-border-radius: 6px;
-background: #0b3d62;
-color: white;
-font-size: 16px;
-cursor: pointer;
+    padding: 14px 26px;
+    border: none;
+    border-radius: 7px;
+    background: #0b3d62;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 .tracking-button:hover {
-background: #082f4c;
+    background: #082f4c;
 }
 
-.tracking-result {
-margin-top: 25px;
-}
+/* LOADING / ERROR */
 
-.tracking-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-gap: 15px;
-margin-bottom: 25px;
-}
-
-.tracking-item {
-border: 1px solid #ddd;
-border-radius: 8px;
-padding: 15px;
-background: #fff;
-}
-
-.tracking-label {
-font-size: 12px;
-font-weight: bold;
-color: #666;
-margin-bottom: 7px;
-text-transform: uppercase;
-}
-
-.tracking-value {
-font-size: 16px;
-font-weight: 600;
-color: #17202a;
-word-break: break-word;
-}
-
-.status-box {
-padding: 16px;
-border-radius: 8px;
-background: #eaf4ff;
-border-left: 5px solid #0b3d62;
-margin-bottom: 20px;
-}
-
-.eta-box {
-padding: 20px;
-border-radius: 8px;
-background: #f4f8fb;
-border-left: 5px solid #16803c;
-margin-bottom: 25px;
-}
-
-.eta-title {
-font-size: 13px;
-font-weight: bold;
-color: #666;
-text-transform: uppercase;
-margin-bottom: 6px;
-}
-
-.eta-value {
-font-size: 22px;
-font-weight: bold;
-color: #0b3d62;
-}
-
-.section-title {
-margin-top: 35px;
-margin-bottom: 15px;
-color: #0b3d62;
-border-bottom: 2px solid #ddd;
-padding-bottom: 8px;
-}
-
+.loading-box,
 .error-box {
-padding: 15px;
-border-radius: 8px;
-background: #fff0f0;
-border-left: 5px solid #c62828;
-color: #8b0000;
-margin-top: 20px;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
 }
 
 .loading-box {
-padding: 15px;
-border-radius: 8px;
-background: #f5f5f5;
-margin-top: 20px;
+    background: #f1f5f8;
+    color: #0b3d62;
 }
 
-.event {
-border-left: 4px solid #0b3d62;
-padding: 15px;
-margin-bottom: 12px;
-background: #fafafa;
-border-radius: 0 8px 8px 0;
+.error-box {
+    background: #fff1f1;
+    border-left: 5px solid #c62828;
+    color: #8b0000;
 }
 
-.event-title {
-font-weight: bold;
-color: #17202a;
-margin-bottom: 5px;
+/* TOP STATUS */
+
+.status-banner {
+    background: #0b3d62;
+    color: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
 }
 
-.event-location {
-font-weight: 600;
-margin-bottom: 5px;
+.status-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin-bottom: 6px;
 }
 
-.event-date {
-font-size: 13px;
-color: #555;
+.status-main {
+    font-size: 28px;
+    font-weight: 700;
 }
 
-.event-type {
-display: inline-block;
-margin-top: 8px;
-padding: 4px 8px;
-background: #e9eef3;
-border-radius: 4px;
-font-size: 12px;
+.status-sub {
+    margin-top: 7px;
+    opacity: 0.9;
 }
 
-.event-code {
-display: inline-block;
-margin-top: 8px;
-margin-left: 5px;
-padding: 4px 8px;
-background: #eef5ff;
-border-radius: 4px;
-font-size: 12px;
+/* KEY SUMMARY */
+
+.key-summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
 }
+
+.summary-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.07);
+}
+
+.summary-label {
+    font-size: 12px;
+    color: #6b7280;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.summary-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #17202a;
+}
+
+/* ETA */
+
+.eta-highlight {
+    background: #f1f8f4;
+    border-left: 6px solid #16803c;
+    border-radius: 10px;
+    padding: 22px;
+    margin-bottom: 30px;
+}
+
+.eta-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #5f6b66;
+    font-weight: 700;
+}
+
+.eta-value {
+    font-size: 26px;
+    font-weight: 700;
+    color: #126b32;
+    margin-top: 6px;
+}
+
+.eta-note {
+    margin-top: 6px;
+    color: #5f6b66;
+}
+
+/* SECTIONS */
+
+.section {
+    background: white;
+    border-radius: 10px;
+    padding: 22px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.06);
+}
+
+.section-title {
+    margin-top: 0;
+    color: #0b3d62;
+    font-size: 21px;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 10px;
+}
+
+/* INFORMATION GRID */
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.info-card {
+    border: 1px solid #e1e5e9;
+    border-radius: 8px;
+    padding: 14px;
+    background: #fbfcfd;
+}
+
+.info-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #6b7280;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.info-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: #17202a;
+    word-break: break-word;
+}
+
+/* TABLE */
 
 .table-wrap {
-overflow-x: auto;
-margin-bottom: 25px;
+    overflow-x: auto;
 }
 
 .tracking-table {
-width: 100%;
-border-collapse: collapse;
-background: white;
+    width: 100%;
+    border-collapse: collapse;
 }
 
 .tracking-table th,
 .tracking-table td {
-padding: 12px;
-border: 1px solid #ddd;
-text-align: left;
-vertical-align: top;
+    padding: 12px;
+    border: 1px solid #dfe3e7;
+    text-align: left;
+    vertical-align: top;
 }
 
 .tracking-table th {
-background: #0b3d62;
-color: white;
-font-size: 13px;
+    background: #0b3d62;
+    color: white;
+    font-size: 13px;
 }
 
 .tracking-table td {
-font-size: 14px;
+    font-size: 14px;
 }
+
+/* EVENTS */
+
+.event {
+    border-left: 4px solid #0b3d62;
+    background: #f8fafc;
+    padding: 16px;
+    margin-bottom: 12px;
+    border-radius: 0 8px 8px 0;
+}
+
+.event-title {
+    font-weight: 700;
+    color: #17202a;
+    margin-bottom: 6px;
+}
+
+.event-location {
+    font-weight: 600;
+    color: #0b3d62;
+    margin-bottom: 5px;
+}
+
+.event-date {
+    color: #59636e;
+    font-size: 13px;
+}
+
+.event-tags {
+    margin-top: 10px;
+}
+
+.event-tag {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: #e9eef3;
+    color: #39444f;
+    font-size: 11px;
+    margin-right: 5px;
+}
+
+/* NOTICE */
 
 .info-note {
-padding: 12px 15px;
-background: #f5f7f9;
-border-left: 4px solid #7b8794;
-margin-bottom: 20px;
-font-size: 14px;
-color: #555;
+    padding: 13px 16px;
+    background: #f5f7f9;
+    border-left: 4px solid #7b8794;
+    margin-bottom: 18px;
+    color: #59636e;
+    font-size: 14px;
 }
+
+/* FOOTNOTE */
 
 .disclaimer {
-margin-top: 30px;
-padding: 15px;
-background: #f8f8f8;
-border-radius: 8px;
-font-size: 13px;
-color: #666;
+    padding: 16px;
+    background: #f5f6f7;
+    border-radius: 8px;
+    color: #66707a;
+    font-size: 13px;
 }
 
-@media (max-width: 700px) {
+/* MOBILE */
 
-.tracking-form {
-flex-direction: column;
+@media (max-width: 900px) {
+
+    .key-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
 }
 
-.tracking-button {
-width: 100%;
-}
+@media (max-width: 650px) {
+
+    .tracking-page {
+        padding: 0 12px 35px;
+    }
+
+    .search-row {
+        flex-direction: column;
+    }
+
+    .tracking-button {
+        width: 100%;
+    }
+
+    .key-summary,
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .status-main {
+        font-size: 22px;
+    }
+
+    .eta-value {
+        font-size: 21px;
+    }
+
+    .section {
+        padding: 16px;
+    }
 
 }
 
 </style>
 </head>
 
+
 <body>
+
 
 <nav class="navbar">
 
@@ -251,11 +374,27 @@ OpsToolkit
 </div>
 
 <ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="calculators.html">Calculators</a></li>
-<li><a href="resources.html">Resources</a></li>
-<li><a href="guides.html">Guides</a></li>
-<li><a href="about.html">About</a></li>
+
+<li>
+<a href="index.html">Home</a>
+</li>
+
+<li>
+<a href="calculators.html">Calculators</a>
+</li>
+
+<li>
+<a href="resources.html">Resources</a>
+</li>
+
+<li>
+<a href="guides.html">Guides</a>
+</li>
+
+<li>
+<a href="about.html">About</a>
+</li>
+
 </ul>
 
 </nav>
@@ -266,21 +405,30 @@ OpsToolkit
 <h1>Container &amp; B/L Tracking</h1>
 
 <p>
-Track container shipment information, vessel movements, ETA and logistics events.
+Track container shipment status, vessel movements, ETA and logistics events.
 </p>
 
 </header>
 
 
-<section class="tracking-box">
+<main class="tracking-page">
 
-<div class="tracking-form">
+
+<div class="tracking-search">
+
+<h2>Track Your Shipment</h2>
+
+<p>
+Enter a valid container number to retrieve available shipment information.
+</p>
+
+<div class="search-row">
 
 <input
-type="text"
 id="referenceInput"
 class="tracking-input"
-placeholder="Enter Container Number e.g. MRSU6859427"
+type="text"
+placeholder="Example: MRSU6859427"
 autocomplete="off"
 >
 
@@ -293,229 +441,378 @@ Track Shipment
 
 </div>
 
-
-<div id="loading" class="loading-box" style="display:none;">
-Tracking shipment information...
 </div>
 
 
-<div id="error" class="error-box" style="display:none;"></div>
-
-
-<div id="trackingResult" class="tracking-result" style="display:none;">
-
-<div id="statusBox" class="status-box"></div>
-
-
-<h2 class="section-title">
-Shipment Overview
-</h2>
-
-<div class="tracking-grid">
-
-<div class="tracking-item">
-<div class="tracking-label">Reference Number</div>
-<div class="tracking-value" id="referenceNumber">-</div>
-</div>
-
-<div class="tracking-item">
-<div class="tracking-label">Shipment Type</div>
-<div class="tracking-value" id="shipmentType">-</div>
-</div>
-
-<div class="tracking-item">
-<div class="tracking-label">Container Number</div>
-<div class="tracking-value" id="containerNumber">-</div>
-</div>
-
-<div class="tracking-item">
-<div class="tracking-label">Container Count</div>
-<div class="tracking-value" id="containerCount">-</div>
-</div>
-
-<div class="tracking-item">
-<div class="tracking-label">Shipping Line</div>
-<div class="tracking-value" id="shippingLine">-</div>
-</div>
-
-<div class="tracking-item">
-<div class="tracking-label">Carrier Code</div>
-<div class="tracking-value" id="carrierCode">-</div>
-</div>
-
-<div class="tracking-item">
-<div class="tracking-label">Origin</div>
-<div class="tracking-value" id="origin">-</div>
-</div>
-
-<div class="tracking-item">
-<div class="tracking-label">Destination</div>
-<div class="tracking-value" id="destination">-</div>
-</div>
-
-<div class="tracking-item">
-<div class="tracking-label">Current Vessel</div>
-<div class="tracking-value" id="vessel">-</div>
-</div>
-
-<div class="tracking-item">
-<div class="tracking-label">Vessel IMO</div>
-<div class="tracking-value" id="vesselIMO">-</div>
-</div>
-
-<div class="tracking-item">
-<div class="tracking-label">Total Transit Days</div>
-<div class="tracking-value" id="totalDays">-</div>
-</div>
-
-<div class="tracking-item">
-<div class="tracking-label">Remaining Days</div>
-<div class="tracking-value" id="remainingDays">-</div>
-</div>
-
+<div
+id="loading"
+class="loading-box"
+style="display:none;"
+>
+Retrieving tracking information...
 </div>
 
 
-<div class="eta-box">
-
-<div class="eta-title">
-Estimated Time of Arrival (ETA)
+<div
+id="error"
+class="error-box"
+style="display:none;"
+>
 </div>
 
-<div class="eta-value" id="eta">
+
+<div
+id="trackingResult"
+style="display:none;"
+>
+
+
+<!-- STATUS -->
+
+<div class="status-banner">
+
+<div class="status-label">
+Current Shipment Status
+</div>
+
+<div
+id="statusMain"
+class="status-main"
+>
+-
+</div>
+
+<div
+id="statusSub"
+class="status-sub"
+>
 -
 </div>
 
 </div>
 
 
+<!-- KEY SUMMARY -->
+
+<div class="key-summary">
+
+
+<div class="summary-card">
+
+<div class="summary-label">
+Container
+</div>
+
+<div
+id="summaryContainer"
+class="summary-value"
+>
+-
+</div>
+
+</div>
+
+
+<div class="summary-card">
+
+<div class="summary-label">
+Current Vessel
+</div>
+
+<div
+id="summaryVessel"
+class="summary-value"
+>
+-
+</div>
+
+</div>
+
+
+<div class="summary-card">
+
+<div class="summary-label">
+Origin
+</div>
+
+<div
+id="summaryOrigin"
+class="summary-value"
+>
+-
+</div>
+
+</div>
+
+
+<div class="summary-card">
+
+<div class="summary-label">
+Destination
+</div>
+
+<div
+id="summaryDestination"
+class="summary-value"
+>
+-
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- ETA -->
+
+<div class="eta-highlight">
+
+<div class="eta-label">
+Estimated Time of Arrival
+</div>
+
+<div
+id="eta"
+class="eta-value"
+>
+-
+</div>
+
+<div
+id="etaNote"
+class="eta-note"
+>
+-
+</div>
+
+</div>
+
+
+<!-- SHIPMENT INFORMATION -->
+
+<div class="section">
+
+<h2 class="section-title">
+Shipment Information
+</h2>
+
+<div class="info-grid">
+
+<div class="info-card">
+<div class="info-label">Reference Number</div>
+<div id="referenceNumber" class="info-value">-</div>
+</div>
+
+<div class="info-card">
+<div class="info-label">Shipment Type</div>
+<div id="shipmentType" class="info-value">-</div>
+</div>
+
+<div class="info-card">
+<div class="info-label">Container Count</div>
+<div id="containerCount" class="info-value">-</div>
+</div>
+
+<div class="info-card">
+<div class="info-label">Shipping Line</div>
+<div id="shippingLine" class="info-value">-</div>
+</div>
+
+<div class="info-card">
+<div class="info-label">Carrier Code</div>
+<div id="carrierCode" class="info-value">-</div>
+</div>
+
+<div class="info-card">
+<div class="info-label">Origin</div>
+<div id="origin" class="info-value">-</div>
+</div>
+
+<div class="info-card">
+<div class="info-label">Destination</div>
+<div id="destination" class="info-value">-</div>
+</div>
+
+<div class="info-card">
+<div class="info-label">Current Vessel</div>
+<div id="vessel" class="info-value">-</div>
+</div>
+
+<div class="info-card">
+<div class="info-label">Vessel IMO</div>
+<div id="vesselIMO" class="info-value">-</div>
+</div>
+
+<div class="info-card">
+<div class="info-label">Total Transit</div>
+<div id="totalDays" class="info-value">-</div>
+</div>
+
+<div class="info-card">
+<div class="info-label">Remaining Time</div>
+<div id="remainingDays" class="info-value">-</div>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- CONTAINER -->
+
+<div class="section">
+
 <h2 class="section-title">
 Container Details
 </h2>
 
 <div class="info-note">
-Some container equipment fields may not be provided by the shipping data source.
+Container equipment information is displayed only when supplied by the tracking data source.
 </div>
 
 <div id="containerDetails"></div>
 
+</div>
+
+
+<!-- DATA STATUS -->
+
+<div class="section">
 
 <h2 class="section-title">
-Tracking &amp; Data Status
+Tracking Data Status
 </h2>
 
-<div class="tracking-grid">
+<div class="info-grid">
 
-<div class="tracking-item">
-<div class="tracking-label">Journey Status</div>
-<div class="tracking-value" id="journeyStatus">-</div>
+<div class="info-card">
+<div class="info-label">ETA Reliability</div>
+<div id="etaReliable" class="info-value">-</div>
 </div>
 
-<div class="tracking-item">
-<div class="tracking-label">ETA Reliability</div>
-<div class="tracking-value" id="etaReliable">-</div>
+<div class="info-card">
+<div class="info-label">Shipment Delayed</div>
+<div id="delayed" class="info-value">-</div>
 </div>
 
-<div class="tracking-item">
-<div class="tracking-label">Delayed</div>
-<div class="tracking-value" id="delayed">-</div>
+<div class="info-card">
+<div class="info-label">Active Shipment</div>
+<div id="activeShipment" class="info-value">-</div>
 </div>
 
-<div class="tracking-item">
-<div class="tracking-label">Active Shipment</div>
-<div class="tracking-value" id="activeShipment">-</div>
+<div class="info-card">
+<div class="info-label">Last Updated</div>
+<div id="lastUpdated" class="info-value">-</div>
 </div>
 
-<div class="tracking-item">
-<div class="tracking-label">Last Updated</div>
-<div class="tracking-value" id="lastUpdated">-</div>
+<div class="info-card">
+<div class="info-label">Last Synced</div>
+<div id="lastSynced" class="info-value">-</div>
 </div>
 
-<div class="tracking-item">
-<div class="tracking-label">Last Synced</div>
-<div class="tracking-value" id="lastSynced">-</div>
+<div class="info-card">
+<div class="info-label">Data Created</div>
+<div id="createdAt" class="info-value">-</div>
 </div>
 
-<div class="tracking-item">
-<div class="tracking-label">Data Created</div>
-<div class="tracking-value" id="createdAt">-</div>
+<div class="info-card">
+<div class="info-label">Next Refresh</div>
+<div id="nextRefresh" class="info-value">-</div>
 </div>
 
-<div class="tracking-item">
-<div class="tracking-label">Next Refresh</div>
-<div class="tracking-value" id="nextRefresh">-</div>
+<div class="info-card">
+<div class="info-label">Refresh Eligible</div>
+<div id="refreshEligible" class="info-value">-</div>
 </div>
 
-<div class="tracking-item">
-<div class="tracking-label">Refresh Eligible</div>
-<div class="tracking-value" id="refreshEligible">-</div>
+<div class="info-card">
+<div class="info-label">Cached Data</div>
+<div id="cachedData" class="info-value">-</div>
 </div>
 
-<div class="tracking-item">
-<div class="tracking-label">Cached Data</div>
-<div class="tracking-value" id="cachedData">-</div>
-</div>
-
-<div class="tracking-item">
-<div class="tracking-label">Journey Stale</div>
-<div class="tracking-value" id="journeyStale">-</div>
+<div class="info-card">
+<div class="info-label">Journey Stale</div>
+<div id="journeyStale" class="info-value">-</div>
 </div>
 
 </div>
 
+</div>
+
+
+<!-- PREDICTIVE ETA -->
+
+<div class="section">
 
 <h2 class="section-title">
 Predictive ETA
 </h2>
 
-<div class="tracking-grid">
-
-<div class="tracking-item">
-<div class="tracking-label">Predictive ETA P50</div>
-<div class="tracking-value" id="predictiveP50">-</div>
+<div class="info-note">
+Predictive ETA is an additional estimate provided by the tracking data source and may have varying confidence.
 </div>
 
-<div class="tracking-item">
-<div class="tracking-label">Predictive ETA P80</div>
-<div class="tracking-value" id="predictiveP80">-</div>
+<div class="info-grid">
+
+<div class="info-card">
+<div class="info-label">P50 Prediction</div>
+<div id="predictiveP50" class="info-value">-</div>
 </div>
 
-<div class="tracking-item">
-<div class="tracking-label">Confidence</div>
-<div class="tracking-value" id="predictiveConfidence">-</div>
+<div class="info-card">
+<div class="info-label">P80 Prediction</div>
+<div id="predictiveP80" class="info-value">-</div>
 </div>
 
-<div class="tracking-item">
-<div class="tracking-label">Prediction Source</div>
-<div class="tracking-value" id="predictiveSource">-</div>
+<div class="info-card">
+<div class="info-label">Confidence</div>
+<div id="predictiveConfidence" class="info-value">-</div>
 </div>
 
-<div class="tracking-item">
-<div class="tracking-label">Computed At</div>
-<div class="tracking-value" id="predictiveComputedAt">-</div>
+<div class="info-card">
+<div class="info-label">Prediction Source</div>
+<div id="predictiveSource" class="info-value">-</div>
+</div>
+
+<div class="info-card">
+<div class="info-label">Computed At</div>
+<div id="predictiveComputedAt" class="info-value">-</div>
 </div>
 
 </div>
 
+</div>
+
+
+<!-- POSITION -->
+
+<div class="section">
 
 <h2 class="section-title">
 Current Position
 </h2>
 
-<div class="tracking-grid">
+<div class="info-grid">
 
-<div class="tracking-item">
-<div class="tracking-label">Latitude</div>
-<div class="tracking-value" id="latitude">-</div>
+<div class="info-card">
+<div class="info-label">Latitude</div>
+<div id="latitude" class="info-value">-</div>
 </div>
 
-<div class="tracking-item">
-<div class="tracking-label">Longitude</div>
-<div class="tracking-value" id="longitude">-</div>
+<div class="info-card">
+<div class="info-label">Longitude</div>
+<div id="longitude" class="info-value">-</div>
 </div>
 
 </div>
 
+</div>
+
+
+<!-- MOVEMENT -->
+
+<div class="section">
 
 <h2 class="section-title">
 Movement History
@@ -523,6 +820,12 @@ Movement History
 
 <div id="movementHistory"></div>
 
+</div>
+
+
+<!-- ETA HISTORY -->
+
+<div class="section">
 
 <h2 class="section-title">
 ETA History
@@ -530,6 +833,12 @@ ETA History
 
 <div id="etaHistory"></div>
 
+</div>
+
+
+<!-- VOYAGE -->
+
+<div class="section">
 
 <h2 class="section-title">
 Voyage Plan
@@ -537,6 +846,12 @@ Voyage Plan
 
 <div id="voyagePlan"></div>
 
+</div>
+
+
+<!-- ROUTE -->
+
+<div class="section">
 
 <h2 class="section-title">
 Route &amp; Locations
@@ -544,6 +859,12 @@ Route &amp; Locations
 
 <div id="routeLocations"></div>
 
+</div>
+
+
+<!-- VESSELS -->
+
+<div class="section">
 
 <h2 class="section-title">
 Vessel Information
@@ -551,20 +872,23 @@ Vessel Information
 
 <div id="vesselInformation"></div>
 
+</div>
+
 
 <div class="disclaimer">
 
 <strong>Tracking Information:</strong>
 
 Tracking information is provided through the connected shipment tracking
-data source. Availability, timing and accuracy may vary depending on
-carrier data and refresh intervals.
+data source. Availability, timing and accuracy depend on carrier data,
+tracking coverage and refresh intervals.
 
 </div>
 
+
 </div>
 
-</section>
+</main>
 
 
 <footer>
@@ -588,40 +912,9 @@ Developed by ASA Digital Solutions &amp; Operations
 
 <script>
 
+
 const WORKER_URL =
 "https://opstoolkit-tracking.abdallaallysaid.workers.dev";
-
-
-function formatStatus(status) {
-
-if (!status) {
-return "Not provided";
-}
-
-return String(status)
-.replace(/_/g, " ")
-.replace(/\b\w/g, function(letter) {
-return letter.toUpperCase();
-});
-
-}
-
-
-function formatDate(value) {
-
-if (!value) {
-return "Not provided";
-}
-
-const date = new Date(value);
-
-if (isNaN(date.getTime())) {
-return value;
-}
-
-return date.toLocaleString();
-
-}
 
 
 function displayValue(value) {
@@ -631,10 +924,53 @@ value === null ||
 value === undefined ||
 value === ""
 ) {
+
 return "Not provided";
+
 }
 
 return value;
+
+}
+
+
+function formatStatus(status) {
+
+if (!status) {
+
+return "Not provided";
+
+}
+
+return String(status)
+.replace(/_/g, " ")
+.replace(/\b\w/g, function(letter) {
+
+return letter.toUpperCase();
+
+});
+
+}
+
+
+function formatDate(value) {
+
+if (!value) {
+
+return "Not provided";
+
+}
+
+const date =
+new Date(value);
+
+if (isNaN(date.getTime())) {
+
+return value;
+
+}
+
+return date.toLocaleString();
 
 }
 
@@ -645,8 +981,10 @@ const element =
 document.getElementById(id);
 
 if (element) {
+
 element.textContent =
 displayValue(value);
+
 }
 
 }
@@ -657,9 +995,11 @@ function showError(message) {
 const error =
 document.getElementById("error");
 
-error.textContent = message;
+error.textContent =
+message;
 
-error.style.display = "block";
+error.style.display =
+"block";
 
 }
 
@@ -667,7 +1007,8 @@ error.style.display = "block";
 function hideError() {
 
 document.getElementById("error")
-.style.display = "none";
+.style.display =
+"none";
 
 }
 
@@ -676,7 +1017,11 @@ function showLoading(show) {
 
 document.getElementById("loading")
 .style.display =
-show ? "block" : "none";
+show
+?
+"block"
+:
+"none";
 
 }
 
@@ -684,7 +1029,8 @@ show ? "block" : "none";
 function clearResult() {
 
 document.getElementById("trackingResult")
-.style.display = "none";
+.style.display =
+"none";
 
 document.getElementById("movementHistory")
 .innerHTML = "";
@@ -732,7 +1078,9 @@ formatStatus(phase);
 function trackShipment() {
 
 const input =
-document.getElementById("referenceInput");
+document.getElementById(
+"referenceInput"
+);
 
 const reference =
 input.value
@@ -758,20 +1106,31 @@ showLoading(true);
 
 
 fetch(
+
 WORKER_URL,
+
 {
+
 method: "POST",
 
 headers: {
-"Content-Type": "application/json"
+
+"Content-Type":
+"application/json"
+
 },
 
 body: JSON.stringify({
-reference: reference
+
+reference:
+reference
+
 })
 
 }
+
 )
+
 .then(function(response) {
 
 return response.text()
@@ -781,7 +1140,8 @@ let data;
 
 try {
 
-data = JSON.parse(text);
+data =
+JSON.parse(text);
 
 } catch {
 
@@ -805,13 +1165,19 @@ return data;
 });
 
 })
+
+
 .then(function(response) {
 
 showLoading(false);
 
-displayTrackingData(response);
+displayTrackingData(
+response
+);
 
 })
+
+
 .catch(function(error) {
 
 showLoading(false);
@@ -853,7 +1219,9 @@ response.data;
 
 
 const containers =
-Array.isArray(data.containers_table)
+Array.isArray(
+data.containers_table
+)
 ?
 data.containers_table
 :
@@ -861,7 +1229,9 @@ data.containers_table
 
 
 const vessels =
-Array.isArray(data.vessels_table)
+Array.isArray(
+data.vessels_table
+)
 ?
 data.vessels_table
 :
@@ -869,7 +1239,9 @@ data.vessels_table
 
 
 const events =
-Array.isArray(data.events_table)
+Array.isArray(
+data.events_table
+)
 ?
 data.events_table
 :
@@ -877,7 +1249,9 @@ data.events_table
 
 
 const etaHistory =
-Array.isArray(data.eta_history_table)
+Array.isArray(
+data.eta_history_table
+)
 ?
 data.eta_history_table
 :
@@ -885,7 +1259,9 @@ data.eta_history_table
 
 
 const voyagePlan =
-Array.isArray(data.voyage_plan_table)
+Array.isArray(
+data.voyage_plan_table
+)
 ?
 data.voyage_plan_table
 :
@@ -893,7 +1269,9 @@ data.voyage_plan_table
 
 
 const locations =
-Array.isArray(data.locations_table)
+Array.isArray(
+data.locations_table
+)
 ?
 data.locations_table
 :
@@ -901,9 +1279,9 @@ data.locations_table
 
 
 /*
- * Find the current vessel.
- * Traqo identifies it with is_current = 1.
- */
+Find current vessel.
+Traqo marks current vessel using is_current = 1.
+*/
 
 const firstVessel =
 vessels.length
@@ -918,30 +1296,71 @@ vessels.find(function(vessel) {
 
 return vessel.is_current === 1;
 
-}) ||
+})
+||
 firstVessel;
 
 
 /*
- * Shipment status
- */
+STATUS
+*/
 
-const status =
+const formattedStatus =
 formatStatus(data.status);
 
 
-const statusBox =
-document.getElementById("statusBox");
+document.getElementById(
+"statusMain"
+).textContent =
+formattedStatus;
 
-statusBox.innerHTML =
-"<strong>Current Shipment Status:</strong> "
-+
-status;
+
+document.getElementById(
+"statusSub"
+).textContent =
+data.is_delayed === true
+?
+"Shipment is currently marked as delayed."
+:
+"Shipment tracking information is active.";
 
 
 /*
- * Main shipment information
- */
+SUMMARY
+*/
+
+setValue(
+"summaryContainer",
+containers.length
+?
+containers[0].container_number
+:
+data.reference_number
+);
+
+setValue(
+"summaryVessel",
+currentVessel
+?
+currentVessel.vessel
+:
+null
+);
+
+setValue(
+"summaryOrigin",
+data.origin
+);
+
+setValue(
+"summaryDestination",
+data.destination
+);
+
+
+/*
+SHIPMENT INFORMATION
+*/
 
 setValue(
 "referenceNumber",
@@ -951,15 +1370,6 @@ data.reference_number
 setValue(
 "shipmentType",
 data.shipment_type
-);
-
-setValue(
-"containerNumber",
-containers.length
-?
-containers[0].container_number
-:
-data.reference_number
 );
 
 setValue(
@@ -1007,7 +1417,8 @@ null
 
 setValue(
 "totalDays",
-data.total_days
+data.total_days !== null &&
+data.total_days !== undefined
 ?
 data.total_days + " days"
 :
@@ -1026,15 +1437,20 @@ null
 
 
 /*
- * ETA
- */
+ETA
+*/
 
 let etaText =
 formatDate(data.eta);
 
+
 if (data.is_delayed === true) {
-etaText += " — Delayed";
+
+etaText +=
+" — Delayed";
+
 }
+
 
 setValue(
 "eta",
@@ -1042,14 +1458,19 @@ etaText
 );
 
 
-/*
- * Tracking status
- */
-
 setValue(
-"journeyStatus",
-formatStatus(data.status)
+"etaNote",
+data.eta_reliable === true
+?
+"ETA marked as reliable by the tracking source."
+:
+"ETA reliability information was not provided."
 );
+
+
+/*
+DATA STATUS
+*/
 
 setValue(
 "etaReliable",
@@ -1092,22 +1513,30 @@ null
 
 setValue(
 "lastUpdated",
-formatDate(data.last_updated_at)
+formatDate(
+data.last_updated_at
+)
 );
 
 setValue(
 "lastSynced",
-formatDate(data.last_synced_at)
+formatDate(
+data.last_synced_at
+)
 );
 
 setValue(
 "createdAt",
-formatDate(data.created_at)
+formatDate(
+data.created_at
+)
 );
 
 setValue(
 "nextRefresh",
-formatDate(data.next_refresh_eligible_at)
+formatDate(
+data.next_refresh_eligible_at
+)
 );
 
 setValue(
@@ -1147,8 +1576,8 @@ null
 
 
 /*
- * Predictive ETA
- */
+PREDICTIVE ETA
+*/
 
 const predictive =
 data.predictive_eta ||
@@ -1157,12 +1586,16 @@ data.predictive_eta ||
 
 setValue(
 "predictiveP50",
-formatDate(predictive.p50)
+formatDate(
+predictive.p50
+)
 );
 
 setValue(
 "predictiveP80",
-formatDate(predictive.p80)
+formatDate(
+predictive.p80
+)
 );
 
 setValue(
@@ -1184,8 +1617,8 @@ predictive.computed_at
 
 
 /*
- * Current position
- */
+POSITION
+*/
 
 setValue(
 "latitude",
@@ -1199,8 +1632,8 @@ data.longitude
 
 
 /*
- * Container details
- */
+CONTAINER DETAILS
+*/
 
 const containerDetails =
 document.getElementById(
@@ -1217,25 +1650,32 @@ containerDetails.innerHTML =
 
 let html =
 "<div class='table-wrap'>" +
+
 "<table class='tracking-table'>" +
 
 "<thead>" +
+
 "<tr>" +
+
 "<th>Container Number</th>" +
 "<th>Size / Type</th>" +
 "<th>ISO Code</th>" +
 "<th>Description</th>" +
 "<th>Equipment Source</th>" +
 "<th>Status</th>" +
+
 "</tr>" +
+
 "</thead>" +
 
 "<tbody>";
 
 
-containers.forEach(function(container) {
+containers.forEach(
+function(container) {
 
 html +=
+
 "<tr>" +
 
 "<td>" +
@@ -1270,7 +1710,9 @@ container.equipment_source
 
 "<td>" +
 displayValue(
-formatStatus(container.status)
+formatStatus(
+container.status
+)
 ) +
 "</td>" +
 
@@ -1284,6 +1726,7 @@ html +=
 "</table>" +
 "</div>";
 
+
 containerDetails.innerHTML =
 html;
 
@@ -1291,8 +1734,8 @@ html;
 
 
 /*
- * Movement History
- */
+MOVEMENT HISTORY
+*/
 
 const movementHistory =
 document.getElementById(
@@ -1313,7 +1756,8 @@ let html = "";
 events
 .slice()
 .reverse()
-.forEach(function(event) {
+.forEach(
+function(event) {
 
 const actual =
 event.is_actual === 1 ||
@@ -1321,36 +1765,48 @@ event.is_actual === true;
 
 
 html +=
+
 "<div class='event'>" +
 
 "<div class='event-title'>" +
+
 displayValue(
 event.description ||
 event.status_description ||
 formatStatus(event.status)
 ) +
+
 "</div>" +
 
 "<div class='event-location'>" +
+
 displayValue(
 event.location
 ) +
+
 (
 event.country
 ?
-", " + event.country
+", " +
+event.country
 :
 ""
 ) +
+
 "</div>" +
 
 "<div class='event-date'>" +
+
 formatDate(
 event.timestamp
 ) +
+
 "</div>" +
 
-"<span class='event-type'>" +
+"<div class='event-tags'>" +
+
+"<span class='event-tag'>" +
+
 (
 actual
 ?
@@ -1358,28 +1814,30 @@ actual
 :
 "Planned / Estimated"
 ) +
+
 "</span>" +
 
-"<span class='event-code'>" +
 (
 event.event_code
 ?
-"Event: " + event.event_code
+"<span class='event-tag'>Event: " +
+event.event_code +
+"</span>"
 :
 ""
 ) +
-"</span>" +
 
-"<span class='event-code'>" +
 (
 event.transport_type
 ?
-"Transport: " +
-event.transport_type
+"<span class='event-tag'>Transport: " +
+event.transport_type +
+"</span>"
 :
 ""
 ) +
-"</span>" +
+
+"</div>" +
 
 "</div>";
 
@@ -1393,8 +1851,8 @@ html;
 
 
 /*
- * ETA History
- */
+ETA HISTORY
+*/
 
 const etaHistoryContainer =
 document.getElementById(
@@ -1410,6 +1868,7 @@ etaHistoryContainer.innerHTML =
 } else {
 
 let html =
+
 "<div class='table-wrap'>" +
 
 "<table class='tracking-table'>" +
@@ -1432,21 +1891,29 @@ let html =
 etaHistory
 .slice()
 .reverse()
-.forEach(function(item) {
+.forEach(
+function(item) {
 
 html +=
+
 "<tr>" +
 
 "<td>" +
-formatDate(item.eta) +
+formatDate(
+item.eta
+) +
 "</td>" +
 
 "<td>" +
-formatDate(item.etd) +
+formatDate(
+item.etd
+) +
 "</td>" +
 
 "<td>" +
-formatDate(item.logged_at) +
+formatDate(
+item.logged_at
+) +
 "</td>" +
 
 "</tr>";
@@ -1459,6 +1926,7 @@ html +=
 "</table>" +
 "</div>";
 
+
 etaHistoryContainer.innerHTML =
 html;
 
@@ -1466,8 +1934,8 @@ html;
 
 
 /*
- * Voyage Plan
- */
+VOYAGE PLAN
+*/
 
 const voyagePlanContainer =
 document.getElementById(
@@ -1483,6 +1951,7 @@ voyagePlanContainer.innerHTML =
 } else {
 
 let html =
+
 "<div class='table-wrap'>" +
 
 "<table class='tracking-table'>" +
@@ -1503,20 +1972,27 @@ let html =
 "<tbody>";
 
 
-voyagePlan.forEach(function(item) {
+voyagePlan.forEach(
+function(item) {
 
 html +=
+
 "<tr>" +
 
 "<td>" +
-phaseName(item.phase) +
+phaseName(
+item.phase
+) +
 "</td>" +
 
 "<td>" +
-formatDate(item.date) +
+formatDate(
+item.date
+) +
 "</td>" +
 
 "<td>" +
+
 (
 item.is_actual === 1
 ?
@@ -1524,10 +2000,13 @@ item.is_actual === 1
 :
 "Planned / Estimated"
 ) +
+
 "</td>" +
 
 "<td>" +
-displayValue(item.location_id) +
+displayValue(
+item.location_id
+) +
 "</td>" +
 
 "</tr>";
@@ -1540,6 +2019,7 @@ html +=
 "</table>" +
 "</div>";
 
+
 voyagePlanContainer.innerHTML =
 html;
 
@@ -1547,8 +2027,8 @@ html;
 
 
 /*
- * Route & Locations
- */
+ROUTE & LOCATIONS
+*/
 
 const routeContainer =
 document.getElementById(
@@ -1559,13 +2039,10 @@ document.getElementById(
 let routeHtml = "";
 
 
-/*
- * Show locations returned by Traqo.
- */
-
 if (locations.length) {
 
 routeHtml +=
+
 "<div class='table-wrap'>" +
 
 "<table class='tracking-table'>" +
@@ -1586,9 +2063,11 @@ routeHtml +=
 "<tbody>";
 
 
-locations.forEach(function(location) {
+locations.forEach(
+function(location) {
 
 routeHtml +=
+
 "<tr>" +
 
 "<td>" +
@@ -1629,12 +2108,14 @@ routeHtml +=
 
 
 /*
- * Show readable route from events.
- */
+Create a readable journey route from events.
+*/
 
 const routePairs = [];
 
-events.forEach(function(event) {
+
+events.forEach(
+function(event) {
 
 if (
 event.location &&
@@ -1655,11 +2136,14 @@ event.location
 if (routePairs.length) {
 
 routeHtml +=
+
 "<div class='info-note'>" +
 
 "<strong>Journey Locations:</strong> " +
 
-routePairs.join(" → ") +
+routePairs.join(
+" → "
+) +
 
 "</div>";
 
@@ -1679,8 +2163,8 @@ routeHtml;
 
 
 /*
- * Vessel Information
- */
+VESSEL INFORMATION
+*/
 
 const vesselContainer =
 document.getElementById(
@@ -1696,6 +2180,7 @@ vesselContainer.innerHTML =
 } else {
 
 let html =
+
 "<div class='table-wrap'>" +
 
 "<table class='tracking-table'>" +
@@ -1716,7 +2201,8 @@ let html =
 "<tbody>";
 
 
-vessels.forEach(function(vessel) {
+vessels.forEach(
+function(vessel) {
 
 const isCurrent =
 vessel.is_current === 1 ||
@@ -1724,6 +2210,7 @@ vessel.is_current === true;
 
 
 html +=
+
 "<tr>" +
 
 "<td>" +
@@ -1745,6 +2232,7 @@ vessel.mmsi
 "</td>" +
 
 "<td>" +
+
 (
 isCurrent
 ?
@@ -1752,6 +2240,7 @@ isCurrent
 :
 "No"
 ) +
+
 "</td>" +
 
 "</tr>";
@@ -1764,6 +2253,7 @@ html +=
 "</table>" +
 "</div>";
 
+
 vesselContainer.innerHTML =
 html;
 
@@ -1771,27 +2261,32 @@ html;
 
 
 /*
- * Show tracking result
- */
+SHOW RESULT
+*/
 
 document.getElementById(
 "trackingResult"
-).style.display = "block";
+).style.display =
+"block";
 
 }
 
 
 /*
- * Allow Enter key to start tracking.
- */
+ENTER KEY
+*/
 
 document
-.getElementById("referenceInput")
+.getElementById(
+"referenceInput"
+)
 .addEventListener(
 "keydown",
 function(event) {
 
-if (event.key === "Enter") {
+if (
+event.key === "Enter"
+) {
 
 trackShipment();
 
@@ -1801,6 +2296,7 @@ trackShipment();
 );
 
 </script>
+
 
 </body>
 </html>
