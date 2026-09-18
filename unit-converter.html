@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="sw">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="Logistics Unit Converter for weight, length and volume conversions.">
+
+<meta name="keywords" content="logistics unit converter, KG tons converter, weight converter, length converter, CBM converter">
+
+<title>OpsToolkit | Logistics Unit Converter</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.calculator-box {
+max-width: 700px;
+margin: 30px auto;
+}
+
+.input-group {
+margin-bottom: 20px;
+}
+
+.input-group label {
+display: block;
+font-weight: bold;
+margin-bottom: 8px;
+}
+
+.input-group input,
+.input-group select {
+width: 100%;
+padding: 12px;
+font-size: 16px;
+border: 1px solid #ccc;
+border-radius: 6px;
+box-sizing: border-box;
+}
+
+.calculator-actions {
+margin-top: 20px;
+}
+
+.result-box {
+margin-top: 30px;
+padding: 25px;
+background: #f5f7fa;
+border-radius: 8px;
+text-align: center;
+}
+
+.result-box h2 {
+margin-bottom: 10px;
+}
+
+#unitResult {
+font-size: 27px;
+font-weight: bold;
+margin: 15px 0;
+}
+
+.info-text {
+font-size: 14px;
+color: #555;
+line-height: 1.6;
+}
+
+.error-message {
+display: none;
+margin-top: 15px;
+padding: 12px;
+background: #ffe9e9;
+color: #9b1c1c;
+border-radius: 6px;
+}
+
+.note-box {
+margin-top: 20px;
+padding: 15px;
+background: #f5f7fa;
+border-radius: 6px;
+font-size: 14px;
+line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+
+.calculator-box {
+margin: 20px auto;
+}
+
+}
+
+@media print {
+
+.navbar,
+.hero,
+.calculator-actions,
+footer {
+display: none;
+}
+
+.result-box {
+border: 1px solid #ccc;
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<nav class="navbar">
+
+<div class="logo">
+OpsToolkit
+</div>
+
+
+<ul>
+
+<li>
+<a href="index.html">
+Home
+</a>
+</li>
+
+<li>
+<a href="calculators.html">
+Calculators
+</a>
+</li>
+
+<li>
+<a href="resources.html">
+Resources
+</a>
+</li>
+
+<li>
+<a href="guides.html">
+Guides
+</a>
+</li>
+
+<li>
+<a href="about.html">
+About
+</a>
+</li>
+
+</ul>
+
+</nav>
+
+
+<header class="hero">
+
+<h1>
+Logistics Unit Converter
+</h1>
+
+<p>
+Convert common measurement units used in logistics and transport operations.
+</p>
+
+</header>
+
+
+<section class="container">
+
+
+<div class="card calculator-box">
+
+<h2>
+Unit Conversion
+</h2>
+
+<p>
+Select a conversion type, enter a value and calculate the converted measurement.
+</p>
+
+
+<div class="input-group">
+
+<label for="conversionType">
+Conversion Type
+</label>
+
+<select id="conversionType">
+
+<option value="kg-ton">
+KG → Tons
+</option>
+
+<option value="ton-kg">
+Tons → KG
+</option>
+
+<option value="kg-lb">
+KG → LB
+</option>
+
+<option value="lb-kg">
+LB → KG
+</option>
+
+<option value="meter-cm">
+Meter → CM
+</option>
+
+<option value="cm-meter">
+CM → Meter
+</option>
+
+<option value="meter-feet">
+Meter → Feet
+</option>
+
+<option value="feet-meter">
+Feet → Meter
+</option>
+
+<option value="cbm-cuft">
+CBM → Cubic Feet
+</option>
+
+<option value="cuft-cbm">
+Cubic Feet → CBM
+</option>
+
+</select>
+
+</div>
+
+
+<div class="input-group">
+
+<label for="unitValue">
+Value
+</label>
+
+<input
+type="number"
+id="unitValue"
+placeholder="Enter value"
+min="0"
+step="any"
+>
+
+</div>
+
+
+<div class="calculator-actions">
+
+<button
+onclick="convertUnit()"
+class="button">
+
+Convert
+
+</button>
+
+</div>
+
+
+<div id="errorMessage" class="error-message">
+
+Please enter a valid value.
+
+</div>
+
+
+<div class="result-box">
+
+<h2>
+Conversion Result
+</h2>
+
+<div id="unitResult">
+—
+</div>
+
+<div id="conversionInfo" class="info-text">
+Select a conversion and enter a value.
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="card">
+
+<h2>
+Conversion Reference</h2>
+
+<div class="info-text">
+
+<strong>Weight</strong><br>
+1 Ton = 1,000 KG<br>
+1 KG = 2.20462 LB
+
+<br><br>
+
+<strong>Length</strong><br>
+1 Meter = 100 CM<br>
+1 Meter = 3.28084 Feet
+
+<br><br>
+
+<strong>Volume</strong><br>
+1 CBM = 35.3147 Cubic Feet
+
+</div>
+
+
+<div class="note-box">
+
+<strong>Operational Note:</strong><br>
+
+Conversion values are mathematical conversions.
+Always use the applicable operational, cargo,
+equipment or regulatory standards when preparing
+actual logistics documentation.
+
+</div>
+
+</div>
+
+
+</section>
+
+
+<footer>
+
+<p>
+OpsToolkit
+</p>
+
+<p>
+Digital Operations Tools for Logistics, Transport and Business Efficiency.
+</p>
+
+<p>
+Developed by ASA Digital Solutions &amp; Operations
+</p>
+
+<p>
+© 2026 OpsToolkit. All rights reserved.
+</p>
+
+</footer>
+
+
+<script>
+
+function convertUnit() {
+
+const type =
+document.getElementById("conversionType").value;
+
+const value =
+parseFloat(
+document.getElementById("unitValue").value
+);
+
+const result =
+document.getElementById("unitResult");
+
+const info =
+document.getElementById("conversionInfo");
+
+const errorMessage =
+document.getElementById("errorMessage");
+
+
+if (
+isNaN(value) ||
+value < 0
+) {
+
+result.textContent = "—";
+
+info.textContent = "";
+
+errorMessage.style.display = "block";
+
+return;
+
+}
+
+
+errorMessage.style.display = "none";
+
+
+let converted;
+let resultUnit;
+let formula;
+
+
+switch (type) {
+
+case "kg-ton":
+
+converted = value / 1000;
+
+resultUnit = "Tons";
+
+formula = "KG ÷ 1,000";
+
+break;
+
+
+case "ton-kg":
+
+converted = value * 1000;
+
+resultUnit = "KG";
+
+formula = "Tons × 1,000";
+
+break;
+
+
+case "kg-lb":
+
+converted = value * 2.20462;
+
+resultUnit = "LB";
+
+formula = "KG × 2.20462";
+
+break;
+
+
+case "lb-kg":
+
+converted = value / 2.20462;
+
+resultUnit = "KG";
+
+formula = "LB ÷ 2.20462";
+
+break;
+
+
+case "meter-cm":
+
+converted = value * 100;
+
+resultUnit = "CM";
+
+formula = "Meter × 100";
+
+break;
+
+
+case "cm-meter":
+
+converted = value / 100;
+
+resultUnit = "Meter";
+
+formula = "CM ÷ 100";
+
+break;
+
+
+case "meter-feet":
+
+converted = value * 3.28084;
+
+resultUnit = "Feet";
+
+formula = "Meter × 3.28084";
+
+break;
+
+
+case "feet-meter":
+
+converted = value / 3.28084;
+
+resultUnit = "Meter";
+
+formula = "Feet ÷ 3.28084";
+
+break;
+
+
+case "cbm-cuft":
+
+converted = value * 35.3147;
+
+resultUnit = "Cubic Feet";
+
+formula = "CBM × 35.3147";
+
+break;
+
+
+case "cuft-cbm":
+
+converted = value / 35.3147;
+
+resultUnit = "CBM";
+
+formula = "Cubic Feet ÷ 35.3147";
+
+break;
+
+
+default:
+
+return;
+
+}
+
+
+result.textContent =
+formatNumber(converted) +
+" " +
+resultUnit;
+
+
+info.innerHTML =
+"Formula: " +
+formula;
+
+}
+
+
+function formatNumber(number) {
+
+return number.toLocaleString(
+"en-US",
+{
+maximumFractionDigits: 4
+}
+);
+
+}
+
+</script>
+
+
+</body>
+
+</html>
