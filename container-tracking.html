@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="sw">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+name="description"
+content="OpsToolkit Container & B/L Tracking tool for checking container, Bill of Lading and booking shipment information."
+>
+
+<meta
+name="keywords"
+content="container tracking, B/L tracking, bill of lading tracking, shipment tracking, logistics tracking, OpsToolkit"
+>
+
+<title>OpsToolkit | Container & B/L Tracking</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.tracking-box {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.tracking-input {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+.tracking-button {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.tracking-result {
+    margin-top: 25px;
+    display: none;
+}
+
+.tracking-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.tracking-item {
+    background: #f7f7f7;
+    padding: 14px;
+    border-radius: 6px;
+}
+
+.tracking-label {
+    display: block;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.tracking-value {
+    font-weight: 600;
+    color: #222;
+    word-break: break-word;
+}
+
+.status-box {
+    margin-top: 18px;
+    padding: 15px;
+    border-radius: 6px;
+    background: #eef5ff;
+    font-weight: 600;
+}
+
+.error-box {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 6px;
+    background: #fff1f1;
+    color: #a00000;
+    display: none;
+}
+
+.loading-box {
+    margin-top: 20px;
+    padding: 15px;
+    text-align: center;
+    display: none;
+}
+
+.events {
+    margin-top: 25px;
+}
+
+.event {
+    border-left: 3px solid #1f4e79;
+    padding: 10px 15px;
+    margin-bottom: 12px;
+    background: #f7f7f7;
+}
+
+.event-title {
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.event-location {
+    font-size: 14px;
+    color: #555;
+}
+
+.event-date {
+    font-size: 13px;
+    color: #777;
+    margin-top: 4px;
+}
+
+.event-type {
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.disclaimer {
+    margin-top: 25px;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.6;
+}
+
+@media (max-width: 650px) {
+
+    .tracking-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<nav class="navbar">
+
+<div class="logo">
+OpsToolkit
+</div>
+
+
+<ul>
+
+<li>
+<a href="index.html">
+Home
+</a>
+</li>
+
+<li>
+<a href="calculators.html">
+Calculators
+</a>
+</li>
+
+<li>
+<a href="resources.html">
+Resources
+</a>
+</li>
+
+<li>
+<a href="guides.html">
+Guides
+</a>
+</li>
+
+<li>
+<a href="about.html">
+About
+</a>
+</li>
+
+</ul>
+
+</nav>
+
+
+<header class="hero">
+
+<h1>
+Container &amp; B/L Tracking
+</h1>
+
+<p>
+Track a container, Bill of Lading or booking reference.
+</p>
+
+</header>
+
+
+<section class="container">
+
+
+<div class="card tracking-box">
+
+<h2>
+Shipment Tracking
+</h2>
+
+<p>
+Enter a Container Number, B/L Number or Booking Number.
+The system will try to identify the shipping line automatically.
+</p>
+
+
+<input
+type="text"
+id="trackingReference"
+class="tracking-input"
+placeholder="e.g. MEDU1234562 or B/L Number"
+autocomplete="off"
+>
+
+
+<button
+id="trackButton"
+class="button tracking-button"
+onclick="trackShipment()"
+>
+
+Track Shipment
+
+</button>
+
+
+<div
+id="loadingBox"
+class="loading-box"
+>
+
+Checking shipment information...
+
+</div>
+
+
+<div
+id="errorBox"
+class="error-box"
+></div>
+
+
+<div
+id="trackingResult"
+class="tracking-result"
+>
+
+<h2>
+Shipment Information
+</h2>
+
+
+<div
+id="statusBox"
+class="status-box"
+>
+</div>
+
+
+<div class="tracking-grid">
+
+
+<div class="tracking-item">
+
+<span class="tracking-label">
+Reference
+</span>
+
+<span
+id="identifier"
+class="tracking-value"
+>
+-
+</span>
+
+</div>
+
+
+<div class="tracking-item">
+
+<span class="tracking-label">
+Reference Type
+</span>
+
+<span
+id="identifierType"
+class="tracking-value"
+>
+-
+</span>
+
+</div>
+
+
+<div class="tracking-item">
+
+<span class="tracking-label">
+Shipping Line
+</span>
+
+<span
+id="carrier"
+class="tracking-value"
+>
+-
+</span>
+
+</div>
+
+
+<div class="tracking-item">
+
+<span class="tracking-label">
+Carrier Code
+</span>
+
+<span
+id="carrierCode"
+class="tracking-value"
+>
+-
+</span>
+
+</div>
+
+
+<div class="tracking-item">
+
+<span class="tracking-label">
+Origin
+</span>
+
+<span
+id="origin"
+class="tracking-value"
+>
+-
+</span>
+
+</div>
+
+
+<div class="tracking-item">
+
+<span class="tracking-label">
+Destination
+</span>
+
+<span
+id="destination"
+class="tracking-value"
+>
+-
+</span>
+
+</div>
+
+
+<div class="tracking-item">
+
+<span class="tracking-label">
+Vessel
+</span>
+
+<span
+id="vessel"
+class="tracking-value"
+>
+-
+</span>
+
+</div>
+
+
+<div class="tracking-item">
+
+<span class="tracking-label">
+ETA
+</span>
+
+<span
+id="eta"
+class="tracking-value"
+>
+-
+</span>
+
+</div>
+
+
+<div
+class="tracking-item"
+id="equipmentBox"
+>
+
+<span class="tracking-label">
+Container Type
+</span>
+
+<span
+id="equipment"
+class="tracking-value"
+>
+-
+</span>
+
+</div>
+
+
+<div
+class="tracking-item"
+id="isoBox"
+>
+
+<span class="tracking-label">
+ISO Code
+</span>
+
+<span
+id="isoCode"
+class="tracking-value"
+>
+-
+</span>
+
+</div>
+
+
+<div
+class="tracking-item"
+id="weightBox"
+>
+
+<span class="tracking-label">
+Gross Weight
+</span>
+
+<span
+id="grossWeight"
+class="tracking-value"
+>
+-
+</span>
+
+</div>
+
+
+<div
+class="tracking-item"
+id="packagesBox"
+>
+
+<span class="tracking-label">
+Packages
+</span>
+
+<span
+id="packages"
+class="tracking-value"
+>
+-
+</span>
+
+</div>
+
+
+</div>
+
+
+<div class="events">
+
+<h2>
+Movement History
+</h2>
+
+<div id="eventsList">
+</div>
+
+</div>
+
+
+<p class="disclaimer">
+
+Tracking information is provided based on available carrier data.
+ETA values may be estimated and should not be treated as a guaranteed
+arrival time. Availability and accuracy depend on the shipping line
+and the information published by the carrier.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<footer>
+
+<p>
+OpsToolkit
+</p>
+
+<p>
+Digital Operations Tools for Logistics, Transport and Business Efficiency.
+</p>
+
+<p>
+Developed by ASA Digital Solutions &amp; Operations
+</p>
+
+<p>
+© 2026 OpsToolkit. All rights reserved.
+</p>
+
+</footer>
+
+
+<script>
+
+
+function formatReferenceType(type) {
+
+    if (!type) {
+        return "-";
+    }
+
+    if (type === "container_id") {
+        return "Container Number";
+    }
+
+    if (type === "bill_of_lading") {
+        return "Bill of Lading";
+    }
+
+    if (type === "booking_number") {
+        return "Booking Number";
+    }
+
+    if (type === "booking") {
+        return "Booking Number";
+    }
+
+    return type;
+}
+
+
+function formatStatus(status) {
+
+    if (!status) {
+        return "Status unavailable";
+    }
+
+    return status
+        .replaceAll("_", " ")
+        .replace(/\b\w/g, function(letter) {
+            return letter.toUpperCase();
+        });
+
+}
+
+
+function formatDate(dateString) {
+
+    if (!dateString) {
+        return "-";
+    }
+
+    const date = new Date(dateString);
+
+    if (isNaN(date.getTime())) {
+        return dateString;
+    }
+
+    return date.toLocaleString();
+
+}
+
+
+function clearResult() {
+
+    document.getElementById("trackingResult").style.display = "none";
+
+    document.getElementById("errorBox").style.display = "none";
+
+    document.getElementById("loadingBox").style.display = "none";
+
+    document.getElementById("eventsList").innerHTML = "";
+
+}
+
+
+function setValue(id, value) {
+
+    const element = document.getElementById(id);
+
+    if (!element) {
+        return;
+    }
+
+    element.textContent = value || "-";
+
+}
+
+
+function trackShipment() {
+
+    const input =
+        document.getElementById("trackingReference");
+
+    const button =
+        document.getElementById("trackButton");
+
+    const loading =
+        document.getElementById("loadingBox");
+
+    const error =
+        document.getElementById("errorBox");
+
+    const result =
+        document.getElementById("trackingResult");
+
+
+    const reference =
+        input.value.trim();
+
+
+    clearResult();
+
+
+    if (!reference) {
+
+        error.textContent =
+            "Please enter a Container Number, B/L Number or Booking Number.";
+
+        error.style.display = "block";
+
+        return;
+
+    }
+
+
+    button.disabled = true;
+
+    button.textContent = "Checking...";
+
+    loading.style.display = "block";
+
+
+    fetch(
+        "https://api.trackingmcp.com/v1/track/public",
+        {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                reference: reference
+            })
+
+        }
+    )
+
+    .then(function(response) {
+
+        return response.json();
+
+    })
+
+    .then(function(resultData) {
+
+        loading.style.display = "none";
+
+        button.disabled = false;
+
+        button.textContent = "Track Shipment";
+
+
+        if (!resultData.ok) {
+
+            let message =
+                resultData.message ||
+                "Shipment information could not be found.";
+
+            error.textContent = message;
+
+            error.style.display = "block";
+
+            return;
+
+        }
+
+
+        const data = resultData.data || {};
+
+        const equipment =
+            data.equipment || {};
+
+        const vessel =
+            data.vessel || {};
+
+
+        setValue(
+            "identifier",
+            data.identifier
+        );
+
+
+        setValue(
+            "identifierType",
+            formatReferenceType(
+                data.identifier_type
+            )
+        );
+
+
+        setValue(
+            "carrier",
+            data.carrier_name
+        );
+
+
+        setValue(
+            "carrierCode",
+            data.carrier_code
+        );
+
+
+        setValue(
+            "origin",
+            data.origin
+        );
+
+
+        setValue(
+            "destination",
+            data.destination
+        );
+
+
+        setValue(
+            "vessel",
+            vessel.name
+        );
+
+
+        let etaText = "-";
+
+
+        if (data.eta) {
+
+            etaText =
+                formatDate(data.eta);
+
+            if (data.eta_is_estimated === true) {
+
+                etaText += " (Estimated)";
+
+            } else if (data.eta_is_estimated === false) {
+
+                etaText += " (Actual)";
+
+            }
+
+        }
+
+
+        setValue(
+            "eta",
+            etaText
+        );
+
+
+        setValue(
+            "equipment",
+            equipment.size_type
+        );
+
+
+        setValue(
+            "isoCode",
+            equipment.iso_code
+        );
+
+
+        if (equipment.gross_weight_kg !== null &&
+            equipment.gross_weight_kg !== undefined) {
+
+            setValue(
+                "grossWeight",
+                Number(
+                    equipment.gross_weight_kg
+                ).toLocaleString() + " kg"
+            );
+
+        } else {
+
+            setValue(
+                "grossWeight",
+                "-"
+            );
+
+        }
+
+
+        if (equipment.package_count !== null &&
+            equipment.package_count !== undefined) {
+
+            let packageText =
+                Number(
+                    equipment.package_count
+                ).toLocaleString();
+
+            if (equipment.package_unit) {
+
+                packageText +=
+                    " " +
+                    equipment.package_unit;
+
+            }
+
+            setValue(
+                "packages",
+                packageText
+            );
+
+        } else {
+
+            setValue(
+                "packages",
+                "-"
+            );
+
+        }
+
+
+        document.getElementById(
+            "statusBox"
+        ).textContent =
+            "Current Status: " +
+            formatStatus(data.status);
+
+
+        const eventsList =
+            document.getElementById("eventsList");
+
+
+        eventsList.innerHTML = "";
+
+
+        if (
+            Array.isArray(data.events) &&
+            data.events.length > 0
+        ) {
+
+            data.events
+                .slice()
+                .reverse()
+                .forEach(function(event) {
+
+                    const eventBox =
+                        document.createElement("div");
+
+                    eventBox.className =
+                        "event";
+
+
+                    const title =
+                        document.createElement("div");
+
+                    title.className =
+                        "event-title";
+
+                    title.textContent =
+                        event.description ||
+                        event.event_code ||
+                        "Shipment Event";
+
+
+                    const location =
+                        document.createElement("div");
+
+                    location.className =
+                        "event-location";
+
+                    location.textContent =
+                        event.location ||
+                        event.unlocode ||
+                        "Location not published";
+
+
+                    const date =
+                        document.createElement("div");
+
+                    date.className =
+                        "event-date";
+
+                    date.textContent =
+                        event.datetime
+                            ? formatDate(event.datetime)
+                            : "Date not published";
+
+
+                    const type =
+                        document.createElement("div");
+
+                    type.className =
+                        "event-type";
+
+                    type.textContent =
+                        event.actual === true
+                            ? "Actual event"
+                            : event.actual === false
+                                ? "Planned / Estimated"
+                                : "";
+
+
+                    eventBox.appendChild(title);
+
+                    eventBox.appendChild(location);
+
+                    eventBox.appendChild(date);
+
+                    if (type.textContent) {
+
+                        eventBox.appendChild(type);
+
+                    }
+
+
+                    eventsList.appendChild(eventBox);
+
+                });
+
+        } else {
+
+            eventsList.innerHTML =
+                "<p>No movement events were published for this reference.</p>";
+
+        }
+
+
+        result.style.display = "block";
+
+
+    })
+
+    .catch(function(errorObject) {
+
+        loading.style.display = "none";
+
+        button.disabled = false;
+
+        button.textContent = "Track Shipment";
+
+
+        error.textContent =
+            "Unable to connect to the tracking service. Please try again later.";
+
+        error.style.display = "block";
+
+        console.error(errorObject);
+
+    });
+
+}
+
+
+document
+    .getElementById("trackingReference")
+    .addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Enter") {
+
+                trackShipment();
+
+            }
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>
