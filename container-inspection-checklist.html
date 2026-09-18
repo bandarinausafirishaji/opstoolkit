@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="sw">
+<html lang="en">
 
 <head>
 
@@ -52,6 +51,8 @@ textarea {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 15px;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 textarea {
@@ -112,22 +113,47 @@ textarea {
         border: none;
     }
 
+    input,
+    select,
+    textarea {
+        border: 1px solid #999;
+        background: white;
+        color: black;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: transparent !important;
+        opacity: 0 !important;
+    }
+
+    select {
+        appearance: none;
+        -webkit-appearance: none;
+    }
+
+    .checklist input {
+        border: none;
+        min-height: 25px;
+    }
+
+    textarea {
+        min-height: 100px;
+    }
+
 }
 
 </style>
 
 </head>
 
-
 <body>
-
 
 <nav class="navbar">
 
 <div class="logo">
 OpsToolkit
 </div>
-
 
 <ul>
 
@@ -145,12 +171,9 @@ OpsToolkit
 
 </nav>
 
-
 <header class="hero">
 
-<h1>
-Container Inspection Checklist
-</h1>
+<h1>Container Inspection Checklist</h1>
 
 <p>
 Practical checklist for empty shipping container inspection.
@@ -158,19 +181,13 @@ Practical checklist for empty shipping container inspection.
 
 </header>
 
-
 <section class="container form-section">
-
 
 <div class="card">
 
-<h2>
-Container Information
-</h2>
-
+<h2>Container Information</h2>
 
 <div class="form-grid">
-
 
 <div class="form-group">
 
@@ -179,7 +196,6 @@ Container Information
 <input type="text" placeholder="e.g. ABCD1234567">
 
 </div>
-
 
 <div class="form-group">
 
@@ -211,7 +227,6 @@ Container Information
 
 </div>
 
-
 <div class="form-group">
 
 <label>Inspection Date</label>
@@ -219,7 +234,6 @@ Container Information
 <input type="date">
 
 </div>
-
 
 <div class="form-group">
 
@@ -229,18 +243,13 @@ Container Information
 
 </div>
 
-
 </div>
 
 </div>
-
 
 <div class="card">
 
-<h2>
-Inspection Checklist
-</h2>
-
+<h2>Inspection Checklist</h2>
 
 <table class="checklist">
 
@@ -258,9 +267,7 @@ Inspection Checklist
 
 </thead>
 
-
 <tbody>
-
 
 <tr>
 
@@ -286,7 +293,6 @@ Inspection Checklist
 
 </tr>
 
-
 <tr>
 
 <td>Doors & Locking Mechanism</td>
@@ -310,7 +316,6 @@ Inspection Checklist
 </td>
 
 </tr>
-
 
 <tr>
 
@@ -336,7 +341,6 @@ Inspection Checklist
 
 </tr>
 
-
 <tr>
 
 <td>Roof Condition</td>
@@ -360,7 +364,6 @@ Inspection Checklist
 </td>
 
 </tr>
-
 
 <tr>
 
@@ -386,7 +389,6 @@ Inspection Checklist
 
 </tr>
 
-
 <tr>
 
 <td>End Wall</td>
@@ -410,7 +412,6 @@ Inspection Checklist
 </td>
 
 </tr>
-
 
 <tr>
 
@@ -436,7 +437,6 @@ Inspection Checklist
 
 </tr>
 
-
 <tr>
 
 <td>Cleanliness</td>
@@ -461,27 +461,19 @@ Inspection Checklist
 
 </tr>
 
-
 </tbody>
 
 </table>
 
-
 </div>
-
 
 <div class="card">
 
-<h2>
-General Remarks
-</h2>
-
+<h2>General Remarks</h2>
 
 <textarea placeholder="Enter additional inspection findings, damage details or other observations."></textarea>
 
-
 <div class="form-grid" style="margin-top:20px;">
-
 
 <div class="form-group">
 
@@ -491,7 +483,6 @@ General Remarks
 
 </div>
 
-
 <div class="form-group">
 
 <label>Signature</label>
@@ -500,9 +491,7 @@ General Remarks
 
 </div>
 
-
 </div>
-
 
 <div class="actions">
 
@@ -510,45 +499,28 @@ General Remarks
 Print / Save as PDF
 </button>
 
-
 <a href="resources.html" class="button">
 Back to Resources
 </a>
 
 </div>
 
-
 </div>
-
 
 </section>
 
-
 <footer>
 
-<p>
-OpsToolkit
-</p>
+<p>OpsToolkit</p>
 
+<p>Digital Operations Tools for Logistics, Transport and Business Efficiency.</p>
 
-<p>
-Digital Operations Tools for Logistics, Transport and Business Efficiency.
-</p>
+<p>Developed by ASA Digital Solutions & Operations</p>
 
-
-<p>
-Developed by ASA Digital Solutions & Operations
-</p>
-
-
-<p>
-© 2026 OpsToolkit. All rights reserved.
-</p>
+<p>© 2026 OpsToolkit. All rights reserved.</p>
 
 </footer>
-
 
 </body>
 
 </html>
-```
