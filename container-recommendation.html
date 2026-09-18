@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="sw">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="Container Recommendation Tool for cargo volume and logistics planning.">
+
+<meta name="keywords" content="container recommendation, 20ft container, 40ft container, high cube container, logistics planning">
+
+<title>OpsToolkit | Container Recommendation</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.calculator-box {
+max-width: 700px;
+margin: 30px auto;
+}
+
+.input-group {
+margin-bottom: 20px;
+}
+
+.input-group label {
+display: block;
+font-weight: bold;
+margin-bottom: 8px;
+}
+
+.input-group input {
+width: 100%;
+padding: 12px;
+font-size: 16px;
+border: 1px solid #ccc;
+border-radius: 6px;
+box-sizing: border-box;
+}
+
+.calculator-actions {
+margin-top: 20px;
+}
+
+.result-box {
+margin-top: 30px;
+padding: 25px;
+background: #f5f7fa;
+border-radius: 8px;
+text-align: center;
+}
+
+.result-box h2 {
+margin-bottom: 10px;
+}
+
+#containerResult {
+font-size: 25px;
+font-weight: bold;
+margin: 15px 0;
+}
+
+.info-text {
+font-size: 14px;
+color: #555;
+line-height: 1.6;
+}
+
+.error-message {
+display: none;
+margin-top: 15px;
+padding: 12px;
+background: #ffe9e9;
+color: #9b1c1c;
+border-radius: 6px;
+}
+
+.note-box {
+margin-top: 20px;
+padding: 15px;
+background: #f5f7fa;
+border-radius: 6px;
+font-size: 14px;
+line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+
+.calculator-box {
+margin: 20px auto;
+}
+
+}
+
+@media print {
+
+.navbar,
+.hero,
+.calculator-actions,
+footer {
+display: none;
+}
+
+.result-box {
+border: 1px solid #ccc;
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<nav class="navbar">
+
+<div class="logo">
+OpsToolkit
+</div>
+
+
+<ul>
+
+<li>
+<a href="index.html">
+Home
+</a>
+</li>
+
+<li>
+<a href="calculators.html">
+Calculators
+</a>
+</li>
+
+<li>
+<a href="resources.html">
+Resources
+</a>
+</li>
+
+<li>
+<a href="guides.html">
+Guides
+</a>
+</li>
+
+<li>
+<a href="about.html">
+About
+</a>
+</li>
+
+</ul>
+
+</nav>
+
+
+<header class="hero">
+
+<h1>
+Container Recommendation
+</h1>
+
+<p>
+Recommend a suitable container size based on cargo volume.
+</p>
+
+</header>
+
+
+<section class="container">
+
+
+<div class="card calculator-box">
+
+<h2>
+Cargo Planning
+</h2>
+
+<p>
+Enter the estimated cargo volume in cubic meters (CBM).
+The tool will suggest a suitable container size.
+</p>
+
+
+<div class="input-group">
+
+<label for="cargoCBM">
+Cargo Volume (CBM)
+</label>
+
+<input
+type="number"
+id="cargoCBM"
+placeholder="Enter cargo CBM"
+min="0"
+step="any"
+>
+
+</div>
+
+
+<div class="calculator-actions">
+
+<button
+onclick="checkContainer()"
+class="button">
+
+Check Container
+
+</button>
+
+</div>
+
+
+<div id="errorMessage" class="error-message">
+
+Please enter a valid cargo volume.
+
+</div>
+
+
+<div class="result-box">
+
+<h2>
+Recommendation Result
+</h2>
+
+<div id="containerResult">
+—
+</div>
+
+<div id="capacityInfo" class="info-text">
+Enter cargo volume to receive a recommendation.
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="card">
+
+<h2>
+Reference Capacities
+</h2>
+
+<p>
+The following approximate internal volume capacities are
+used for planning:
+</p>
+
+<div class="info-text">
+
+<strong>20ft Dry Container:</strong>
+approximately 33 CBM
+
+<br><br>
+
+<strong>40ft Dry Container:</strong>
+approximately 67 CBM
+
+<br><br>
+
+<strong>40ft High Cube:</strong>
+approximately 76 CBM
+
+</div>
+
+
+<div class="note-box">
+
+<strong>Planning Note:</strong><br>
+
+Container selection should not be based on CBM alone.
+Cargo dimensions, weight, loading arrangement, axle or
+payload limitations, cargo type and actual container
+internal dimensions must also be considered.
+
+</div>
+
+</div>
+
+
+</section>
+
+
+<footer>
+
+<p>
+OpsToolkit
+</p>
+
+<p>
+Digital Operations Tools for Logistics, Transport and Business Efficiency.
+</p>
+
+<p>
+Developed by ASA Digital Solutions &amp; Operations
+</p>
+
+<p>
+© 2026 OpsToolkit. All rights reserved.
+</p>
+
+</footer>
+
+
+<script>
+
+function checkContainer() {
+
+const cargoCBM =
+parseFloat(
+document.getElementById("cargoCBM").value
+);
+
+const result =
+document.getElementById("containerResult");
+
+const capacityInfo =
+document.getElementById("capacityInfo");
+
+const errorMessage =
+document.getElementById("errorMessage");
+
+
+if (
+isNaN(cargoCBM) ||
+cargoCBM <= 0
+) {
+
+result.textContent = "—";
+
+capacityInfo.textContent = "";
+
+errorMessage.style.display = "block";
+
+return;
+
+}
+
+
+errorMessage.style.display = "none";
+
+
+if (cargoCBM <= 33) {
+
+result.textContent =
+"20ft Dry Container";
+
+capacityInfo.innerHTML =
+"Estimated cargo volume: " +
+formatCBM(cargoCBM) +
+" CBM<br>" +
+"Reference capacity: approximately 33 CBM";
+
+}
+
+else if (cargoCBM <= 67) {
+
+result.textContent =
+"40ft Dry Container";
+
+capacityInfo.innerHTML =
+"Estimated cargo volume: " +
+formatCBM(cargoCBM) +
+" CBM<br>" +
+"Reference capacity: approximately 67 CBM";
+
+}
+
+else if (cargoCBM <= 76) {
+
+result.textContent =
+"40ft High Cube Container";
+
+capacityInfo.innerHTML =
+"Estimated cargo volume: " +
+formatCBM(cargoCBM) +
+" CBM<br>" +
+"Reference capacity: approximately 76 CBM";
+
+}
+
+else {
+
+result.textContent =
+"Consider Multiple Containers";
+
+capacityInfo.innerHTML =
+"Estimated cargo volume: " +
+formatCBM(cargoCBM) +
+" CBM<br>" +
+"Cargo exceeds the reference capacity of a 40ft High Cube container.";
+
+}
+
+}
+
+
+function formatCBM(value) {
+
+return value.toLocaleString(
+"en-US",
+{
+maximumFractionDigits: 3
+}
+);
+
+}
+
+</script>
+
+
+</body>
+
+</html>
