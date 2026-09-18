@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="sw">
 
@@ -8,7 +7,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description" content="Container Receiving and Release Form for depot, yard and transport operations.">
+<meta name="description"
+content="Container Receiving and Release Form for depot, yard and transport operations.">
 
 <title>Container Receiving & Release Form | OpsToolkit</title>
 
@@ -50,6 +50,7 @@ textarea {
     font-size: 15px;
     width: 100%;
     box-sizing: border-box;
+    background: white;
 }
 
 textarea {
@@ -86,16 +87,57 @@ textarea {
     .hero,
     .actions,
     footer {
-        display: none;
+        display: none !important;
     }
 
     body {
-        background: white;
+        background: white !important;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container,
+    .form-section {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
     }
 
     .card {
-        box-shadow: none;
-        border: none;
+        box-shadow: none !important;
+        border: none !important;
+        page-break-inside: avoid;
+        margin-bottom: 15px;
+    }
+
+    input,
+    select,
+    textarea {
+        color: black !important;
+        background: white !important;
+        border: 1px solid #999 !important;
+        -webkit-text-fill-color: black !important;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: transparent !important;
+        opacity: 0 !important;
+        -webkit-text-fill-color: transparent !important;
+    }
+
+    select {
+        appearance: none;
+        -webkit-appearance: none;
+    }
+
+    textarea {
+        min-height: 110px;
+        resize: none;
+    }
+
+    label {
+        color: black !important;
     }
 
 }
@@ -104,9 +146,7 @@ textarea {
 
 </head>
 
-
 <body>
-
 
 <nav class="navbar">
 
@@ -130,7 +170,6 @@ OpsToolkit
 
 </nav>
 
-
 <header class="hero">
 
 <h1>Container Receiving &amp; Release Form</h1>
@@ -141,9 +180,7 @@ Practical form for container receiving, release and yard operations.
 
 </header>
 
-
 <section class="container form-section">
-
 
 <!-- TRANSACTION INFORMATION -->
 
@@ -155,7 +192,6 @@ Transaction Information
 
 <div class="form-grid">
 
-
 <div class="form-group">
 
 <label>Transaction Type</label>
@@ -163,15 +199,12 @@ Transaction Information
 <select>
 
 <option value="">Select</option>
-
 <option>Container Receiving</option>
-
 <option>Container Release</option>
 
 </select>
 
 </div>
-
 
 <div class="form-group">
 
@@ -181,15 +214,13 @@ Transaction Information
 
 </div>
 
-
 <div class="form-group">
 
 <label>Container Number</label>
 
-<input type="text" placeholder="e.g. ABCD1234567">
+<input type="text">
 
 </div>
-
 
 <div class="form-group">
 
@@ -198,34 +229,23 @@ Transaction Information
 <select>
 
 <option value="">Select</option>
-
 <option>20ft Dry Van</option>
-
 <option>40ft Dry Van</option>
-
 <option>40ft High Cube</option>
-
 <option>20ft Open Top</option>
-
 <option>40ft Open Top</option>
-
 <option>20ft Flat Rack</option>
-
 <option>40ft Flat Rack</option>
-
 <option>20ft Reefer</option>
-
 <option>40ft Reefer</option>
 
 </select>
 
 </div>
 
-
 </div>
 
 </div>
-
 
 <!-- YARD AND TRANSPORT -->
 
@@ -237,47 +257,41 @@ Yard &amp; Transport Information
 
 <div class="form-grid">
 
-
 <div class="form-group">
 
 <label>Yard / Depot Location</label>
 
-<input type="text" placeholder="Enter yard or depot">
+<input type="text">
 
 </div>
-
 
 <div class="form-group">
 
 <label>Truck Registration Number</label>
 
-<input type="text" placeholder="e.g. T 123 ABC">
+<input type="text">
 
 </div>
-
 
 <div class="form-group">
 
 <label>Driver Name</label>
 
-<input type="text" placeholder="Enter driver name">
+<input type="text">
 
 </div>
-
 
 <div class="form-group">
 
 <label>Customer / Company</label>
 
-<input type="text" placeholder="Enter customer or company">
-
-</div>
-
+<input type="text">
 
 </div>
 
 </div>
 
+</div>
 
 <!-- CONTAINER CONDITION -->
 
@@ -289,7 +303,6 @@ Container Condition
 
 <div class="form-grid">
 
-
 <div class="form-group">
 
 <label>Overall Condition</label>
@@ -297,19 +310,14 @@ Container Condition
 <select>
 
 <option value="">Select</option>
-
 <option>Good</option>
-
 <option>Minor Damage</option>
-
 <option>Major Damage</option>
-
 <option>Requires Repair</option>
 
 </select>
 
 </div>
-
 
 <div class="form-group">
 
@@ -318,31 +326,25 @@ Container Condition
 <select>
 
 <option value="">Select</option>
-
 <option>Clean</option>
-
 <option>Requires Cleaning</option>
-
 <option>Dirty</option>
 
 </select>
 
 </div>
 
-
 <div class="form-group full">
 
 <label>Damage / Condition Remarks</label>
 
-<textarea placeholder="Enter damage details, defects or other observations"></textarea>
-
-</div>
-
+<textarea></textarea>
 
 </div>
 
 </div>
 
+</div>
 
 <!-- CONFIRMATION -->
 
@@ -354,15 +356,13 @@ Receiving / Release Confirmation
 
 <div class="form-grid">
 
-
 <div class="form-group">
 
 <label>Received / Released By</label>
 
-<input type="text" placeholder="Enter staff name">
+<input type="text">
 
 </div>
-
 
 <div class="form-group">
 
@@ -371,45 +371,38 @@ Receiving / Release Confirmation
 <select>
 
 <option value="">Select</option>
-
 <option>Confirmed</option>
-
 <option>Not Confirmed</option>
 
 </select>
 
 </div>
 
-
 <div class="form-group">
 
 <label>Staff Signature</label>
 
-<input type="text" placeholder="Signature">
+<input type="text">
 
 </div>
-
 
 <div class="form-group">
 
 <label>Driver Signature</label>
 
-<input type="text" placeholder="Signature">
+<input type="text">
 
 </div>
-
 
 <div class="form-group full">
 
 <label>Additional Remarks</label>
 
-<textarea placeholder="Enter any additional information"></textarea>
+<textarea></textarea>
 
 </div>
 
-
 </div>
-
 
 <div class="actions">
 
@@ -417,25 +410,19 @@ Receiving / Release Confirmation
 Print / Save as PDF
 </button>
 
-
 <a href="templates.html" class="button">
 Back to Templates
 </a>
 
 </div>
 
-
 </div>
-
 
 </section>
 
-
 <footer>
 
-<p>
-OpsToolkit
-</p>
+<p>OpsToolkit</p>
 
 <p>
 Digital Operations Tools for Logistics, Transport and Business Efficiency.
@@ -451,8 +438,6 @@ Developed by ASA Digital Solutions &amp; Operations
 
 </footer>
 
-
 </body>
 
 </html>
-```
