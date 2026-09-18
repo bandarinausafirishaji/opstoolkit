@@ -24,7 +24,7 @@ content="container tracking, shipment tracking, logistics tracking, container nu
 <style>
 
 .tracking-box {
-    max-width: 850px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
@@ -85,6 +85,14 @@ content="container tracking, shipment tracking, logistics tracking, container nu
     font-weight: 600;
 }
 
+.eta-box {
+    margin-top: 12px;
+    padding: 15px;
+    border-radius: 6px;
+    background: #f4f8f4;
+    font-weight: 600;
+}
+
 .error-box {
     margin-top: 20px;
     padding: 15px;
@@ -135,6 +143,12 @@ content="container tracking, shipment tracking, logistics tracking, container nu
 
 .event-type {
     font-size: 12px;
+    margin-top: 5px;
+}
+
+.event-code {
+    font-size: 12px;
+    color: #666;
     margin-top: 5px;
 }
 
@@ -286,7 +300,46 @@ class="status-box"
 </div>
 
 
+<div
+id="etaBox"
+class="eta-box"
+>
+</div>
+
+
 <div class="tracking-grid">
+
+
+<div class="tracking-item">
+
+<span class="tracking-label">
+Reference Number
+</span>
+
+<span
+id="identifier"
+class="tracking-value"
+>
+-
+</span>
+
+</div>
+
+
+<div class="tracking-item">
+
+<span class="tracking-label">
+Shipment Type
+</span>
+
+<span
+id="shipmentType"
+class="tracking-value"
+>
+-
+</span>
+
+</div>
 
 
 <div class="tracking-item">
@@ -296,7 +349,7 @@ Container Number
 </span>
 
 <span
-id="identifier"
+id="containerNumber"
 class="tracking-value"
 >
 -
@@ -436,7 +489,7 @@ class="tracking-value"
 <div class="tracking-item">
 
 <span class="tracking-label">
-IMO
+Vessel IMO
 </span>
 
 <span
@@ -551,6 +604,18 @@ class="tracking-value"
 <div class="events">
 
 <h2 class="section-title">
+Container Details
+</h2>
+
+<div id="containersList">
+</div>
+
+</div>
+
+
+<div class="events">
+
+<h2 class="section-title">
 Movement History
 </h2>
 
@@ -654,31 +719,6 @@ function formatDate(dateString) {
 }
 
 
-function clearResult() {
-
-    document.getElementById(
-        "trackingResult"
-    ).style.display = "none";
-
-    document.getElementById(
-        "errorBox"
-    ).style.display = "none";
-
-    document.getElementById(
-        "loadingBox"
-    ).style.display = "none";
-
-    document.getElementById(
-        "eventsList"
-    ).innerHTML = "";
-
-    document.getElementById(
-        "vesselList"
-    ).innerHTML = "";
-
-}
-
-
 function setValue(id, value) {
 
     const element =
@@ -701,6 +741,35 @@ function setValue(id, value) {
         element.textContent = value;
 
     }
+
+}
+
+
+function clearResult() {
+
+    document.getElementById(
+        "trackingResult"
+    ).style.display = "none";
+
+    document.getElementById(
+        "errorBox"
+    ).style.display = "none";
+
+    document.getElementById(
+        "loadingBox"
+    ).style.display = "none";
+
+    document.getElementById(
+        "eventsList"
+    ).innerHTML = "";
+
+    document.getElementById(
+        "vesselList"
+    ).innerHTML = "";
+
+    document.getElementById(
+        "containersList"
+    ).innerHTML = "";
 
 }
 
@@ -806,6 +875,7 @@ function trackShipment() {
         }
     )
 
+
     .then(function(response) {
 
         return response
@@ -910,65 +980,70 @@ function trackShipment() {
 
 
         setValue(
+            "shipmentType",
+            data.shipment_type
+        );
+
+
+        setValue(
+            "containerNumber",
+            firstContainer.container_number ||
+            data.reference_number ||
+            reference
+        );
+
+
+        setValue(
             "equipment",
-            firstContainer.size_type ||
-            "-"
+            firstContainer.size_type
         );
 
 
         setValue(
             "containerDescription",
-            firstContainer.container_description ||
-            "-"
+            firstContainer.container_description
         );
 
 
         setValue(
             "isoCode",
-            firstContainer.iso_code ||
-            "-"
+            firstContainer.iso_code
         );
 
 
         setValue(
             "carrier",
-            data.sealine_name ||
-            "-"
+            data.sealine_name
         );
 
 
         setValue(
             "carrierCode",
-            data.sealine ||
-            "-"
+            data.sealine
         );
 
 
         setValue(
             "origin",
-            data.origin ||
-            "-"
+            data.origin
         );
 
 
         setValue(
             "destination",
-            data.destination ||
-            "-"
+            data.destination
         );
 
 
         setValue(
             "vessel",
-            firstVessel.vessel ||
-            "-"
+            firstVessel.vessel
         );
 
 
         setValue(
             "imo",
-            firstVessel.imo ||
-            "-"
+            firstVessel.imo
         );
 
 
@@ -1010,12 +1085,38 @@ function trackShipment() {
         );
 
 
-        let journeyStatus =
+        let journeyStatus;
+
+
+        if (
             data.is_active === true
-                ? "Active"
-                : data.journey_ended_at
-                    ? "Completed"
-                    : "In Progress";
+        ) {
+
+            journeyStatus =
+                "Active";
+
+        } else if (
+            data.journey_ended_at
+        ) {
+
+            journeyStatus =
+                "Completed";
+
+        } else if (
+            String(data.status || "")
+                .toUpperCase()
+                .includes("DELIVER")
+        ) {
+
+            journeyStatus =
+                "Completed";
+
+        } else {
+
+            journeyStatus =
+                "In Progress";
+
+        }
 
 
         if (
@@ -1043,6 +1144,172 @@ function trackShipment() {
             );
 
 
+        let etaText =
+            "ETA: " +
+            (
+                data.eta
+                    ? formatDate(data.eta)
+                    : "-"
+            );
+
+
+        if (
+            data.is_delayed === true
+        ) {
+
+            etaText +=
+                " — Delayed";
+
+        }
+
+
+        document.getElementById(
+            "etaBox"
+        ).textContent =
+            etaText;
+
+
+        const containersList =
+            document.getElementById(
+                "containersList"
+            );
+
+
+        containersList.innerHTML =
+            "";
+
+
+        if (
+            containers.length > 0
+        ) {
+
+
+            containers.forEach(
+                function(container) {
+
+
+                    const box =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    box.className =
+                        "event";
+
+
+                    const title =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    title.className =
+                        "event-title";
+
+
+                    title.textContent =
+                        container.container_number ||
+                        "Container";
+
+
+                    const details =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    details.className =
+                        "event-location";
+
+
+                    const detailsParts =
+                        [];
+
+
+                    if (
+                        container.size_type
+                    ) {
+
+                        detailsParts.push(
+                            "Type: " +
+                            container.size_type
+                        );
+
+                    }
+
+
+                    if (
+                        container.container_description
+                    ) {
+
+                        detailsParts.push(
+                            container.container_description
+                        );
+
+                    }
+
+
+                    if (
+                        container.iso_code
+                    ) {
+
+                        detailsParts.push(
+                            "ISO: " +
+                            container.iso_code
+                        );
+
+                    }
+
+
+                    if (
+                        container.status
+                    ) {
+
+                        detailsParts.push(
+                            "Status: " +
+                            formatStatus(
+                                container.status
+                            )
+                        );
+
+                    }
+
+
+                    details.textContent =
+                        detailsParts.length > 0
+                            ? detailsParts.join(" | ")
+                            : "Container details not published";
+
+
+                    box.appendChild(
+                        title
+                    );
+
+
+                    box.appendChild(
+                        details
+                    );
+
+
+                    containersList.appendChild(
+                        box
+                    );
+
+
+                }
+            );
+
+
+        } else {
+
+
+            containersList.innerHTML =
+                "<p>No additional container details were published.</p>";
+
+        }
+
+
         const eventsList =
             document.getElementById(
                 "eventsList"
@@ -1053,7 +1320,9 @@ function trackShipment() {
             "";
 
 
-        if (events.length > 0) {
+        if (
+            events.length > 0
+        ) {
 
 
             events
@@ -1155,6 +1424,66 @@ function trackShipment() {
                         }
 
 
+                        const code =
+                            document.createElement(
+                                "div"
+                            );
+
+
+                        code.className =
+                            "event-code";
+
+
+                        const codeParts =
+                            [];
+
+
+                        if (
+                            event.event_code
+                        ) {
+
+                            codeParts.push(
+                                "Event Code: " +
+                                event.event_code
+                            );
+
+                        }
+
+
+                        if (
+                            event.status
+                        ) {
+
+                            codeParts.push(
+                                "Status: " +
+                                event.status
+                            );
+
+                        }
+
+
+                        if (
+                            event.transport_type
+                        ) {
+
+                            codeParts.push(
+                                "Transport: " +
+                                event.transport_type
+                            );
+
+                        }
+
+
+                        if (
+                            codeParts.length > 0
+                        ) {
+
+                            code.textContent =
+                                codeParts.join(" | ");
+
+                        }
+
+
                         eventBox.appendChild(
                             title
                         );
@@ -1173,6 +1502,17 @@ function trackShipment() {
                         eventBox.appendChild(
                             type
                         );
+
+
+                        if (
+                            codeParts.length > 0
+                        ) {
+
+                            eventBox.appendChild(
+                                code
+                            );
+
+                        }
 
 
                         eventsList.appendChild(
@@ -1203,7 +1543,9 @@ function trackShipment() {
             "";
 
 
-        if (vessels.length > 0) {
+        if (
+            vessels.length > 0
+        ) {
 
 
             vessels.forEach(
@@ -1245,34 +1587,64 @@ function trackShipment() {
                         "event-location";
 
 
-                    let details =
-                        "";
+                    const vesselParts =
+                        [];
 
 
-                    if (vessel.imo) {
+                    if (
+                        vessel.imo
+                    ) {
 
-                        details +=
+                        vesselParts.push(
                             "IMO: " +
-                            vessel.imo;
+                            vessel.imo
+                        );
 
                     }
 
 
-                    if (vessel.mmsi) {
+                    if (
+                        vessel.mmsi
+                    ) {
 
-                        details +=
-                            details
-                                ? " | MMSI: " +
-                                  vessel.mmsi
-                                : "MMSI: " +
-                                  vessel.mmsi;
+                        vesselParts.push(
+                            "MMSI: " +
+                            vessel.mmsi
+                        );
+
+                    }
+
+
+                    if (
+                        vessel.vessel_id !==
+                        null &&
+                        vessel.vessel_id !==
+                        undefined
+                    ) {
+
+                        vesselParts.push(
+                            "Vessel ID: " +
+                            vessel.vessel_id
+                        );
+
+                    }
+
+
+                    if (
+                        vessel.is_current === 1
+                    ) {
+
+                        vesselParts.push(
+                            "Current Vessel"
+                        );
 
                     }
 
 
                     vesselDetails.textContent =
-                        details ||
-                        "Vessel details not published";
+                        vesselParts.length > 0
+                            ? vesselParts.join(" | ")
+                            : "Vessel details not published";
 
 
                     vesselBox.appendChild(
@@ -1336,7 +1708,6 @@ function trackShipment() {
         console.error(
             errorObject
         );
-
 
     });
 
