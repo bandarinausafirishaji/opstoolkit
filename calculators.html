@@ -7,9 +7,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description" content="OpsToolkit logistics calculators including TEU, CBM, container planning and logistics unit conversions.">
+<meta name="description" content="OpsToolkit logistics calculators including TEU, CBM, container planning, unit conversions and currency cost conversion.">
 
-<meta name="keywords" content="TEU calculator, CBM calculator, logistics converter, container calculator">
+<meta name="keywords" content="TEU calculator, CBM calculator, logistics converter, container calculator, currency converter, logistics cost converter">
 
 <title>OpsToolkit | Logistics Calculators</title>
 
@@ -45,9 +45,6 @@ OpsToolkit
 </nav>
 
 
-
-
-
 <header class="hero">
 
 <h1>
@@ -61,12 +58,7 @@ Professional tools for container, cargo and operational calculations.
 </header>
 
 
-
-
-
-
 <section class="container">
-
 
 
 <div class="card">
@@ -92,17 +84,11 @@ Calculate TEU
 </div>
 
 
-
-
-
-
-
 <div class="card">
 
 <h2>CBM Calculator</h2>
 
 <p>Calculate cargo volume in cubic meters.</p>
-
 
 <input type="number" id="length" placeholder="Length (m)">
 
@@ -114,22 +100,15 @@ Calculate TEU
 
 <input type="number" id="height" placeholder="Height (m)">
 
-
 <br><br>
 
 <button onclick="calculateCBM()" class="button">
 Calculate CBM
 </button>
 
-
 <h3 id="cbmResult"></h3>
 
 </div>
-
-
-
-
-
 
 
 <div class="card">
@@ -138,160 +117,120 @@ Calculate CBM
 
 <p>Recommend container size based on cargo volume.</p>
 
-
 <input type="number" id="cargoCBM" placeholder="Cargo CBM">
 
 <br><br>
-
 
 <button onclick="checkContainer()" class="button">
 Check Container
 </button>
 
-
 <h3 id="containerResult"></h3>
-
 
 </div>
 
 
-
-
-
-
-
 <div class="card">
 
-
 <h2>Logistics Unit Converter</h2>
-
 
 <p>
 Convert common logistics measurement units.
 </p>
 
-
-
 <input type="number" id="unitValue" placeholder="Enter Value">
 
 
-
 <h3>Weight Conversion</h3>
-
 
 <button onclick="kgToTon()" class="button">
 KG → Tons
 </button>
 
-
 <button onclick="tonToKg()" class="button">
 Tons → KG
 </button>
 
-
 <button onclick="kgToLb()" class="button">
 KG → LB
 </button>
-
 
 <button onclick="lbToKg()" class="button">
 LB → KG
 </button>
 
 
-
-
-
-
-
 <h3>Length Conversion</h3>
-
 
 <button onclick="meterToCm()" class="button">
 Meter → CM
 </button>
 
-
 <button onclick="cmToMeter()" class="button">
 CM → Meter
 </button>
 
-
 <button onclick="meterToFeet()" class="button">
 Meter → Feet
 </button>
-
 
 <button onclick="feetToMeter()" class="button">
 Feet → Meter
 </button>
 
 
-
-
-
-
-
 <h3>Volume Conversion</h3>
-
 
 <button onclick="cbmToCubicFeet()" class="button">
 CBM → Cubic Feet
 </button>
 
-
 <button onclick="cubicFeetToCBM()" class="button">
 Cubic Feet → CBM
 </button>
 
-
-
 <h3 id="unitResult"></h3>
-
-
 
 </div>
 
 
+<div class="card">
 
+<h2>Currency &amp; Cost Converter</h2>
 
+<p>
+Convert international currencies for logistics, transport and business cost calculations.
+</p>
 
+<a href="currency-converter.html" class="button">
+Open Currency Converter
+</a>
+
+</div>
 
 
 </section>
 
 
-
-
-
-
-
 <footer>
-
 
 <p>
 OpsToolkit
 </p>
 
-
 <p>
 Digital Operations Tools for Logistics, Transport and Business Efficiency.
 </p>
 
-
 <p>
-Developed by ASA Digital Solutions & Operations
+Developed by ASA Digital Solutions &amp; Operations
 </p>
-
 
 <p>
 © 2026 OpsToolkit. All rights reserved.
 </p>
 
-
 </footer>
-
-
 
 
 <script src="script.js"></script>
