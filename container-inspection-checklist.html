@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sw">
 
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description" content="Container Inspection Checklist for empty container inspection and operational condition assessment.">
+<meta name="description"
+content="Container Inspection Checklist for empty container inspection and operational condition assessment.">
 
 <title>Container Inspection Checklist | OpsToolkit</title>
 
@@ -47,16 +47,18 @@ label {
 input,
 select,
 textarea {
+    width: 100%;
+    box-sizing: border-box;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 15px;
-    box-sizing: border-box;
-    width: 100%;
+    background: white;
 }
 
 textarea {
-    min-height: 90px;
+    min-height: 100px;
+    resize: vertical;
 }
 
 .checklist {
@@ -74,6 +76,12 @@ textarea {
 
 .checklist th {
     background: #f2f4f7;
+}
+
+.checklist input {
+    border: none;
+    border-radius: 0;
+    background: transparent;
 }
 
 .actions {
@@ -101,44 +109,64 @@ textarea {
     .hero,
     .actions,
     footer {
-        display: none;
+        display: none !important;
     }
 
     body {
-        background: white;
+        background: white !important;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container,
+    .form-section {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
     }
 
     .card {
-        box-shadow: none;
-        border: none;
+        box-shadow: none !important;
+        border: none !important;
+        page-break-inside: avoid;
+        margin-bottom: 15px;
     }
 
     input,
     select,
     textarea {
-        border: 1px solid #999;
-        background: white;
-        color: black;
+        color: black !important;
+        background: white !important;
+        border: 1px solid #999 !important;
+        -webkit-text-fill-color: black !important;
     }
 
     input::placeholder,
     textarea::placeholder {
         color: transparent !important;
         opacity: 0 !important;
-    }
-
-    select {
-        appearance: none;
-        -webkit-appearance: none;
+        -webkit-text-fill-color: transparent !important;
     }
 
     .checklist input {
-        border: none;
+        border: none !important;
         min-height: 25px;
     }
 
+    .checklist select {
+        appearance: none;
+        -webkit-appearance: none;
+        border: none !important;
+        padding: 0;
+    }
+
     textarea {
-        min-height: 100px;
+        min-height: 110px;
+        resize: none;
+    }
+
+    label {
+        color: black !important;
     }
 
 }
@@ -158,13 +186,9 @@ OpsToolkit
 <ul>
 
 <li><a href="index.html">Home</a></li>
-
 <li><a href="calculators.html">Calculators</a></li>
-
 <li><a href="resources.html">Resources</a></li>
-
 <li><a href="guides.html">Guides</a></li>
-
 <li><a href="about.html">About</a></li>
 
 </ul>
@@ -193,7 +217,7 @@ Practical checklist for empty shipping container inspection.
 
 <label>Container Number</label>
 
-<input type="text" placeholder="e.g. ABCD1234567">
+<input type="text">
 
 </div>
 
@@ -204,23 +228,14 @@ Practical checklist for empty shipping container inspection.
 <select>
 
 <option value="">Select</option>
-
 <option>20ft Dry Van</option>
-
 <option>40ft Dry Van</option>
-
 <option>40ft High Cube</option>
-
 <option>20ft Open Top</option>
-
 <option>40ft Open Top</option>
-
 <option>20ft Flat Rack</option>
-
 <option>40ft Flat Rack</option>
-
 <option>20ft Reefer</option>
-
 <option>40ft Reefer</option>
 
 </select>
@@ -239,7 +254,7 @@ Practical checklist for empty shipping container inspection.
 
 <label>Inspection Location</label>
 
-<input type="text" placeholder="Enter location">
+<input type="text">
 
 </div>
 
@@ -258,9 +273,7 @@ Practical checklist for empty shipping container inspection.
 <tr>
 
 <th>Inspection Point</th>
-
 <th>Condition</th>
-
 <th>Remarks</th>
 
 </tr>
@@ -278,9 +291,7 @@ Practical checklist for empty shipping container inspection.
 <select>
 
 <option>Good</option>
-
 <option>Minor Damage</option>
-
 <option>Major Damage</option>
 
 </select>
@@ -288,7 +299,7 @@ Practical checklist for empty shipping container inspection.
 </td>
 
 <td>
-<input type="text" placeholder="Remarks">
+<input type="text">
 </td>
 
 </tr>
@@ -302,9 +313,7 @@ Practical checklist for empty shipping container inspection.
 <select>
 
 <option>Good</option>
-
 <option>Minor Damage</option>
-
 <option>Major Damage</option>
 
 </select>
@@ -312,7 +321,7 @@ Practical checklist for empty shipping container inspection.
 </td>
 
 <td>
-<input type="text" placeholder="Remarks">
+<input type="text">
 </td>
 
 </tr>
@@ -326,9 +335,7 @@ Practical checklist for empty shipping container inspection.
 <select>
 
 <option>Good</option>
-
 <option>Minor Damage</option>
-
 <option>Major Damage</option>
 
 </select>
@@ -336,7 +343,7 @@ Practical checklist for empty shipping container inspection.
 </td>
 
 <td>
-<input type="text" placeholder="Remarks">
+<input type="text">
 </td>
 
 </tr>
@@ -350,9 +357,7 @@ Practical checklist for empty shipping container inspection.
 <select>
 
 <option>Good</option>
-
 <option>Minor Damage</option>
-
 <option>Major Damage</option>
 
 </select>
@@ -360,7 +365,7 @@ Practical checklist for empty shipping container inspection.
 </td>
 
 <td>
-<input type="text" placeholder="Remarks">
+<input type="text">
 </td>
 
 </tr>
@@ -374,9 +379,7 @@ Practical checklist for empty shipping container inspection.
 <select>
 
 <option>Good</option>
-
 <option>Minor Damage</option>
-
 <option>Major Damage</option>
 
 </select>
@@ -384,7 +387,7 @@ Practical checklist for empty shipping container inspection.
 </td>
 
 <td>
-<input type="text" placeholder="Remarks">
+<input type="text">
 </td>
 
 </tr>
@@ -398,9 +401,7 @@ Practical checklist for empty shipping container inspection.
 <select>
 
 <option>Good</option>
-
 <option>Minor Damage</option>
-
 <option>Major Damage</option>
 
 </select>
@@ -408,7 +409,7 @@ Practical checklist for empty shipping container inspection.
 </td>
 
 <td>
-<input type="text" placeholder="Remarks">
+<input type="text">
 </td>
 
 </tr>
@@ -422,9 +423,7 @@ Practical checklist for empty shipping container inspection.
 <select>
 
 <option>Present</option>
-
 <option>Missing</option>
-
 <option>Not Legible</option>
 
 </select>
@@ -432,7 +431,7 @@ Practical checklist for empty shipping container inspection.
 </td>
 
 <td>
-<input type="text" placeholder="Remarks">
+<input type="text">
 </td>
 
 </tr>
@@ -446,9 +445,7 @@ Practical checklist for empty shipping container inspection.
 <select>
 
 <option>Clean</option>
-
 <option>Requires Cleaning</option>
-
 <option>Dirty</option>
 
 </select>
@@ -456,7 +453,7 @@ Practical checklist for empty shipping container inspection.
 </td>
 
 <td>
-<input type="text" placeholder="Remarks">
+<input type="text">
 </td>
 
 </tr>
@@ -471,7 +468,7 @@ Practical checklist for empty shipping container inspection.
 
 <h2>General Remarks</h2>
 
-<textarea placeholder="Enter additional inspection findings, damage details or other observations."></textarea>
+<textarea></textarea>
 
 <div class="form-grid" style="margin-top:20px;">
 
@@ -479,7 +476,7 @@ Practical checklist for empty shipping container inspection.
 
 <label>Inspector Name</label>
 
-<input type="text" placeholder="Enter inspector name">
+<input type="text">
 
 </div>
 
@@ -487,7 +484,7 @@ Practical checklist for empty shipping container inspection.
 
 <label>Signature</label>
 
-<input type="text" placeholder="Inspector signature">
+<input type="text">
 
 </div>
 
@@ -513,11 +510,17 @@ Back to Resources
 
 <p>OpsToolkit</p>
 
-<p>Digital Operations Tools for Logistics, Transport and Business Efficiency.</p>
+<p>
+Digital Operations Tools for Logistics, Transport and Business Efficiency.
+</p>
 
-<p>Developed by ASA Digital Solutions & Operations</p>
+<p>
+Developed by ASA Digital Solutions & Operations
+</p>
 
-<p>© 2026 OpsToolkit. All rights reserved.</p>
+<p>
+© 2026 OpsToolkit. All rights reserved.
+</p>
 
 </footer>
 
