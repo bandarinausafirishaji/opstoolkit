@@ -4,20 +4,27 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description" content="OpsToolkit Customs Duty and Tax Estimator with HS Code lookup for preliminary import cost planning.">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-<meta name="keywords" content="HS Code lookup, customs duty calculator, customs tax estimator, import duty calculator, EAC customs, Tanzania customs">
+<meta name="description"
+      content="OpsToolkit Customs Duty and Tax Estimator with HS Code lookup for preliminary import cost planning.">
 
-<title>OpsToolkit | Customs Duty & Tax Estimator</title>
+<meta name="keywords"
+      content="HS Code lookup, customs duty calculator, import duty calculator, EAC customs, Tanzania customs, customs estimator">
+
+<title>
+OpsToolkit | Customs Duty & Tax Estimator
+</title>
 
 <link rel="stylesheet" href="style.css">
+
 
 <style>
 
 /* ================================
-   CUSTOMS ESTIMATOR
+   ESTIMATOR CONTAINER
 ================================ */
 
 .estimator-box {
@@ -38,33 +45,30 @@
 }
 
 
-.estimator-box h2 {
-
-    margin-bottom: 10px;
-
-}
-
+/* ================================
+   INTRO
+================================ */
 
 .intro {
 
     color: #555;
 
-    margin-bottom: 25px;
-
     line-height: 1.6;
+
+    margin-bottom: 25px;
 
 }
 
 
 /* ================================
-   HS CODE LOOKUP
+   HS LOOKUP
 ================================ */
 
 .lookup-box {
 
     margin-bottom: 30px;
 
-    padding: 20px;
+    padding: 22px;
 
     background: #f4f7fb;
 
@@ -130,14 +134,14 @@
 }
 
 
-.tanzania-button {
+.lookup-button.secondary {
 
     background: #444;
 
 }
 
 
-.tanzania-button:hover {
+.lookup-button.secondary:hover {
 
     background: #222;
 
@@ -209,9 +213,9 @@
 
     margin-top: 6px;
 
-    color: #777;
-
     font-size: 13px;
+
+    color: #777;
 
     line-height: 1.5;
 
@@ -219,7 +223,7 @@
 
 
 /* ================================
-   CALCULATE BUTTON
+   BUTTON
 ================================ */
 
 .calculate-button {
@@ -236,7 +240,7 @@
 
     background: #0b3d91;
 
-    color: white;
+    color: #ffffff;
 
     font-size: 16px;
 
@@ -328,6 +332,28 @@
 .result-item span {
 
     font-weight: 600;
+
+}
+
+
+/* ================================
+   IMPORTANT TOTAL
+================================ */
+
+.result-item.highlight {
+
+    background: #eef4ff;
+
+    border-color: #0b3d91;
+
+}
+
+
+.result-item.highlight span {
+
+    color: #0b3d91;
+
+    font-size: 18px;
 
 }
 
@@ -440,23 +466,33 @@ OpsToolkit
 <ul>
 
 <li>
-<a href="index.html">Home</a>
+<a href="index.html">
+Home
+</a>
 </li>
 
 <li>
-<a href="calculators.html">Calculators</a>
+<a href="calculators.html">
+Calculators
+</a>
 </li>
 
 <li>
-<a href="resources.html">Resources</a>
+<a href="resources.html">
+Resources
+</a>
 </li>
 
 <li>
-<a href="guides.html">Guides</a>
+<a href="guides.html">
+Guides
+</a>
 </li>
 
 <li>
-<a href="about.html">About</a>
+<a href="about.html">
+About
+</a>
 </li>
 
 </ul>
@@ -495,7 +531,7 @@ Import Cost Estimator
 
 <p class="intro">
 
-Use the official tariff lookup to identify the applicable HS Code and tariff information before preparing a preliminary import cost estimate.
+Use the official customs tariff information to identify the applicable HS Code and duty rate before calculating a preliminary import cost estimate.
 
 </p>
 
@@ -506,6 +542,7 @@ Use the official tariff lookup to identify the applicable HS Code and tariff inf
 
 <div class="lookup-box">
 
+
 <h3>
 HS Code Lookup
 </h3>
@@ -513,7 +550,7 @@ HS Code Lookup
 
 <p>
 
-Search the official customs tariff before entering the HS Code below. You can search using a tariff code or a product keyword.
+Search the official EAC Customs Tariff using a product keyword or tariff code. Confirm the applicable tariff information before entering the duty rate into this estimator.
 
 </p>
 
@@ -534,13 +571,13 @@ Search EAC Customs Tariff
 
 
 <a
-href="https://trade.tanzania.go.tz/"
+href="https://www.eac.int/online-tariff-duty-calc"
 target="_blank"
 rel="noopener noreferrer"
-class="lookup-button tanzania-button"
+class="lookup-button secondary"
 >
 
-Search Tanzania Trade Portal
+Open EAC Duty Calculator
 
 </a>
 
@@ -550,15 +587,16 @@ Search Tanzania Trade Portal
 
 <p class="source-note">
 
-EAC provides an official Customs Tariff Search and Customs Duty Estimator. Tanzania Trade Portal also provides HS Code search and customs information.
+Official EAC tariff tools are provided for customs tariff search and duty estimation. OpsToolkit provides this separate preliminary estimator for planning purposes.
 
 </p>
+
 
 </div>
 
 
 <!-- ================================
-     FORM
+     INPUT FORM
 ================================ -->
 
 <div class="form-grid">
@@ -579,19 +617,20 @@ HS Code
 type="text"
 id="hsCode"
 placeholder="Example: 8517.13"
+autocomplete="off"
 >
 
 
 <span class="form-help">
 
-Enter the HS Code identified from the official tariff source.
+Enter the HS Code confirmed from the official tariff source.
 
 </span>
 
 </div>
 
 
-<!-- COUNTRY -->
+<!-- ORIGIN -->
 
 <div class="form-group">
 
@@ -606,6 +645,7 @@ Country of Origin
 type="text"
 id="origin"
 placeholder="Example: China"
+autocomplete="off"
 >
 
 </div>
@@ -645,7 +685,7 @@ GBP — British Pound
 </div>
 
 
-<!-- DATE -->
+<!-- SIMULATION DATE -->
 
 <div class="form-group">
 
@@ -766,7 +806,7 @@ Applicable Duty Rate (%)
 <input
 type="number"
 id="dutyRate"
-placeholder="Enter the rate confirmed from official tariff information"
+placeholder="Enter confirmed tariff rate"
 min="0"
 step="0.01"
 >
@@ -774,7 +814,7 @@ step="0.01"
 
 <span class="form-help">
 
-Do not guess the duty rate. Confirm it from the applicable official tariff information.
+Enter the rate confirmed from the applicable official tariff. Do not guess the rate.
 
 </span>
 
@@ -789,6 +829,7 @@ Do not guess the duty rate. Confirm it from the applicable official tariff infor
 ================================ -->
 
 <button
+type="button"
 class="calculate-button"
 onclick="calculateEstimate()"
 >
@@ -799,7 +840,7 @@ Calculate Preliminary Estimate
 
 
 <!-- ================================
-     RESULT
+     RESULTS
 ================================ -->
 
 <div
@@ -839,6 +880,19 @@ Country of Origin
 </strong>
 
 <span id="resultOrigin">
+-
+</span>
+
+</div>
+
+
+<div class="result-item">
+
+<strong>
+Simulation Date
+</strong>
+
+<span id="resultDate">
 -
 </span>
 
@@ -936,7 +990,7 @@ Estimated Import Duty
 </div>
 
 
-<div class="result-item">
+<div class="result-item highlight">
 
 <strong>
 Estimated Total Before Other Taxes
@@ -969,7 +1023,7 @@ This calculator provides an indicative estimate for planning purposes only. It i
 
 <div class="source-note">
 
-Tariff classification and applicable rates should be verified against the relevant official customs tariff before making financial or import decisions.
+Tariff classification and applicable rates should always be verified against the relevant official customs tariff before making financial or import decisions.
 
 </div>
 
@@ -1007,12 +1061,40 @@ Developed by ASA Digital Solutions &amp; Operations
 </footer>
 
 
-<!-- ================================
-     JAVASCRIPT
-================================ -->
-
 <script>
 
+/* ================================
+   SET TODAY AS DEFAULT DATE
+================================ */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const dateField =
+            document.getElementById(
+                "simulationDate"
+            );
+
+        if (!dateField.value) {
+
+            const today =
+                new Date()
+                .toISOString()
+                .split("T")[0];
+
+            dateField.value =
+                today;
+
+        }
+
+    }
+);
+
+
+/* ================================
+   CALCULATE ESTIMATE
+================================ */
 
 function calculateEstimate() {
 
@@ -1034,6 +1116,12 @@ function calculateEstimate() {
     const currency =
         document
         .getElementById("currency")
+        .value;
+
+
+    const simulationDate =
+        document
+        .getElementById("simulationDate")
         .value;
 
 
@@ -1119,7 +1207,7 @@ function calculateEstimate() {
 
 
     /* ================================
-       CUSTOMS VALUE
+       PRELIMINARY CUSTOMS VALUE
     ================================= */
 
 
@@ -1141,7 +1229,7 @@ function calculateEstimate() {
 
 
     /* ================================
-       TOTAL
+       TOTAL BEFORE OTHER TAXES
     ================================= */
 
 
@@ -1151,7 +1239,7 @@ function calculateEstimate() {
 
 
     /* ================================
-       DISPLAY RESULTS
+       DISPLAY
     ================================= */
 
 
@@ -1165,6 +1253,12 @@ function calculateEstimate() {
     .getElementById("resultOrigin")
     .textContent =
         origin || "-";
+
+
+    document
+    .getElementById("resultDate")
+    .textContent =
+        simulationDate || "-";
 
 
     document
@@ -1249,12 +1343,10 @@ function calculateEstimate() {
    MONEY FORMAT
 ================================ */
 
-
 function formatMoney(
     amount,
     currency
 ) {
-
 
     return new Intl.NumberFormat(
         "en-US",
@@ -1263,13 +1355,10 @@ function formatMoney(
             maximumFractionDigits: 2
         }
     ).format(amount)
-
     + " "
-
     + currency;
 
 }
-
 
 </script>
 
