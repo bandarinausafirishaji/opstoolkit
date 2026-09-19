@@ -2,11 +2,13 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description" content="OpsToolkit Customs Duty and Tax Estimator for preliminary import cost planning.">
-<meta name="keywords" content="customs duty calculator, customs tax estimator, HS code calculator, import duty calculator, EAC customs, Tanzania customs">
+<meta name="description" content="OpsToolkit Customs Duty and Tax Estimator with HS Code lookup for preliminary import cost planning.">
+
+<meta name="keywords" content="HS Code lookup, customs duty calculator, customs tax estimator, import duty calculator, EAC customs, Tanzania customs">
 
 <title>OpsToolkit | Customs Duty & Tax Estimator</title>
 
@@ -14,143 +16,404 @@
 
 <style>
 
+/* ================================
+   CUSTOMS ESTIMATOR
+================================ */
+
 .estimator-box {
-    max-width: 900px;
+
+    max-width: 950px;
+
     margin: 40px auto;
+
     padding: 30px;
+
     background: #ffffff;
+
     border-radius: 12px;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+
+    box-shadow:
+        0 4px 18px rgba(0,0,0,0.08);
+
 }
+
 
 .estimator-box h2 {
+
     margin-bottom: 10px;
+
 }
+
 
 .intro {
+
     color: #555;
+
     margin-bottom: 25px;
+
+    line-height: 1.6;
+
 }
+
+
+/* ================================
+   HS CODE LOOKUP
+================================ */
+
+.lookup-box {
+
+    margin-bottom: 30px;
+
+    padding: 20px;
+
+    background: #f4f7fb;
+
+    border: 1px solid #dfe5ec;
+
+    border-radius: 10px;
+
+}
+
+
+.lookup-box h3 {
+
+    margin-top: 0;
+
+    color: #0b3d91;
+
+}
+
+
+.lookup-box p {
+
+    color: #555;
+
+    line-height: 1.6;
+
+}
+
+
+.lookup-actions {
+
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.lookup-button {
+
+    display: inline-block;
+
+    padding: 12px 18px;
+
+    background: #0b3d91;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    border-radius: 6px;
+
+    font-weight: 600;
+
+}
+
+
+.lookup-button:hover {
+
+    background: #082f70;
+
+}
+
+
+.tanzania-button {
+
+    background: #444;
+
+}
+
+
+.tanzania-button:hover {
+
+    background: #222;
+
+}
+
+
+/* ================================
+   FORM
+================================ */
 
 .form-grid {
+
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
     gap: 18px;
+
 }
+
 
 .form-group {
+
     margin-bottom: 5px;
+
 }
+
 
 .form-group.full {
+
     grid-column: 1 / -1;
+
 }
 
+
 .form-group label {
+
     display: block;
+
     margin-bottom: 7px;
+
     font-weight: 600;
+
 }
+
 
 .form-group input,
 .form-group select {
+
     width: 100%;
+
     padding: 12px;
+
     border: 1px solid #ccc;
+
     border-radius: 6px;
+
     font-size: 16px;
+
     box-sizing: border-box;
+
 }
+
+
+.form-help {
+
+    display: block;
+
+    margin-top: 6px;
+
+    color: #777;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+}
+
+
+/* ================================
+   CALCULATE BUTTON
+================================ */
 
 .calculate-button {
+
     width: 100%;
+
     margin-top: 25px;
+
     padding: 14px;
+
     border: none;
+
     border-radius: 6px;
+
     background: #0b3d91;
+
     color: white;
+
     font-size: 16px;
+
     font-weight: 600;
+
     cursor: pointer;
+
 }
+
 
 .calculate-button:hover {
+
     background: #082f70;
+
 }
+
+
+/* ================================
+   RESULT
+================================ */
 
 .result {
+
     margin-top: 30px;
+
     display: none;
+
 }
+
 
 .result-card {
+
     background: #f7f9fc;
+
     border-radius: 10px;
+
     padding: 20px;
+
 }
+
 
 .result-card h3 {
+
     margin-top: 0;
+
     color: #0b3d91;
+
 }
+
 
 .result-grid {
+
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
     gap: 15px;
+
 }
+
 
 .result-item {
+
     background: #ffffff;
+
     padding: 14px;
+
     border-radius: 6px;
+
     border: 1px solid #e1e5ea;
+
 }
+
 
 .result-item strong {
+
     display: block;
+
     margin-bottom: 5px;
+
     color: #555;
+
     font-size: 14px;
+
 }
+
 
 .result-item span {
+
     font-weight: 600;
+
 }
+
+
+/* ================================
+   DISCLAIMER
+================================ */
 
 .disclaimer {
+
     margin-top: 25px;
+
     padding: 15px;
+
     background: #fff8e1;
-    border-left: 4px solid #d6a700;
+
+    border-left:
+        4px solid #d6a700;
+
     font-size: 14px;
+
     line-height: 1.6;
+
 }
 
+
 .source-note {
+
     margin-top: 15px;
+
     font-size: 13px;
+
     color: #666;
+
+    line-height: 1.6;
+
 }
+
+
+/* ================================
+   MOBILE
+================================ */
 
 @media (max-width: 650px) {
 
     .estimator-box {
+
         margin: 20px 10px;
+
         padding: 20px;
+
     }
+
 
     .form-grid {
+
         grid-template-columns: 1fr;
+
     }
+
 
     .form-group.full {
+
         grid-column: auto;
+
     }
 
+
     .result-grid {
+
         grid-template-columns: 1fr;
+
+    }
+
+
+    .lookup-actions {
+
+        flex-direction: column;
+
+    }
+
+
+    .lookup-button {
+
+        text-align: center;
+
     }
 
 }
@@ -163,11 +426,16 @@
 <body>
 
 
+<!-- ================================
+     NAVIGATION
+================================ -->
+
 <nav class="navbar">
 
 <div class="logo">
 OpsToolkit
 </div>
+
 
 <ul>
 
@@ -196,9 +464,15 @@ OpsToolkit
 </nav>
 
 
+<!-- ================================
+     HERO
+================================ -->
+
 <header class="hero">
 
-<h1>Customs Duty &amp; Tax Estimator</h1>
+<h1>
+Customs Duty &amp; Tax Estimator
+</h1>
 
 <p>
 Preliminary import cost estimation for logistics and customs planning.
@@ -207,23 +481,99 @@ Preliminary import cost estimation for logistics and customs planning.
 </header>
 
 
+<!-- ================================
+     MAIN
+================================ -->
+
 <section class="estimator-box">
 
-<h2>Import Cost Estimator</h2>
+
+<h2>
+Import Cost Estimator
+</h2>
+
 
 <p class="intro">
-Enter the shipment details below to prepare a preliminary customs cost estimate.
+
+Use the official tariff lookup to identify the applicable HS Code and tariff information before preparing a preliminary import cost estimate.
+
 </p>
 
+
+<!-- ================================
+     HS CODE LOOKUP
+================================ -->
+
+<div class="lookup-box">
+
+<h3>
+HS Code Lookup
+</h3>
+
+
+<p>
+
+Search the official customs tariff before entering the HS Code below. You can search using a tariff code or a product keyword.
+
+</p>
+
+
+<div class="lookup-actions">
+
+
+<a
+href="https://www.eac.int/tariffsearch"
+target="_blank"
+rel="noopener noreferrer"
+class="lookup-button"
+>
+
+Search EAC Customs Tariff
+
+</a>
+
+
+<a
+href="https://trade.tanzania.go.tz/"
+target="_blank"
+rel="noopener noreferrer"
+class="lookup-button tanzania-button"
+>
+
+Search Tanzania Trade Portal
+
+</a>
+
+
+</div>
+
+
+<p class="source-note">
+
+EAC provides an official Customs Tariff Search and Customs Duty Estimator. Tanzania Trade Portal also provides HS Code search and customs information.
+
+</p>
+
+</div>
+
+
+<!-- ================================
+     FORM
+================================ -->
 
 <div class="form-grid">
 
 
+<!-- HS CODE -->
+
 <div class="form-group">
 
 <label for="hsCode">
+
 HS Code
+
 </label>
+
 
 <input
 type="text"
@@ -231,14 +581,26 @@ id="hsCode"
 placeholder="Example: 8517.13"
 >
 
+
+<span class="form-help">
+
+Enter the HS Code identified from the official tariff source.
+
+</span>
+
 </div>
 
+
+<!-- COUNTRY -->
 
 <div class="form-group">
 
 <label for="origin">
+
 Country of Origin
+
 </label>
+
 
 <input
 type="text"
@@ -249,11 +611,16 @@ placeholder="Example: China"
 </div>
 
 
+<!-- CURRENCY -->
+
 <div class="form-group">
 
 <label for="currency">
+
 Currency
+
 </label>
+
 
 <select id="currency">
 
@@ -278,11 +645,16 @@ GBP — British Pound
 </div>
 
 
+<!-- DATE -->
+
 <div class="form-group">
 
 <label for="simulationDate">
+
 Simulation Date
+
 </label>
+
 
 <input
 type="date"
@@ -292,11 +664,16 @@ id="simulationDate"
 </div>
 
 
+<!-- FOB -->
+
 <div class="form-group">
 
 <label for="fobValue">
+
 FOB / Invoice Value
+
 </label>
+
 
 <input
 type="number"
@@ -309,11 +686,16 @@ step="0.01"
 </div>
 
 
+<!-- FREIGHT -->
+
 <div class="form-group">
 
 <label for="freight">
+
 Freight
+
 </label>
+
 
 <input
 type="number"
@@ -326,11 +708,16 @@ step="0.01"
 </div>
 
 
+<!-- INSURANCE -->
+
 <div class="form-group">
 
 <label for="insurance">
+
 Insurance
+
 </label>
+
 
 <input
 type="number"
@@ -343,11 +730,16 @@ step="0.01"
 </div>
 
 
+<!-- OTHER -->
+
 <div class="form-group">
 
 <label for="other">
+
 Other Applicable Costs
+
 </label>
+
 
 <input
 type="number"
@@ -360,39 +752,68 @@ step="0.01"
 </div>
 
 
+<!-- DUTY RATE -->
+
 <div class="form-group full">
 
 <label for="dutyRate">
+
 Applicable Duty Rate (%)
+
 </label>
+
 
 <input
 type="number"
 id="dutyRate"
-placeholder="Enter rate from official tariff information"
+placeholder="Enter the rate confirmed from official tariff information"
 min="0"
 step="0.01"
 >
 
+
+<span class="form-help">
+
+Do not guess the duty rate. Confirm it from the applicable official tariff information.
+
+</span>
+
 </div>
 
 
 </div>
 
+
+<!-- ================================
+     CALCULATE
+================================ -->
 
 <button
 class="calculate-button"
 onclick="calculateEstimate()"
 >
-Calculate Estimate
+
+Calculate Preliminary Estimate
+
 </button>
 
 
-<div id="result" class="result">
+<!-- ================================
+     RESULT
+================================ -->
+
+<div
+id="result"
+class="result"
+>
+
 
 <div class="result-card">
 
-<h3>Preliminary Estimate</h3>
+
+<h3>
+Preliminary Estimate
+</h3>
 
 
 <div class="result-grid">
@@ -400,7 +821,9 @@ Calculate Estimate
 
 <div class="result-item">
 
-<strong>HS Code</strong>
+<strong>
+HS Code
+</strong>
 
 <span id="resultHsCode">
 -
@@ -411,7 +834,9 @@ Calculate Estimate
 
 <div class="result-item">
 
-<strong>Country of Origin</strong>
+<strong>
+Country of Origin
+</strong>
 
 <span id="resultOrigin">
 -
@@ -422,7 +847,9 @@ Calculate Estimate
 
 <div class="result-item">
 
-<strong>FOB / Invoice Value</strong>
+<strong>
+FOB / Invoice Value
+</strong>
 
 <span id="resultFob">
 -
@@ -433,7 +860,9 @@ Calculate Estimate
 
 <div class="result-item">
 
-<strong>Freight</strong>
+<strong>
+Freight
+</strong>
 
 <span id="resultFreight">
 -
@@ -444,7 +873,9 @@ Calculate Estimate
 
 <div class="result-item">
 
-<strong>Insurance</strong>
+<strong>
+Insurance
+</strong>
 
 <span id="resultInsurance">
 -
@@ -455,7 +886,9 @@ Calculate Estimate
 
 <div class="result-item">
 
-<strong>Other Costs</strong>
+<strong>
+Other Costs
+</strong>
 
 <span id="resultOther">
 -
@@ -466,7 +899,9 @@ Calculate Estimate
 
 <div class="result-item">
 
-<strong>Estimated Customs Value</strong>
+<strong>
+Estimated Customs Value
+</strong>
 
 <span id="resultCustomsValue">
 -
@@ -477,7 +912,9 @@ Calculate Estimate
 
 <div class="result-item">
 
-<strong>Duty Rate</strong>
+<strong>
+Duty Rate
+</strong>
 
 <span id="resultDutyRate">
 -
@@ -488,7 +925,9 @@ Calculate Estimate
 
 <div class="result-item">
 
-<strong>Estimated Import Duty</strong>
+<strong>
+Estimated Import Duty
+</strong>
 
 <span id="resultDuty">
 -
@@ -499,7 +938,9 @@ Calculate Estimate
 
 <div class="result-item">
 
-<strong>Estimated Total Before Other Taxes</strong>
+<strong>
+Estimated Total Before Other Taxes
+</strong>
 
 <span id="resultTotal">
 -
@@ -511,31 +952,45 @@ Calculate Estimate
 </div>
 
 
+<!-- ================================
+     DISCLAIMER
+================================ -->
+
 <div class="disclaimer">
 
-<strong>Important:</strong>
+<strong>
+Important:
+</strong>
 
-This calculator provides an indicative estimate for planning purposes only. It is not an official customs assessment. Actual duties, taxes, levies, customs valuation, tariff classification and other charges are determined by the relevant customs authority based on applicable laws, regulations, tariff measures, origin and other requirements.
+This calculator provides an indicative estimate for planning purposes only. It is not an official customs assessment. Actual duties, taxes, levies, customs valuation, tariff classification and other charges are determined by the relevant customs authority based on applicable laws, regulations, tariff measures, country of origin and other applicable requirements.
 
 </div>
 
 
 <div class="source-note">
 
-Tariff information should be verified against the applicable official customs tariff before making financial or import decisions.
+Tariff classification and applicable rates should be verified against the relevant official customs tariff before making financial or import decisions.
+
+</div>
+
 
 </div>
 
 </div>
 
-</div>
 
 </section>
 
 
+<!-- ================================
+     FOOTER
+================================ -->
+
 <footer>
 
-<p>OpsToolkit</p>
+<p>
+OpsToolkit
+</p>
 
 <p>
 Digital Operations Tools for Logistics, Transport and Business Efficiency.
@@ -552,43 +1007,90 @@ Developed by ASA Digital Solutions &amp; Operations
 </footer>
 
 
+<!-- ================================
+     JAVASCRIPT
+================================ -->
+
 <script>
+
 
 function calculateEstimate() {
 
+
     const hsCode =
-        document.getElementById("hsCode").value.trim();
+        document
+        .getElementById("hsCode")
+        .value
+        .trim();
+
 
     const origin =
-        document.getElementById("origin").value.trim();
+        document
+        .getElementById("origin")
+        .value
+        .trim();
+
 
     const currency =
-        document.getElementById("currency").value;
+        document
+        .getElementById("currency")
+        .value;
+
 
     const fob =
         parseFloat(
-            document.getElementById("fobValue").value
+            document
+            .getElementById("fobValue")
+            .value
         ) || 0;
+
 
     const freight =
         parseFloat(
-            document.getElementById("freight").value
+            document
+            .getElementById("freight")
+            .value
         ) || 0;
+
 
     const insurance =
         parseFloat(
-            document.getElementById("insurance").value
+            document
+            .getElementById("insurance")
+            .value
         ) || 0;
+
 
     const other =
         parseFloat(
-            document.getElementById("other").value
+            document
+            .getElementById("other")
+            .value
         ) || 0;
+
 
     const dutyRate =
         parseFloat(
-            document.getElementById("dutyRate").value
-        ) || 0;
+            document
+            .getElementById("dutyRate")
+            .value
+        );
+
+
+    /* ================================
+       VALIDATION
+    ================================= */
+
+
+    if (!hsCode) {
+
+        alert(
+            "Please enter the HS Code."
+        );
+
+        return;
+
+    }
 
 
     if (!fob || fob <= 0) {
@@ -602,10 +1104,13 @@ function calculateEstimate() {
     }
 
 
-    if (dutyRate < 0) {
+    if (
+        isNaN(dutyRate) ||
+        dutyRate < 0
+    ) {
 
         alert(
-            "Please enter a valid Duty Rate."
+            "Please enter the applicable Duty Rate confirmed from official tariff information."
         );
 
         return;
@@ -613,14 +1118,10 @@ function calculateEstimate() {
     }
 
 
-    /*
-     * Preliminary customs value
-     *
-     * FOB
-     * + Freight
-     * + Insurance
-     * + Other applicable costs
-     */
+    /* ================================
+       CUSTOMS VALUE
+    ================================= */
+
 
     const customsValue =
         fob +
@@ -629,119 +1130,131 @@ function calculateEstimate() {
         other;
 
 
-    /*
-     * Estimated import duty
-     */
+    /* ================================
+       IMPORT DUTY
+    ================================= */
+
 
     const importDuty =
         customsValue *
         (dutyRate / 100);
 
 
-    /*
-     * Estimated total before
-     * other taxes
-     */
+    /* ================================
+       TOTAL
+    ================================= */
+
 
     const estimatedTotal =
         customsValue +
         importDuty;
 
 
-    document.getElementById(
-        "resultHsCode"
-    ).textContent =
-        hsCode || "-";
+    /* ================================
+       DISPLAY RESULTS
+    ================================= */
 
 
-    document.getElementById(
-        "resultOrigin"
-    ).textContent =
+    document
+    .getElementById("resultHsCode")
+    .textContent =
+        hsCode;
+
+
+    document
+    .getElementById("resultOrigin")
+    .textContent =
         origin || "-";
 
 
-    document.getElementById(
-        "resultFob"
-    ).textContent =
+    document
+    .getElementById("resultFob")
+    .textContent =
         formatMoney(
             fob,
             currency
         );
 
 
-    document.getElementById(
-        "resultFreight"
-    ).textContent =
+    document
+    .getElementById("resultFreight")
+    .textContent =
         formatMoney(
             freight,
             currency
         );
 
 
-    document.getElementById(
-        "resultInsurance"
-    ).textContent =
+    document
+    .getElementById("resultInsurance")
+    .textContent =
         formatMoney(
             insurance,
             currency
         );
 
 
-    document.getElementById(
-        "resultOther"
-    ).textContent =
+    document
+    .getElementById("resultOther")
+    .textContent =
         formatMoney(
             other,
             currency
         );
 
 
-    document.getElementById(
-        "resultCustomsValue"
-    ).textContent =
+    document
+    .getElementById("resultCustomsValue")
+    .textContent =
         formatMoney(
             customsValue,
             currency
         );
 
 
-    document.getElementById(
-        "resultDutyRate"
-    ).textContent =
-        dutyRate.toFixed(2) +
-        "%";
+    document
+    .getElementById("resultDutyRate")
+    .textContent =
+        dutyRate.toFixed(2)
+        + "%";
 
 
-    document.getElementById(
-        "resultDuty"
-    ).textContent =
+    document
+    .getElementById("resultDuty")
+    .textContent =
         formatMoney(
             importDuty,
             currency
         );
 
 
-    document.getElementById(
-        "resultTotal"
-    ).textContent =
+    document
+    .getElementById("resultTotal")
+    .textContent =
         formatMoney(
             estimatedTotal,
             currency
         );
 
 
-    document.getElementById(
-        "result"
-    ).style.display =
+    document
+    .getElementById("result")
+    .style.display =
         "block";
 
 }
+
+
+/* ================================
+   MONEY FORMAT
+================================ */
 
 
 function formatMoney(
     amount,
     currency
 ) {
+
 
     return new Intl.NumberFormat(
         "en-US",
@@ -750,10 +1263,13 @@ function formatMoney(
             maximumFractionDigits: 2
         }
     ).format(amount)
+
     + " "
+
     + currency;
 
 }
+
 
 </script>
 
