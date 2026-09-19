@@ -5,441 +5,240 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description"
-      content="OpsToolkit Customs Duty and Tax Estimator with HS Code lookup for preliminary import cost planning.">
-
-<meta name="keywords"
-      content="HS Code lookup, customs duty calculator, import duty calculator, EAC customs, Tanzania customs, customs estimator">
-
-<title>
-OpsToolkit | Customs Duty & Tax Estimator
-</title>
+<title>OpsToolkit | Customs Duty & Tax Estimator</title>
 
 <link rel="stylesheet" href="style.css">
 
-
 <style>
 
-/* ================================
-   ESTIMATOR CONTAINER
-================================ */
-
-.estimator-box {
-
+.customs-page {
     max-width: 950px;
-
     margin: 40px auto;
-
     padding: 30px;
+}
 
+.customs-card {
     background: #ffffff;
-
+    padding: 30px;
     border-radius: 12px;
-
-    box-shadow:
-        0 4px 18px rgba(0,0,0,0.08);
-
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
 }
 
+.customs-card h2 {
+    margin-top: 0;
+}
 
-/* ================================
-   INTRO
-================================ */
-
-.intro {
-
+.customs-intro {
     color: #555;
-
     line-height: 1.6;
-
-    margin-bottom: 25px;
-
 }
 
 
-/* ================================
-   HS LOOKUP
-================================ */
+/* HS LOOKUP */
 
-.lookup-box {
-
+.hs-lookup {
+    margin-top: 25px;
     margin-bottom: 30px;
-
     padding: 22px;
-
-    background: #f4f7fb;
-
-    border: 1px solid #dfe5ec;
-
+    background: #f3f6fa;
+    border: 1px solid #d9e0e8;
     border-radius: 10px;
-
 }
 
-
-.lookup-box h3 {
-
+.hs-lookup h3 {
     margin-top: 0;
-
     color: #0b3d91;
-
 }
 
-
-.lookup-box p {
-
-    color: #555;
-
+.hs-lookup p {
     line-height: 1.6;
-
+    color: #555;
 }
 
-
-.lookup-actions {
-
-    display: flex;
-
-    gap: 12px;
-
-    flex-wrap: wrap;
-
+.hs-buttons {
+    margin-top: 18px;
 }
 
-
-.lookup-button {
-
+.hs-button {
     display: inline-block;
-
-    padding: 12px 18px;
-
+    padding: 13px 20px;
+    margin-right: 10px;
+    margin-bottom: 10px;
     background: #0b3d91;
-
-    color: #ffffff;
-
-    text-decoration: none;
-
+    color: #ffffff !important;
+    text-decoration: none !important;
     border-radius: 6px;
-
     font-weight: 600;
-
 }
 
-
-.lookup-button:hover {
-
+.hs-button:hover {
     background: #082f70;
-
 }
 
-
-.lookup-button.secondary {
-
+.hs-button.secondary {
     background: #444;
-
 }
 
-
-.lookup-button.secondary:hover {
-
+.hs-button.secondary:hover {
     background: #222;
-
 }
 
 
-/* ================================
-   FORM
-================================ */
+/* FORM */
 
-.form-grid {
-
+.customs-form {
     display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
+    grid-template-columns: 1fr 1fr;
     gap: 18px;
-
 }
 
-
-.form-group {
-
-    margin-bottom: 5px;
-
+.customs-field {
+    display: flex;
+    flex-direction: column;
 }
 
-
-.form-group.full {
-
+.customs-field.full {
     grid-column: 1 / -1;
-
 }
 
-
-.form-group label {
-
-    display: block;
-
+.customs-field label {
     margin-bottom: 7px;
-
     font-weight: 600;
-
 }
 
-
-.form-group input,
-.form-group select {
-
+.customs-field input,
+.customs-field select {
     width: 100%;
-
-    padding: 12px;
-
-    border: 1px solid #ccc;
-
-    border-radius: 6px;
-
-    font-size: 16px;
-
     box-sizing: border-box;
-
-}
-
-
-.form-help {
-
-    display: block;
-
-    margin-top: 6px;
-
-    font-size: 13px;
-
-    color: #777;
-
-    line-height: 1.5;
-
-}
-
-
-/* ================================
-   BUTTON
-================================ */
-
-.calculate-button {
-
-    width: 100%;
-
-    margin-top: 25px;
-
-    padding: 14px;
-
-    border: none;
-
+    padding: 12px;
+    border: 1px solid #ccc;
     border-radius: 6px;
-
-    background: #0b3d91;
-
-    color: #ffffff;
-
     font-size: 16px;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
 }
 
-
-.calculate-button:hover {
-
-    background: #082f70;
-
-}
-
-
-/* ================================
-   RESULT
-================================ */
-
-.result {
-
-    margin-top: 30px;
-
-    display: none;
-
-}
-
-
-.result-card {
-
-    background: #f7f9fc;
-
-    border-radius: 10px;
-
-    padding: 20px;
-
-}
-
-
-.result-card h3 {
-
-    margin-top: 0;
-
-    color: #0b3d91;
-
-}
-
-
-.result-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 15px;
-
-}
-
-
-.result-item {
-
-    background: #ffffff;
-
-    padding: 14px;
-
-    border-radius: 6px;
-
-    border: 1px solid #e1e5ea;
-
-}
-
-
-.result-item strong {
-
-    display: block;
-
-    margin-bottom: 5px;
-
-    color: #555;
-
-    font-size: 14px;
-
-}
-
-
-.result-item span {
-
-    font-weight: 600;
-
-}
-
-
-/* ================================
-   IMPORTANT TOTAL
-================================ */
-
-.result-item.highlight {
-
-    background: #eef4ff;
-
-    border-color: #0b3d91;
-
-}
-
-
-.result-item.highlight span {
-
-    color: #0b3d91;
-
-    font-size: 18px;
-
-}
-
-
-/* ================================
-   DISCLAIMER
-================================ */
-
-.disclaimer {
-
-    margin-top: 25px;
-
-    padding: 15px;
-
-    background: #fff8e1;
-
-    border-left:
-        4px solid #d6a700;
-
-    font-size: 14px;
-
-    line-height: 1.6;
-
-}
-
-
-.source-note {
-
-    margin-top: 15px;
-
+.customs-help {
+    margin-top: 6px;
     font-size: 13px;
-
-    color: #666;
-
-    line-height: 1.6;
-
+    color: #777;
 }
 
 
-/* ================================
-   MOBILE
-================================ */
+/* CALCULATE */
+
+.customs-calculate {
+    width: 100%;
+    margin-top: 25px;
+    padding: 15px;
+    border: none;
+    border-radius: 6px;
+    background: #0b3d91;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.customs-calculate:hover {
+    background: #082f70;
+}
+
+
+/* RESULT */
+
+.customs-result {
+    display: none;
+    margin-top: 30px;
+}
+
+.customs-result-box {
+    padding: 22px;
+    background: #f7f9fc;
+    border-radius: 10px;
+}
+
+.customs-result-box h3 {
+    margin-top: 0;
+    color: #0b3d91;
+}
+
+.customs-results {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.customs-result-item {
+    padding: 15px;
+    background: #ffffff;
+    border: 1px solid #e1e5ea;
+    border-radius: 6px;
+}
+
+.customs-result-item strong {
+    display: block;
+    margin-bottom: 6px;
+    color: #555;
+    font-size: 14px;
+}
+
+.customs-result-item span {
+    font-weight: 600;
+}
+
+.customs-result-item.total {
+    border: 2px solid #0b3d91;
+    background: #eef4ff;
+}
+
+.customs-result-item.total span {
+    color: #0b3d91;
+    font-size: 18px;
+}
+
+
+/* DISCLAIMER */
+
+.customs-disclaimer {
+    margin-top: 25px;
+    padding: 15px;
+    background: #fff8e1;
+    border-left: 4px solid #d6a700;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+
+/* MOBILE */
 
 @media (max-width: 650px) {
 
-    .estimator-box {
-
+    .customs-page {
         margin: 20px 10px;
+        padding: 10px;
+    }
 
+    .customs-card {
         padding: 20px;
-
     }
 
-
-    .form-grid {
-
+    .customs-form {
         grid-template-columns: 1fr;
-
     }
 
-
-    .form-group.full {
-
+    .customs-field.full {
         grid-column: auto;
-
     }
 
-
-    .result-grid {
-
+    .customs-results {
         grid-template-columns: 1fr;
-
     }
 
-
-    .lookup-actions {
-
-        flex-direction: column;
-
-    }
-
-
-    .lookup-button {
-
+    .hs-button {
+        display: block;
         text-align: center;
-
+        margin-right: 0;
     }
 
 }
@@ -452,9 +251,7 @@ OpsToolkit | Customs Duty & Tax Estimator
 <body>
 
 
-<!-- ================================
-     NAVIGATION
-================================ -->
+<!-- NAVIGATION -->
 
 <nav class="navbar">
 
@@ -462,37 +259,26 @@ OpsToolkit | Customs Duty & Tax Estimator
 OpsToolkit
 </div>
 
-
 <ul>
 
 <li>
-<a href="index.html">
-Home
-</a>
+<a href="index.html">Home</a>
 </li>
 
 <li>
-<a href="calculators.html">
-Calculators
-</a>
+<a href="calculators.html">Calculators</a>
 </li>
 
 <li>
-<a href="resources.html">
-Resources
-</a>
+<a href="resources.html">Resources</a>
 </li>
 
 <li>
-<a href="guides.html">
-Guides
-</a>
+<a href="guides.html">Guides</a>
 </li>
 
 <li>
-<a href="about.html">
-About
-</a>
+<a href="about.html">About</a>
 </li>
 
 </ul>
@@ -500,9 +286,7 @@ About
 </nav>
 
 
-<!-- ================================
-     HERO
-================================ -->
+<!-- HERO -->
 
 <header class="hero">
 
@@ -517,56 +301,47 @@ Preliminary import cost estimation for logistics and customs planning.
 </header>
 
 
-<!-- ================================
-     MAIN
-================================ -->
+<!-- MAIN -->
 
-<section class="estimator-box">
+<main class="customs-page">
 
+<div class="customs-card">
 
 <h2>
 Import Cost Estimator
 </h2>
 
+<p class="customs-intro">
 
-<p class="intro">
-
-Use the official customs tariff information to identify the applicable HS Code and duty rate before calculating a preliminary import cost estimate.
+Use official customs tariff information to identify the applicable HS Code and duty rate before preparing a preliminary import cost estimate.
 
 </p>
 
 
-<!-- ================================
-     HS CODE LOOKUP
-================================ -->
+<!-- HS CODE LOOKUP -->
 
-<div class="lookup-box">
-
+<div class="hs-lookup">
 
 <h3>
 HS Code Lookup
 </h3>
 
-
 <p>
 
-Search the official EAC Customs Tariff using a product keyword or tariff code. Confirm the applicable tariff information before entering the duty rate into this estimator.
+Search the official EAC customs tariff using a product keyword or HS Code. Confirm the applicable tariff information before entering the duty rate below.
 
 </p>
 
 
-<div class="lookup-actions">
-
+<div class="hs-buttons">
 
 <a
-href="https://www.eac.int/tariffsearch"
+href="https://www.eac.int/customs/online-tariff-home"
 target="_blank"
 rel="noopener noreferrer"
-class="lookup-button"
+class="hs-button"
 >
-
 Search EAC Customs Tariff
-
 </a>
 
 
@@ -574,93 +349,60 @@ Search EAC Customs Tariff
 href="https://www.eac.int/online-tariff-duty-calc"
 target="_blank"
 rel="noopener noreferrer"
-class="lookup-button secondary"
+class="hs-button secondary"
 >
-
 Open EAC Duty Calculator
-
 </a>
 
+</div>
 
 </div>
 
 
-<p class="source-note">
+<!-- FORM -->
 
-Official EAC tariff tools are provided for customs tariff search and duty estimation. OpsToolkit provides this separate preliminary estimator for planning purposes.
-
-</p>
+<div class="customs-form">
 
 
-</div>
-
-
-<!-- ================================
-     INPUT FORM
-================================ -->
-
-<div class="form-grid">
-
-
-<!-- HS CODE -->
-
-<div class="form-group">
+<div class="customs-field">
 
 <label for="hsCode">
-
 HS Code
-
 </label>
-
 
 <input
 type="text"
 id="hsCode"
 placeholder="Example: 8517.13"
-autocomplete="off"
 >
 
-
-<span class="form-help">
-
-Enter the HS Code confirmed from the official tariff source.
-
+<span class="customs-help">
+Enter the HS Code confirmed from the official tariff.
 </span>
 
 </div>
 
 
-<!-- ORIGIN -->
-
-<div class="form-group">
+<div class="customs-field">
 
 <label for="origin">
-
 Country of Origin
-
 </label>
-
 
 <input
 type="text"
 id="origin"
 placeholder="Example: China"
-autocomplete="off"
 >
 
 </div>
 
 
-<!-- CURRENCY -->
-
-<div class="form-group">
+<div class="customs-field">
 
 <label for="currency">
-
 Currency
-
 </label>
-
 
 <select id="currency">
 
@@ -685,16 +427,11 @@ GBP — British Pound
 </div>
 
 
-<!-- SIMULATION DATE -->
-
-<div class="form-group">
+<div class="customs-field">
 
 <label for="simulationDate">
-
 Simulation Date
-
 </label>
-
 
 <input
 type="date"
@@ -704,16 +441,11 @@ id="simulationDate"
 </div>
 
 
-<!-- FOB -->
-
-<div class="form-group">
+<div class="customs-field">
 
 <label for="fobValue">
-
 FOB / Invoice Value
-
 </label>
-
 
 <input
 type="number"
@@ -726,16 +458,11 @@ step="0.01"
 </div>
 
 
-<!-- FREIGHT -->
-
-<div class="form-group">
+<div class="customs-field">
 
 <label for="freight">
-
 Freight
-
 </label>
-
 
 <input
 type="number"
@@ -748,16 +475,11 @@ step="0.01"
 </div>
 
 
-<!-- INSURANCE -->
-
-<div class="form-group">
+<div class="customs-field">
 
 <label for="insurance">
-
 Insurance
-
 </label>
-
 
 <input
 type="number"
@@ -770,16 +492,11 @@ step="0.01"
 </div>
 
 
-<!-- OTHER -->
-
-<div class="form-group">
+<div class="customs-field">
 
 <label for="other">
-
 Other Applicable Costs
-
 </label>
-
 
 <input
 type="number"
@@ -792,16 +509,11 @@ step="0.01"
 </div>
 
 
-<!-- DUTY RATE -->
-
-<div class="form-group full">
+<div class="customs-field full">
 
 <label for="dutyRate">
-
 Applicable Duty Rate (%)
-
 </label>
-
 
 <input
 type="number"
@@ -811,11 +523,8 @@ min="0"
 step="0.01"
 >
 
-
-<span class="form-help">
-
-Enter the rate confirmed from the applicable official tariff. Do not guess the rate.
-
+<span class="customs-help">
+Enter the rate confirmed from official tariff information. Do not guess the rate.
 </span>
 
 </div>
@@ -824,13 +533,11 @@ Enter the rate confirmed from the applicable official tariff. Do not guess the r
 </div>
 
 
-<!-- ================================
-     CALCULATE
-================================ -->
+<!-- CALCULATE -->
 
 <button
 type="button"
-class="calculate-button"
+class="customs-calculate"
 onclick="calculateEstimate()"
 >
 
@@ -839,28 +546,24 @@ Calculate Preliminary Estimate
 </button>
 
 
-<!-- ================================
-     RESULTS
-================================ -->
+<!-- RESULT -->
 
 <div
 id="result"
-class="result"
+class="customs-result"
 >
 
-
-<div class="result-card">
-
+<div class="customs-result-box">
 
 <h3>
 Preliminary Estimate
 </h3>
 
 
-<div class="result-grid">
+<div class="customs-results">
 
 
-<div class="result-item">
+<div class="customs-result-item">
 
 <strong>
 HS Code
@@ -873,7 +576,7 @@ HS Code
 </div>
 
 
-<div class="result-item">
+<div class="customs-result-item">
 
 <strong>
 Country of Origin
@@ -886,7 +589,7 @@ Country of Origin
 </div>
 
 
-<div class="result-item">
+<div class="customs-result-item">
 
 <strong>
 Simulation Date
@@ -899,7 +602,7 @@ Simulation Date
 </div>
 
 
-<div class="result-item">
+<div class="customs-result-item">
 
 <strong>
 FOB / Invoice Value
@@ -912,7 +615,7 @@ FOB / Invoice Value
 </div>
 
 
-<div class="result-item">
+<div class="customs-result-item">
 
 <strong>
 Freight
@@ -925,7 +628,7 @@ Freight
 </div>
 
 
-<div class="result-item">
+<div class="customs-result-item">
 
 <strong>
 Insurance
@@ -938,7 +641,7 @@ Insurance
 </div>
 
 
-<div class="result-item">
+<div class="customs-result-item">
 
 <strong>
 Other Costs
@@ -951,7 +654,7 @@ Other Costs
 </div>
 
 
-<div class="result-item">
+<div class="customs-result-item">
 
 <strong>
 Estimated Customs Value
@@ -964,7 +667,7 @@ Estimated Customs Value
 </div>
 
 
-<div class="result-item">
+<div class="customs-result-item">
 
 <strong>
 Duty Rate
@@ -977,7 +680,7 @@ Duty Rate
 </div>
 
 
-<div class="result-item">
+<div class="customs-result-item">
 
 <strong>
 Estimated Import Duty
@@ -990,7 +693,7 @@ Estimated Import Duty
 </div>
 
 
-<div class="result-item highlight">
+<div class="customs-result-item total">
 
 <strong>
 Estimated Total Before Other Taxes
@@ -1006,11 +709,9 @@ Estimated Total Before Other Taxes
 </div>
 
 
-<!-- ================================
-     DISCLAIMER
-================================ -->
+<!-- DISCLAIMER -->
 
-<div class="disclaimer">
+<div class="customs-disclaimer">
 
 <strong>
 Important:
@@ -1021,24 +722,16 @@ This calculator provides an indicative estimate for planning purposes only. It i
 </div>
 
 
-<div class="source-note">
-
-Tariff classification and applicable rates should always be verified against the relevant official customs tariff before making financial or import decisions.
-
 </div>
-
 
 </div>
 
 </div>
 
+</main>
 
-</section>
 
-
-<!-- ================================
-     FOOTER
-================================ -->
+<!-- FOOTER -->
 
 <footer>
 
@@ -1063,38 +756,29 @@ Developed by ASA Digital Solutions &amp; Operations
 
 <script>
 
-/* ================================
-   SET TODAY AS DEFAULT DATE
-================================ */
+
+/* SET TODAY */
 
 document.addEventListener(
-    "DOMContentLoaded",
-    function() {
+"DOMContentLoaded",
+function() {
 
-        const dateField =
-            document.getElementById(
-                "simulationDate"
-            );
+    const dateField =
+        document.getElementById(
+            "simulationDate"
+        );
 
-        if (!dateField.value) {
+    const today =
+        new Date()
+        .toISOString()
+        .split("T")[0];
 
-            const today =
-                new Date()
-                .toISOString()
-                .split("T")[0];
+    dateField.value = today;
 
-            dateField.value =
-                today;
-
-        }
-
-    }
-);
+});
 
 
-/* ================================
-   CALCULATE ESTIMATE
-================================ */
+/* CALCULATE */
 
 function calculateEstimate() {
 
@@ -1165,9 +849,7 @@ function calculateEstimate() {
         );
 
 
-    /* ================================
-       VALIDATION
-    ================================= */
+    /* VALIDATION */
 
 
     if (!hsCode) {
@@ -1206,9 +888,7 @@ function calculateEstimate() {
     }
 
 
-    /* ================================
-       PRELIMINARY CUSTOMS VALUE
-    ================================= */
+    /* CUSTOMS VALUE */
 
 
     const customsValue =
@@ -1218,9 +898,7 @@ function calculateEstimate() {
         other;
 
 
-    /* ================================
-       IMPORT DUTY
-    ================================= */
+    /* DUTY */
 
 
     const importDuty =
@@ -1228,9 +906,7 @@ function calculateEstimate() {
         (dutyRate / 100);
 
 
-    /* ================================
-       TOTAL BEFORE OTHER TAXES
-    ================================= */
+    /* TOTAL */
 
 
     const estimatedTotal =
@@ -1238,9 +914,7 @@ function calculateEstimate() {
         importDuty;
 
 
-    /* ================================
-       DISPLAY
-    ================================= */
+    /* DISPLAY */
 
 
     document
@@ -1339,9 +1013,7 @@ function calculateEstimate() {
 }
 
 
-/* ================================
-   MONEY FORMAT
-================================ */
+/* MONEY FORMAT */
 
 function formatMoney(
     amount,
