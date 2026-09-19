@@ -526,7 +526,6 @@ Tariff information should be verified against the applicable official customs ta
 
 </div>
 
-
 </div>
 
 </div>
@@ -603,10 +602,10 @@ function calculateEstimate() {
     }
 
 
-    if (!dutyRate || dutyRate < 0) {
+    if (dutyRate < 0) {
 
         alert(
-            "Please enter the applicable Duty Rate from official tariff information."
+            "Please enter a valid Duty Rate."
         );
 
         return;
