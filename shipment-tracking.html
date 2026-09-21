@@ -5,10 +5,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description" content="OpsToolkit Container and Bill of Lading Tracking Tool for logistics professionals.">
-<meta name="keywords" content="container tracking, B/L tracking, bill of lading tracking, shipment tracking, logistics tracking">
+<meta name="description" content="OpsToolkit Shipment Tracking Lookup for Container Numbers and Bills of Lading.">
+<meta name="keywords" content="shipment tracking, container tracking, B/L tracking, bill of lading tracking, logistics tracking">
 
-<title>OpsToolkit | Container & B/L Tracking</title>
+<title>OpsToolkit | Shipment Tracking Lookup</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -153,6 +153,17 @@
     font-size: 13px;
 }
 
+.tracking-notice {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f1f5f9;
+    border-left: 4px solid #0b3d91;
+    border-radius: 6px;
+    color: #475569;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
 @media (max-width: 600px) {
 
     .tracking-box {
@@ -207,10 +218,10 @@ OpsToolkit
 
 <header class="hero">
 
-<h1>Container &amp; B/L Tracking</h1>
+<h1>Shipment Tracking Lookup</h1>
 
 <p>
-Track Container Numbers and Bills of Lading using available shipment information.
+Check available shipment information using a Container Number or Bill of Lading reference.
 </p>
 
 </header>
@@ -218,7 +229,7 @@ Track Container Numbers and Bills of Lading using available shipment information
 
 <section class="tracking-box">
 
-<h2>Shipment Tracking</h2>
+<h2>Shipment Tracking Lookup</h2>
 
 <p>
 Enter a Container Number or Bill of Lading (B/L) reference.
@@ -434,7 +445,7 @@ Container Reference
 <strong>ISO Code</strong>
 
 <span id="containerIso">
--
+Not available
 </span>
 
 </div>
@@ -445,7 +456,7 @@ Container Reference
 <strong>Container Type</strong>
 
 <span id="containerType">
--
+Not available
 </span>
 
 </div>
@@ -456,12 +467,23 @@ Container Reference
 <strong>Description</strong>
 
 <span id="containerDescription">
--
+Not available
 </span>
 
 </div>
 
 </div>
+
+</div>
+
+
+<div class="tracking-notice">
+
+<strong>Tracking Data Notice</strong><br>
+
+Tracking information is provided through a third-party data provider.
+Availability, accuracy and update frequency may vary.
+For official shipment status, confirm with the relevant carrier or shipping line.
 
 </div>
 
@@ -662,7 +684,7 @@ async function trackShipment() {
 
                     headers: {
                         "Content-Type":
-                            "application/json"
+                            "text/plain;charset=UTF-8"
                     },
 
                     body:
@@ -680,9 +702,6 @@ async function trackShipment() {
 
         /*
          * Read response as text first.
-         * This lets us see the real error
-         * even when the server returns
-         * something unexpected.
          */
 
         const responseText =
@@ -1082,7 +1101,7 @@ function displayTrackingData(
         container &&
         container.iso_code
             ? container.iso_code
-            : "-";
+            : "Not available";
 
 
     document.getElementById(
@@ -1091,7 +1110,7 @@ function displayTrackingData(
         container &&
         container.size_type
             ? container.size_type
-            : "-";
+            : "Not available";
 
 
     document.getElementById(
@@ -1100,7 +1119,7 @@ function displayTrackingData(
         container &&
         container.container_description
             ? container.container_description
-            : "-";
+            : "Not available";
 
 
     /*
