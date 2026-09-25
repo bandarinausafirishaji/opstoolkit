@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Area Calculator | Square Meter Calculator | OpsToolkit</title>
+
+<meta name="description"
+content="Calculate area in square metres (m²) for warehouses, yards, cargo spaces and general logistics planning. Convert area to square feet, hectares and acres.">
+
+<link rel="canonical"
+href="https://opstoolkit-bandari-na-usafirishaji.netlify.app/area-calculator">
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f7fb;
+  color: #1f2937;
+}
+
+nav {
+  background: #0b1f3a;
+  padding: 16px 20px;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 12px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.hero {
+  background: #0b1f3a;
+  color: white;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.hero h1 {
+  margin: 0 0 12px;
+  font-size: 38px;
+}
+
+.hero p {
+  max-width: 760px;
+  margin: auto;
+  font-size: 17px;
+  line-height: 1.6;
+  color: #dbe5f1;
+}
+
+.container {
+  max-width: 900px;
+  margin: 45px auto;
+  padding: 0 20px;
+}
+
+.calculator-card {
+  background: white;
+  border-radius: 14px;
+  padding: 30px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+}
+
+label {
+  display: block;
+  margin-top: 18px;
+  margin-bottom: 7px;
+  font-weight: 600;
+  color: #0b1f3a;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  font-size: 16px;
+  background: white;
+}
+
+.button {
+  display: inline-block;
+  width: 100%;
+  border: none;
+  background: #0b1f3a;
+  color: white;
+  padding: 13px 18px;
+  border-radius: 7px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 22px;
+}
+
+.button:hover {
+  background: #16365f;
+}
+
+.result {
+  margin-top: 28px;
+  padding: 24px;
+  background: #f8fafc;
+  border-left: 4px solid #0b1f3a;
+  border-radius: 8px;
+}
+
+.result h2 {
+  margin-top: 0;
+  color: #0b1f3a;
+}
+
+.result-value {
+  font-size: 30px;
+  font-weight: 700;
+  color: #0b1f3a;
+  margin: 10px 0 20px;
+}
+
+.conversions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.conversion-box {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.conversion-box strong {
+  display: block;
+  color: #0b1f3a;
+  margin-bottom: 5px;
+}
+
+.info {
+  margin-top: 35px;
+  line-height: 1.7;
+}
+
+.info h2 {
+  color: #0b1f3a;
+}
+
+footer {
+  margin-top: 60px;
+  background: #0b1f3a;
+  color: #dbe5f1;
+  text-align: center;
+  padding: 25px 20px;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .calculator-card {
+    padding: 22px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="calculators.html">Calculators</a>
+  <a href="resources.html">Resources</a>
+  <a href="guides.html">Guides</a>
+  <a href="about.html">About</a>
+</nav>
+
+<section class="hero">
+
+  <h1>Area Calculator</h1>
+
+  <p>
+    Calculate area in square metres (m²) for warehouses, yards,
+    cargo spaces, storage areas and general operational planning.
+  </p>
+
+</section>
+
+<main class="container">
+
+  <div class="calculator-card">
+
+    <label for="length">Length</label>
+    <input
+      type="number"
+      id="length"
+      min="0"
+      step="any"
+      placeholder="Enter length"
+    >
+
+    <label for="width">Width</label>
+    <input
+      type="number"
+      id="width"
+      min="0"
+      step="any"
+      placeholder="Enter width"
+    >
+
+    <label for="unit">Measurement Unit</label>
+
+    <select id="unit">
+
+      <option value="m">Metres (m)</option>
+      <option value="cm">Centimetres (cm)</option>
+      <option value="ft">Feet (ft)</option>
+      <option value="in">Inches (in)</option>
+
+    </select>
+
+    <label for="quantity">Number of Identical Areas</label>
+
+    <input
+      type="number"
+      id="quantity"
+      min="1"
+      step="1"
+      value="1"
+    >
+
+    <button class="button" onclick="calculateArea()">
+      Calculate Area
+    </button>
+
+    <div class="result" id="result" style="display:none;">
+
+      <h2>Result</h2>
+
+      <div class="result-value" id="squareMetres"></div>
+
+      <div class="conversions">
+
+        <div class="conversion-box">
+          <strong>Square Feet</strong>
+          <span id="squareFeet"></span>
+        </div>
+
+        <div class="conversion-box">
+          <strong>Hectares</strong>
+          <span id="hectares"></span>
+        </div>
+
+        <div class="conversion-box">
+          <strong>Acres</strong>
+          <span id="acres"></span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <section class="info">
+
+    <h2>How to Calculate Square Metres</h2>
+
+    <p>
+      For a rectangular area, multiply the length by the width.
+    </p>
+
+    <p>
+      <strong>Area = Length × Width</strong>
+    </p>
+
+    <p>
+      Example: a warehouse measuring 20 metres by 15 metres has an
+      area of <strong>300 m²</strong>.
+    </p>
+
+    <h2>Where Can This Calculator Be Used?</h2>
+
+    <p>
+      This calculator can be useful for estimating warehouse floor area,
+      container yard space, cargo storage areas, work areas, parking
+      spaces and other operational planning requirements.
+    </p>
+
+    <h2>Important Note</h2>
+
+    <p>
+      Results are mathematical estimates based on the measurements
+      entered. For operational, engineering or construction decisions,
+      verify dimensions and site conditions independently.
+    </p>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <p>
+    OpsToolkit — Digital Operations Tools for Logistics, Transport
+    and Business Efficiency.
+  </p>
+
+  <p>
+    © 2026 Bandari na Usafirishaji
+  </p>
+
+</footer>
+
+
+<script>
+
+function calculateArea() {
+
+  const length = parseFloat(
+    document.getElementById("length").value
+  );
+
+  const width = parseFloat(
+    document.getElementById("width").value
+  );
+
+  const quantity = parseInt(
+    document.getElementById("quantity").value
+  );
+
+  const unit = document.getElementById("unit").value;
+
+  if (
+    isNaN(length) ||
+    isNaN(width) ||
+    isNaN(quantity) ||
+    length <= 0 ||
+    width <= 0 ||
+    quantity <= 0
+  ) {
+
+    alert("Please enter valid positive values.");
+
+    return;
+  }
+
+
+  let conversionToMetres;
+
+
+  if (unit === "m") {
+
+    conversionToMetres = 1;
+
+  } else if (unit === "cm") {
+
+    conversionToMetres = 0.01;
+
+  } else if (unit === "ft") {
+
+    conversionToMetres = 0.3048;
+
+  } else if (unit === "in") {
+
+    conversionToMetres = 0.0254;
+
+  }
+
+
+  const lengthMetres =
+    length * conversionToMetres;
+
+  const widthMetres =
+    width * conversionToMetres;
+
+
+  const singleArea =
+    lengthMetres * widthMetres;
+
+  const totalArea =
+    singleArea * quantity;
+
+
+  const squareFeet =
+    totalArea * 10.7639104167;
+
+  const hectares =
+    totalArea / 10000;
+
+  const acres =
+    totalArea / 4046.8564224;
+
+
+  document.getElementById("squareMetres").textContent =
+    totalArea.toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }) + " m²";
+
+
+  document.getElementById("squareFeet").textContent =
+    squareFeet.toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }) + " ft²";
+
+
+  document.getElementById("hectares").textContent =
+    hectares.toLocaleString(undefined, {
+      minimumFractionDigits: 4,
+      maximumFractionDigits: 4
+    }) + " ha";
+
+
+  document.getElementById("acres").textContent =
+    acres.toLocaleString(undefined, {
+      minimumFractionDigits: 4,
+      maximumFractionDigits: 4
+    }) + " acres";
+
+
+  document.getElementById("result").style.display =
+    "block";
+
+}
+
+</script>
+
+</body>
+</html>
