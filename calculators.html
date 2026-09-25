@@ -1,250 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>OpsToolkit | Logistics Calculators</title>
-
-  <meta name="description" content="Practical logistics, transport and container calculators for operational planning and business efficiency.">
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f4f7fb;
-      color: #1f2937;
-    }
-
-    nav {
-      background: #0b1f3a;
-      padding: 16px 20px;
-      text-align: center;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 12px;
-      font-size: 15px;
-      font-weight: 600;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    .hero {
-      background: #0b1f3a;
-      color: white;
-      padding: 55px 20px;
-      text-align: center;
-    }
-
-    .hero h1 {
-      margin: 0 0 12px;
-      font-size: 38px;
-    }
-
-    .hero p {
-      max-width: 760px;
-      margin: auto;
-      font-size: 17px;
-      line-height: 1.6;
-      color: #dbe5f1;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 45px auto;
-      padding: 0 20px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 12px;
-      padding: 28px;
-      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
-      display: flex;
-      flex-direction: column;
-      min-height: 220px;
-    }
-
-    .card h2 {
-      margin-top: 0;
-      color: #0b1f3a;
-      font-size: 22px;
-    }
-
-    .card p {
-      line-height: 1.6;
-      color: #4b5563;
-      flex-grow: 1;
-    }
-
-    .button {
-      display: inline-block;
-      background: #0b1f3a;
-      color: white;
-      text-decoration: none;
-      padding: 12px 18px;
-      border-radius: 7px;
-      text-align: center;
-      font-weight: 600;
-      margin-top: 15px;
-    }
-
-    .button:hover {
-      background: #16365f;
-    }
-
-    footer {
-      margin-top: 60px;
-      background: #0b1f3a;
-      color: #dbe5f1;
-      text-align: center;
-      padding: 25px 20px;
-      font-size: 14px;
-    }
-
-    @media (max-width: 600px) {
-      nav a {
-        display: inline-block;
-        margin: 6px 8px;
-      }
-
-      .hero h1 {
-        font-size: 30px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="calculators.html">Calculators</a>
-    <a href="resources.html">Resources</a>
-    <a href="guides.html">Guides</a>
-    <a href="about.html">About</a>
-  </nav>
-
-  <section class="hero">
-    <h1>Logistics Calculators</h1>
-    <p>
-      Practical digital tools for container planning, logistics calculations,
-      shipment tracking and preliminary import cost planning.
-    </p>
-  </section>
-
-  <main class="container">
-
-    <div class="grid">
-
-      <div class="card">
-        <h2>TEU Calculator</h2>
-        <p>
-          Calculate Twenty-foot Equivalent Units (TEU) based on the number
-          of 20ft and 40ft containers.
-        </p>
-        <a href="teu-calculator.html" class="button">Open Tool</a>
-      </div>
-
+      <!-- CBM CALCULATOR -->
       <div class="card">
         <h2>CBM Calculator</h2>
         <p>
           Calculate cargo volume in Cubic Metres (CBM) using length,
           width and height measurements.
         </p>
-        <a href="cbm-calculator.html" class="button">Open Tool</a>
+        <a href="cbm-calculator.html" class="button">
+          Open Tool
+        </a>
       </div>
 
+      <!-- AREA CALCULATOR -->
+      <div class="card">
+        <h2>Area Calculator</h2>
+        <p>
+          Calculate area in square metres (m²) using length and width.
+          Useful for warehouse space, container yards, cargo storage areas
+          and general operational planning.
+        </p>
+        <a href="area-calculator.html" class="button">
+          Open Area Calculator
+        </a>
+      </div>
+
+      <!-- CONTAINER RECOMMENDATION -->
       <div class="card">
         <h2>Container Recommendation</h2>
         <p>
           Estimate a suitable container size based on cargo volume
           and preliminary loading requirements.
         </p>
-        <a href="container-recommendation.html" class="button">Open Tool</a>
-      </div>
-      <h2>Area Calculator</h2>
-
-<p>
-Calculate area in square metres (m²) using length and width.
-Useful for warehouse space, container yards, cargo storage areas
-and general operational planning.
-</p>
-
-<a href="area-calculator.html" class="button">
-Open Area Calculator
-</a>
-
-</div>
-
-      <div class="card">
-      <div class="card">
-
-
-        <h2>Logistics Unit Converter</h2>
-        <p>
-          Convert common logistics and transport units including
-          kilograms, tonnes, pounds, metres, feet and volume units.
-        </p>
-        <a href="unit-converter.html" class="button">Open Tool</a>
-      </div>
-
-      <div class="card">
-        <h2>Currency &amp; Cost Converter</h2>
-        <p>
-          Convert amounts between selected currencies using a reference
-          exchange rate for preliminary planning.
-        </p>
-        <a href="currency-converter.html" class="button">Open Tool</a>
-      </div>
-
-      <div class="card">
-        <h2>Shipment Tracking Lookup</h2>
-        <p>
-          Check available shipment information using a Container Number
-          or Bill of Lading reference.
-        </p>
-        <a href="shipment-tracking.html" class="button">Open Tracking Tool</a>
-      </div>
-
-      <div class="card">
-        <h2>Import Cost Planning Calculator</h2>
-        <p>
-          Prepare a preliminary import cost estimate using invoice value,
-          freight, insurance and an applicable duty rate.
-        </p>
-        <a href="import-cost-planning.html" class="button">
-          Open Import Cost Planner
+        <a href="container-recommendation.html" class="button">
+          Open Tool
         </a>
       </div>
-
-    </div>
-
-  </main>
-
-  <footer>
-    <p>
-      OpsToolkit — Digital Operations Tools for Logistics, Transport and Business Efficiency.
-    </p>
-    <p>
-      © 2026 Bandari na Usafirishaji
-    </p>
-  </footer>
-
-</body>
-</html>
