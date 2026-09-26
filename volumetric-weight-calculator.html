@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Volumetric Weight Calculator | Chargeable Weight | OpsToolkit</title>
+  <title>Volumetric Weight &amp; Chargeable Weight Calculator | OpsToolkit</title>
 
   <meta name="description"
-        content="Calculate volumetric weight and compare it with actual weight to estimate chargeable weight for freight and transport planning.">
+        content="Calculate volumetric weight and estimated chargeable weight for air freight, ocean LCL, rail and road freight planning.">
 
   <link rel="canonical"
         href="https://opstoolkit-bandari-na-usafirishaji.netlify.app/volumetric-weight-calculator">
@@ -52,10 +52,11 @@
     .hero h1 {
       margin: 0 0 12px;
       font-size: 38px;
+      line-height: 1.2;
     }
 
     .hero p {
-      max-width: 780px;
+      max-width: 800px;
       margin: auto;
       font-size: 17px;
       line-height: 1.6;
@@ -91,6 +92,16 @@
       border-radius: 7px;
       font-size: 16px;
       background: white;
+    }
+
+    .method-box {
+      margin-top: 20px;
+      padding: 15px 17px;
+      background: #f8fafc;
+      border-left: 4px solid #0b1f3a;
+      border-radius: 6px;
+      line-height: 1.6;
+      font-size: 14px;
     }
 
     .button {
@@ -134,7 +145,7 @@
 
     .result-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 14px;
       margin-top: 15px;
     }
@@ -149,13 +160,14 @@
     .result-box strong {
       display: block;
       color: #0b1f3a;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
     }
 
     .note {
-      margin-top: 25px;
+      margin-top: 20px;
       padding: 16px;
-      background: #f8fafc;
+      background: white;
+      border: 1px solid #e5e7eb;
       border-radius: 8px;
       line-height: 1.7;
       font-size: 14px;
@@ -187,6 +199,11 @@
       .calculator-card {
         padding: 22px;
       }
+
+      nav a {
+        display: inline-block;
+        margin: 6px 8px;
+      }
     }
   </style>
 </head>
@@ -202,17 +219,35 @@
   </nav>
 
   <section class="hero">
-    <h1>Volumetric Weight Calculator</h1>
+    <h1>Volumetric Weight &amp; Chargeable Weight Calculator</h1>
 
     <p>
-      Compare actual cargo weight with volumetric weight to estimate
-      chargeable weight for freight and transport planning.
+      Estimate volumetric weight and compare it with actual weight
+      for air freight, ocean LCL, rail and selected road freight
+      planning scenarios.
     </p>
   </section>
 
   <main class="container">
 
     <div class="calculator-card">
+
+      <label for="mode">Transport Mode</label>
+
+      <select id="mode" onchange="updateMethod()">
+        <option value="air">Air Freight</option>
+        <option value="ocean">Ocean LCL</option>
+        <option value="rail">Rail Freight</option>
+        <option value="road">Road Freight</option>
+        <option value="custom">Custom Calculation</option>
+      </select>
+
+      <div class="method-box" id="methodInfo">
+        <strong>Air Freight:</strong>
+        Uses a reference divisor of 6000 for dimensional weight
+        when dimensions are entered in centimetres.
+      </div>
+
 
       <label for="length">Length (cm)</label>
       <input
@@ -223,6 +258,7 @@
         placeholder="Enter length"
       >
 
+
       <label for="width">Width (cm)</label>
       <input
         type="number"
@@ -231,6 +267,7 @@
         step="any"
         placeholder="Enter width"
       >
+
 
       <label for="height">Height (cm)</label>
       <input
@@ -241,6 +278,7 @@
         placeholder="Enter height"
       >
 
+
       <label for="pieces">Number of Pieces</label>
       <input
         type="number"
@@ -249,6 +287,7 @@
         step="1"
         value="1"
       >
+
 
       <label for="actualWeight">Actual Weight per Piece (kg)</label>
       <input
@@ -259,31 +298,33 @@
         placeholder="Enter actual weight"
       >
 
-      <label for="divisor">Volumetric Divisor</label>
 
-      <select id="divisor" onchange="toggleCustomDivisor()">
-        <option value="5000">5000 – Common air freight reference</option>
-        <option value="6000">6000 – Air freight reference</option>
-        <option value="custom">Custom divisor</option>
-      </select>
+      <div id="customFactorBox" style="display:none;">
 
-      <div id="customDivisorBox" style="display:none;">
-
-        <label for="customDivisor">Custom Divisor</label>
+        <label for="customFactor">
+          Custom Divisor / Conversion Factor
+        </label>
 
         <input
           type="number"
-          id="customDivisor"
+          id="customFactor"
           min="1"
           step="any"
           placeholder="Enter divisor"
         >
 
+        <div class="method-box">
+          Use the divisor or conversion factor specified by your
+          carrier, freight forwarder or applicable tariff.
+        </div>
+
       </div>
 
-      <button class="button" onclick="calculateVolumetricWeight()">
-        Calculate Chargeable Weight
+
+      <button class="button" onclick="calculateWeight()">
+        Calculate
       </button>
+
 
       <div class="result" id="result">
 
@@ -304,13 +345,18 @@
           </div>
 
           <div class="result-box">
-            <strong>Total Volumetric Weight</strong>
-            <span id="totalVolumetricWeight"></span>
+            <strong>Volumetric / Equivalent Weight</strong>
+            <span id="volumetricWeight"></span>
+          </div>
+
+          <div class="result-box">
+            <strong>Calculation Basis</strong>
+            <span id="basis"></span>
           </div>
 
         </div>
 
-        <div class="note" id="billingBasis"></div>
+        <div class="note" id="resultNote"></div>
 
       </div>
 
@@ -322,49 +368,72 @@
       <h2>What Is Volumetric Weight?</h2>
 
       <p>
-        Volumetric weight, also called dimensional weight, estimates
-        the space occupied by cargo rather than relying only on its
-        physical weight.
+        Volumetric weight, also known as dimensional weight, estimates
+        the weight equivalent of the space occupied by cargo.
+        It is useful when cargo is relatively bulky compared with
+        its actual physical weight.
+      </p>
+
+
+      <h2>What Is Chargeable Weight?</h2>
+
+      <p>
+        In the calculation used here, the estimated chargeable weight
+        is the higher of the actual weight and the calculated
+        volumetric or equivalent weight.
+      </p>
+
+
+      <h2>Why Does the Factor Change?</h2>
+
+      <p>
+        The conversion factor is not universal. It can vary according
+        to transport mode, carrier, service and tariff. Therefore,
+        this calculator provides reference methods rather than
+        replacing the carrier's official rating rules.
+      </p>
+
+
+      <h2>Transport Modes</h2>
+
+      <p>
+        <strong>Air Freight:</strong> Dimensional weight is commonly
+        calculated using a divisor. This tool uses 6000 as a general
+        reference when dimensions are entered in centimetres.
       </p>
 
       <p>
-        The basic formula used by this calculator is:
+        <strong>Ocean LCL:</strong> LCL rating commonly uses a
+        weight-versus-measurement basis. This calculator uses
+        1 cubic metre as a reference equivalent to 1,000 kg for
+        preliminary comparison.
       </p>
 
       <p>
-        <strong>
-          Volumetric Weight = Length × Width × Height × Number of Pieces ÷ Divisor
-        </strong>
-      </p>
-
-      <h2>Chargeable Weight</h2>
-
-      <p>
-        For the calculation shown here, chargeable weight is the higher
-        of total actual weight and total volumetric weight.
+        <strong>Rail Freight:</strong> This tool uses 3000 as a
+        reference divisor for preliminary calculations.
       </p>
 
       <p>
-        The applicable divisor and billing rules can vary by carrier,
-        transport mode and service. Always confirm the applicable rate
-        with the carrier or freight provider before using the result
-        for commercial billing.
+        <strong>Road Freight:</strong> The applicable conversion
+        factor can vary by carrier, country, service and tariff.
+        Use the custom factor where required.
       </p>
 
-      <h2>Example</h2>
-
       <p>
-        If one package measures 60 cm × 40 cm × 50 cm, its volume is
-        0.12 cubic metres. With a divisor of 5000, the calculated
-        volumetric weight is 24 kg.
+        <strong>Custom:</strong> Enter the divisor or conversion factor
+        provided by your carrier or freight forwarder.
       </p>
 
-      <h2>Operational Use</h2>
+
+      <h2>Important Note</h2>
 
       <p>
-        This calculator can support preliminary freight planning,
-        shipment quoting, cargo comparison and transport planning where
-        dimensional weight is applicable.
+        This calculator is intended for preliminary planning and
+        estimation. Always confirm the applicable chargeable-weight
+        rule, divisor, density ratio and tariff with the relevant
+        carrier or freight provider before using the result for
+        commercial billing.
       </p>
 
     </section>
@@ -375,7 +444,8 @@
   <footer>
 
     <p>
-      OpsToolkit — Digital Operations Tools for Logistics, Transport and Business Efficiency.
+      OpsToolkit — Digital Operations Tools for Logistics, Transport
+      and Business Efficiency.
     </p>
 
     <p>
@@ -387,24 +457,67 @@
 
   <script>
 
-    function toggleCustomDivisor() {
+    function updateMethod() {
 
-      const divisor =
-        document.getElementById("divisor").value;
+      const mode =
+        document.getElementById("mode").value;
+
+      const methodInfo =
+        document.getElementById("methodInfo");
 
       const customBox =
-        document.getElementById("customDivisorBox");
+        document.getElementById("customFactorBox");
 
-      if (divisor === "custom") {
+
+      customBox.style.display = "none";
+
+
+      if (mode === "air") {
+
+        methodInfo.innerHTML =
+          "<strong>Air Freight:</strong> Uses a reference divisor of 6000 for dimensional weight when dimensions are entered in centimetres.";
+
+      }
+
+      else if (mode === "ocean") {
+
+        methodInfo.innerHTML =
+          "<strong>Ocean LCL:</strong> Uses a preliminary measurement basis of 1 m³ = 1,000 kg equivalent for comparing volume and actual weight.";
+
+      }
+
+      else if (mode === "rail") {
+
+        methodInfo.innerHTML =
+          "<strong>Rail Freight:</strong> Uses a reference divisor of 3000 for preliminary dimensional-weight calculations.";
+
+      }
+
+      else if (mode === "road") {
+
+        methodInfo.innerHTML =
+          "<strong>Road Freight:</strong> The conversion factor can vary by carrier and tariff. Enter the applicable divisor below.";
+
         customBox.style.display = "block";
-      } else {
-        customBox.style.display = "none";
+
+      }
+
+      else if (mode === "custom") {
+
+        methodInfo.innerHTML =
+          "<strong>Custom:</strong> Enter the divisor or conversion factor provided by your carrier or freight forwarder.";
+
+        customBox.style.display = "block";
+
       }
 
     }
 
 
-    function calculateVolumetricWeight() {
+    function calculateWeight() {
+
+      const mode =
+        document.getElementById("mode").value;
 
       const length =
         parseFloat(document.getElementById("length").value);
@@ -421,25 +534,8 @@
       const actualWeight =
         parseFloat(document.getElementById("actualWeight").value);
 
-      const divisorOption =
-        document.getElementById("divisor").value;
-
-      let divisor;
-
-
-      if (divisorOption === "custom") {
-
-        divisor =
-          parseFloat(
-            document.getElementById("customDivisor").value
-          );
-
-      } else {
-
-        divisor =
-          parseFloat(divisorOption);
-
-      }
+      const customFactor =
+        parseFloat(document.getElementById("customFactor").value);
 
 
       if (
@@ -448,31 +544,108 @@
         isNaN(height) ||
         isNaN(pieces) ||
         isNaN(actualWeight) ||
-        isNaN(divisor) ||
         length <= 0 ||
         width <= 0 ||
         height <= 0 ||
         pieces <= 0 ||
-        actualWeight < 0 ||
-        divisor <= 0
+        actualWeight < 0
       ) {
 
-        alert("Please enter valid values.");
+        alert("Please enter valid cargo measurements and weight.");
 
         return;
+
       }
 
 
-      const volumePerPiece =
-        (length * width * height) / 1000000;
-
-
       const totalVolume =
-        volumePerPiece * pieces;
+        (length * width * height * pieces) / 1000000;
 
 
-      const volumetricWeight =
-        (length * width * height * pieces) / divisor;
+      let calculatedWeight = 0;
+
+      let basis = "";
+
+
+      /*
+        AIR:
+        cm³ / 6000 = kg
+      */
+
+      if (mode === "air") {
+
+        calculatedWeight =
+          (length * width * height * pieces) / 6000;
+
+        basis = "Air divisor: 6000";
+
+
+      }
+
+
+      /*
+        OCEAN LCL:
+        1 m³ ≈ 1000 kg equivalent
+      */
+
+      else if (mode === "ocean") {
+
+        calculatedWeight =
+          totalVolume * 1000;
+
+        basis = "Ocean LCL reference: 1 m³ = 1000 kg equivalent";
+
+
+      }
+
+
+      /*
+        RAIL:
+        cm³ / 3000 = kg
+      */
+
+      else if (mode === "rail") {
+
+        calculatedWeight =
+          (length * width * height * pieces) / 3000;
+
+        basis = "Rail reference divisor: 3000";
+
+
+      }
+
+
+      /*
+        ROAD / CUSTOM
+      */
+
+      else if (
+        mode === "road" ||
+        mode === "custom"
+      ) {
+
+        if (
+          isNaN(customFactor) ||
+          customFactor <= 0
+        ) {
+
+          alert(
+            "Please enter the applicable custom divisor or conversion factor."
+          );
+
+          return;
+
+        }
+
+
+        calculatedWeight =
+          (length * width * height * pieces) / customFactor;
+
+        basis =
+          "Custom divisor: " +
+          customFactor;
+
+      }
 
 
       const totalActualWeight =
@@ -482,7 +655,7 @@
       const chargeableWeight =
         Math.max(
           totalActualWeight,
-          volumetricWeight
+          calculatedWeight
         );
 
 
@@ -500,8 +673,8 @@
         }) + " kg";
 
 
-      document.getElementById("totalVolumetricWeight").textContent =
-        volumetricWeight.toLocaleString(undefined, {
+      document.getElementById("volumetricWeight").textContent =
+        calculatedWeight.toLocaleString(undefined, {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2
         }) + " kg";
@@ -514,15 +687,24 @@
         }) + " kg";
 
 
-      if (volumetricWeight > totalActualWeight) {
+      document.getElementById("basis").textContent =
+        basis;
 
-        document.getElementById("billingBasis").textContent =
-          "Volumetric weight is higher than actual weight. Based on this calculation, volumetric weight is the chargeable weight.";
 
-      } else {
+      if (
+        calculatedWeight >
+        totalActualWeight
+      ) {
 
-        document.getElementById("billingBasis").textContent =
-          "Actual weight is higher than volumetric weight. Based on this calculation, actual weight is the chargeable weight.";
+        document.getElementById("resultNote").textContent =
+          "The calculated volumetric/equivalent weight is higher than the actual weight. Under this preliminary calculation, it is the higher chargeable-weight basis.";
+
+      }
+
+      else {
+
+        document.getElementById("resultNote").textContent =
+          "The actual weight is higher than the calculated volumetric/equivalent weight. Under this preliminary calculation, actual weight is the higher chargeable-weight basis.";
 
       }
 
