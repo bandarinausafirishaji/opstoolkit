@@ -1,92 +1,104 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
-<meta name="google-site-verification" content="43ZfcP5anr9UNleeYgQgEUbkWtq-yaIn071sXgXhJKw" />
+  <meta name="google-site-verification" content="43ZfcP5anr9UNleeYgQgEUbkWtq-yaIn071sXgXhJKw">
 
-<meta charset="UTF-8">
+  <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description" content="OpsToolkit provides practical digital tools, calculators, templates and resources for logistics, transport, business operations and supply chain professionals.">
+  <meta name="description" content="OpsToolkit provides practical digital tools, calculators, templates and resources for logistics, transport, business operations and supply chain professionals.">
 
-<meta name="keywords" content="logistics tools, logistics calculators, TEU calculator, CBM calculator, container planning, transport tools, operations tools, supply chain tools">
+  <meta name="keywords" content="logistics tools, logistics calculators, TEU calculator, CBM calculator, container planning, transport tools, operations tools, supply chain tools">
 
-<meta name="author" content="Bandari na Usafirishaji">
+  <meta name="author" content="Bandari na Usafirishaji">
 
-<meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow">
 
-<title>OpsToolkit | Logistics, Transport & Operations Tools</title>
+  <title>OpsToolkit | Logistics, Transport &amp; Operations Tools</title>
 
-<link rel="canonical" href="https://opstoolkit-bandari-na-usafirishaji.netlify.app/">
+  <link rel="canonical" href="https://opstoolkit-bandari-na-usafirishaji.netlify.app/">
 
-<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 
 
-<style>
+  <style>
 
-/* Responsive Available Tools Links */
+    /* ==============================
+       RESPONSIVE TOOL LINKS
+       ============================== */
 
-.tool-links {
-  list-style: none;
-  padding: 0;
-  margin: 20px 0 0;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
+    .bnu-tool-links {
+      list-style: none;
+      padding: 0;
+      margin: 22px 0 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
 
-.tool-links li {
-  margin: 0;
-}
+    .bnu-tool-links li {
+      margin: 0;
+      padding: 0;
+    }
 
-.tool-links a {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  width: 100%;
-  padding: 15px 18px;
-  border: 1px solid #dbe4ea;
-  border-radius: 10px;
-  background: #ffffff;
-  color: #123b56;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.2s ease;
-}
+    .bnu-tool-links a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      width: 100%;
+      min-height: 56px;
+      padding: 15px 18px;
+      border: 1px solid #dbe4ea;
+      border-radius: 10px;
+      background: #ffffff;
+      color: #123b56;
+      text-decoration: none;
+      font-weight: 600;
+      line-height: 1.4;
+      transition: transform 0.2s ease,
+                  box-shadow 0.2s ease,
+                  border-color 0.2s ease;
+    }
 
-.tool-links a:hover {
-  transform: translateY(-2px);
-  border-color: #123b56;
-  box-shadow: 0 5px 15px rgba(18, 59, 86, 0.10);
-}
+    .bnu-tool-links a:hover {
+      transform: translateY(-2px);
+      border-color: #123b56;
+      box-shadow: 0 6px 16px rgba(18, 59, 86, 0.10);
+    }
 
-.tool-links a::after {
-  content: "→";
-  font-size: 18px;
-  flex-shrink: 0;
-}
+    .bnu-tool-links a::after {
+      content: "→";
+      flex-shrink: 0;
+      font-size: 18px;
+      font-weight: 700;
+    }
 
-/* Mobile */
 
-@media (max-width: 700px) {
+    /* ==============================
+       MOBILE
+       ============================== */
 
-  .tool-links {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
+    @media (max-width: 700px) {
 
-  .tool-links a {
-    padding: 14px 16px;
-    font-size: 15px;
-  }
+      .bnu-tool-links {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
 
-}
+      .bnu-tool-links a {
+        min-height: 52px;
+        padding: 14px 16px;
+        font-size: 15px;
+      }
 
-</style>
+    }
+
+  </style>
 
 </head>
 
@@ -94,175 +106,223 @@
 <body>
 
 
-<!-- Navbar -->
+  <!-- ==============================
+       NAVBAR
+       ============================== -->
 
-<nav class="navbar">
+  <nav class="navbar">
 
-  <div class="logo">
-    OpsToolkit
-  </div>
+    <div class="logo">
+      OpsToolkit
+    </div>
 
-  <ul>
-
-    <li>
-      <a href="index.html">Home</a>
-    </li>
-
-    <li>
-      <a href="calculators.html">Calculators</a>
-    </li>
-
-    <li>
-      <a href="resources.html">Resources</a>
-    </li>
-
-    <li>
-      <a href="guides.html">Guides</a>
-    </li>
-
-    <li>
-      <a href="about.html">About</a>
-    </li>
-
-  </ul>
-
-</nav>
-
-
-<!-- Hero -->
-
-<header class="hero">
-
-  <h1>
-    OpsToolkit
-  </h1>
-
-  <p>
-    Digital Operations Tools for Logistics, Transport and Business Efficiency.
-  </p>
-
-  <a href="calculators.html" class="button">
-    Explore Tools
-  </a>
-
-</header>
-
-
-<!-- Main Content -->
-
-<section class="container">
-
-
-  <!-- Welcome -->
-
-  <div class="card">
-
-    <h2>
-      Welcome to OpsToolkit
-    </h2>
-
-    <p>
-      OpsToolkit is a digital platform providing practical tools,
-      calculators and operational resources for logistics,
-      transport and business professionals.
-    </p>
-
-  </div>
-
-
-  <!-- Available Tools -->
-
-  <div class="card">
-
-    <h2>
-      Available Tools
-    </h2>
-
-    <p>
-      Access practical tools directly from the links below.
-    </p>
-
-
-    <ul class="tool-links">
+    <ul>
 
       <li>
-        <a href="teu-calculator.html">
-          TEU Calculator
-        </a>
+        <a href="/">Home</a>
       </li>
 
       <li>
-        <a href="cbm-calculator.html">
-          CBM Calculator
-        </a>
+        <a href="/calculators">Calculators</a>
       </li>
 
       <li>
-        <a href="container-recommendation.html">
-          Container Size Recommendation
-        </a>
+        <a href="/resources">Resources</a>
       </li>
 
       <li>
-        <a href="logistics-unit-converter.html">
-          Unit Converter
-        </a>
+        <a href="/guides">Guides</a>
       </li>
 
       <li>
-        <a href="resources.html">
-          Logistics Resources
-        </a>
+        <a href="/about">About</a>
       </li>
 
     </ul>
 
-  </div>
+  </nav>
 
 
-  <!-- Knowledge Hub -->
 
-  <div class="card">
+  <!-- ==============================
+       HERO
+       ============================== -->
 
-    <h2>
-      Operations Knowledge Hub
-    </h2>
+  <header class="hero">
+
+    <h1>
+      OpsToolkit
+    </h1>
 
     <p>
-      Access practical guides, references and digital tools designed
-      to support better operational decisions.
+      Digital Operations Tools for Logistics, Transport and Business Efficiency.
     </p>
 
-  </div>
+    <a href="/calculators" class="button">
+      Explore Tools
+    </a>
+
+  </header>
 
 
-</section>
+
+  <!-- ==============================
+       MAIN CONTENT
+       ============================== -->
+
+  <section class="container">
 
 
-<!-- Footer -->
+    <!-- Welcome -->
 
-<footer>
+    <div class="card">
 
-  <p>
-    OpsToolkit
-  </p>
+      <h2>
+        Welcome to OpsToolkit
+      </h2>
 
-  <p>
-    Digital Operations Tools for Logistics, Transport and Business Efficiency.
-  </p>
+      <p>
+        OpsToolkit is a digital platform providing practical tools,
+        calculators and operational resources for logistics,
+        transport and business professionals.
+      </p>
 
-  <p>
-    Developed by ASA Digital Solutions & Operations
-  </p>
+    </div>
 
-  <p>
-    © 2026 OpsToolkit. All rights reserved.
-  </p>
 
-</footer>
+
+    <!-- Available Tools -->
+
+    <div class="card">
+
+      <h2>
+        Available Tools
+      </h2>
+
+      <p>
+        Access practical logistics and operations tools directly
+        from the links below.
+      </p>
+
+
+      <ul class="bnu-tool-links">
+
+
+        <li>
+          <a href="/teu-calculator">
+            TEU Calculator
+          </a>
+        </li>
+
+
+        <li>
+          <a href="/cbm-calculator">
+            CBM Calculator
+          </a>
+        </li>
+
+
+        <li>
+          <a href="/area-calculator">
+            Area Calculator
+          </a>
+        </li>
+
+
+        <li>
+          <a href="/volumetric-weight-calculator">
+            Volumetric Weight &amp; Chargeable Weight
+          </a>
+        </li>
+
+
+        <li>
+          <a href="/container-recommendation">
+            Container Size Recommendation
+          </a>
+        </li>
+
+
+        <li>
+          <a href="/unit-converter">
+            Logistics Unit Converter
+          </a>
+        </li>
+
+
+        <li>
+          <a href="/currency-converter">
+            Currency &amp; Cost Converter
+          </a>
+        </li>
+
+
+        <li>
+          <a href="/shipment-tracking">
+            Shipment Tracking Lookup
+          </a>
+        </li>
+
+
+        <li>
+          <a href="/import-cost-planning">
+            Import Cost Planning Calculator
+          </a>
+        </li>
+
+
+      </ul>
+
+    </div>
+
+
+
+    <!-- Operations Knowledge Hub -->
+
+    <div class="card">
+
+      <h2>
+        Operations Knowledge Hub
+      </h2>
+
+      <p>
+        Access practical guides, references and digital tools designed
+        to support better operational decisions.
+      </p>
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- ==============================
+       FOOTER
+       ============================== -->
+
+  <footer>
+
+    <p>
+      OpsToolkit
+    </p>
+
+    <p>
+      Digital Operations Tools for Logistics, Transport and Business Efficiency.
+    </p>
+
+    <p>
+      Developed by ASA Digital Solutions &amp; Operations
+    </p>
+
+    <p>
+      © 2026 OpsToolkit. All rights reserved.
+    </p>
+
+  </footer>
 
 
 </body>
 
 </html>
-
+```
