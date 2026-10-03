@@ -1,11 +1,11 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  
+
 <meta name="google-site-verification" content="43ZfcP5anr9UNleeYgQgEUbkWtq-yaIn071sXgXhJKw" />
-  
+
 <meta charset="UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,166 +24,245 @@
 
 <link rel="stylesheet" href="style.css">
 
+
+<style>
+
+/* Responsive Available Tools Links */
+
+.tool-links {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.tool-links li {
+  margin: 0;
+}
+
+.tool-links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 15px 18px;
+  border: 1px solid #dbe4ea;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #123b56;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.tool-links a:hover {
+  transform: translateY(-2px);
+  border-color: #123b56;
+  box-shadow: 0 5px 15px rgba(18, 59, 86, 0.10);
+}
+
+.tool-links a::after {
+  content: "→";
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+  .tool-links {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .tool-links a {
+    padding: 14px 16px;
+    font-size: 15px;
+  }
+
+}
+
+</style>
+
 </head>
+
 
 <body>
 
 
+<!-- Navbar -->
+
 <nav class="navbar">
 
-<div class="logo">
-OpsToolkit
-</div>
+  <div class="logo">
+    OpsToolkit
+  </div>
 
+  <ul>
 
-<ul>
+    <li>
+      <a href="index.html">Home</a>
+    </li>
 
-<li><a href="index.html">Home</a></li>
+    <li>
+      <a href="calculators.html">Calculators</a>
+    </li>
 
-<li><a href="calculators.html">Calculators</a></li>
+    <li>
+      <a href="resources.html">Resources</a>
+    </li>
 
-<li><a href="resources.html">Resources</a></li>
+    <li>
+      <a href="guides.html">Guides</a>
+    </li>
 
-<li><a href="guides.html">Guides</a></li>
+    <li>
+      <a href="about.html">About</a>
+    </li>
 
-<li><a href="about.html">About</a></li>
-
-</ul>
-
+  </ul>
 
 </nav>
 
 
-
-
+<!-- Hero -->
 
 <header class="hero">
 
-<h1>
-OpsToolkit
-</h1>
+  <h1>
+    OpsToolkit
+  </h1>
 
+  <p>
+    Digital Operations Tools for Logistics, Transport and Business Efficiency.
+  </p>
 
-<p>
-Digital Operations Tools for Logistics, Transport and Business Efficiency.
-</p>
-
-
-<a href="calculators.html" class="button">
-Explore Tools
-</a>
-
+  <a href="calculators.html" class="button">
+    Explore Tools
+  </a>
 
 </header>
 
 
-
-
-
+<!-- Main Content -->
 
 <section class="container">
 
 
+  <!-- Welcome -->
 
-<div class="card">
+  <div class="card">
 
-<h2>
-Welcome to OpsToolkit
-</h2>
+    <h2>
+      Welcome to OpsToolkit
+    </h2>
 
+    <p>
+      OpsToolkit is a digital platform providing practical tools,
+      calculators and operational resources for logistics,
+      transport and business professionals.
+    </p>
 
-<p>
-OpsToolkit is a digital platform providing practical tools,
-calculators and operational resources for logistics,
-transport and business professionals.
-</p>
-
-
-</div>
-
+  </div>
 
 
+  <!-- Available Tools -->
+
+  <div class="card">
+
+    <h2>
+      Available Tools
+    </h2>
+
+    <p>
+      Access practical tools directly from the links below.
+    </p>
 
 
+    <ul class="tool-links">
 
-<div class="card">
+      <li>
+        <a href="teu-calculator.html">
+          TEU Calculator
+        </a>
+      </li>
 
-<h2>
-Available Tools
-</h2>
+      <li>
+        <a href="cbm-calculator.html">
+          CBM Calculator
+        </a>
+      </li>
 
+      <li>
+        <a href="container-recommendation.html">
+          Container Size Recommendation
+        </a>
+      </li>
 
-<ul>
+      <li>
+        <a href="logistics-unit-converter.html">
+          Unit Converter
+        </a>
+      </li>
 
-<li>TEU Calculator</li>
+      <li>
+        <a href="resources.html">
+          Logistics Resources
+        </a>
+      </li>
 
-<li>CBM Calculator</li>
+    </ul>
 
-<li>Container Size Recommendation</li>
-
-<li>Unit Converter</li>
-
-<li>Logistics Resources</li>
-
-</ul>
-
-
-</div>
-
-
-
-
-
-
-<div class="card">
-
-<h2>
-Operations Knowledge Hub
-</h2>
-
-
-<p>
-Access practical guides, references and digital tools designed
-to support better operational decisions.
-</p>
+  </div>
 
 
-</div>
+  <!-- Knowledge Hub -->
 
+  <div class="card">
+
+    <h2>
+      Operations Knowledge Hub
+    </h2>
+
+    <p>
+      Access practical guides, references and digital tools designed
+      to support better operational decisions.
+    </p>
+
+  </div>
 
 
 </section>
 
 
-
-
-
+<!-- Footer -->
 
 <footer>
 
-<p>
-OpsToolkit
-</p>
+  <p>
+    OpsToolkit
+  </p>
 
-<p>
-Digital Operations Tools for Logistics, Transport and Business Efficiency.
-</p>
+  <p>
+    Digital Operations Tools for Logistics, Transport and Business Efficiency.
+  </p>
 
-<p>
-Developed by ASA Digital Solutions & Operations
-</p>
+  <p>
+    Developed by ASA Digital Solutions & Operations
+  </p>
 
-<p>
-© 2026 OpsToolkit. All rights reserved.
-</p>
-
+  <p>
+    © 2026 OpsToolkit. All rights reserved.
+  </p>
 
 </footer>
-
-
 
 
 </body>
 
 </html>
-
+```
